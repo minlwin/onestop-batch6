@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+$primary: #FFCC00;
+$secondary: #FAF5E9;
+$success: #009B4D;
+$success-dark: #003400;
+$danger: #ED7674;
+$info: #A2DCE0;
+$ptf: 'PT Serif', serif;
+$popf: 'Poppins', sans-serif;
+
+$enable-rounded: false;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.text-success-dark {
+  color: $success-dark;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+body {
+  font-size: 1.1rem;
+  font-family: $ptf;
+  font-weight: 400;
+  background-color: $secondary;
+}
+
+.upnav-shadow {
+  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.15);
+}
+
+/* left nav bar */
+.navmenu {
+  font-size: 1.1rem;
+  padding-top: 1.5rem;
+}
+
+.navmenu a {
+  padding: 0.5rem;
+  color: $dark;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.nav-active, .navmenu a:hover {
+  background-color: $danger;
+  color: #fff;
+  border-radius: 0.3rem;
+}
+
+.nav-active > span, .nav-active > i {
+  color: #fff;
+}
+
+.icon-link {
+  color: $dark;
+}
+
+.icon-link:hover {
+  color: $danger;
+  cursor: pointer;
+}
+
+.btn-outline-danger:hover {
+  color: #fff;
+}
+
+.form-control:focus {
+  border-color: #eeb7b6;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(237, 118, 116, 0.20);
+}

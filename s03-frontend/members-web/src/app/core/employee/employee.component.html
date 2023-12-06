@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-white upnav-shadow sticky-top">
+  <div class="container-fluid">
+    <a routerLink="/public" class="navbar-brand">Employee Dashboard</a>
+
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <button class="btn btn-danger text-white" (click)="logout()">
+          Log Out <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" style="height: calc(100% - 56px);">
+  <div class="row h-100">
+    <!-- left nav bar -->
+    <nav class="col-2 navmenu bg-white shadow h-100">
+      <div class="text-center text-lg-start h-100">
+        <a [routerLink]="['/employee', 'sale']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-cart me-lg-2"></i>
+          <span class="d-none d-lg-inline">Sale</span>
+        </a>
+
+        <a [routerLink]="['/employee', 'member']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-person-raised-hand me-lg-2"></i>
+          <span class="d-none d-lg-inline">Member</span>
+        </a>
+
+        <a [routerLink]="['/employee', 'category']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-tags me-lg-2"></i>
+          <span class="d-none d-lg-inline">Category</span>
+        </a>
+
+        <a [routerLink]="['/employee', 'catalog']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-layers me-lg-2"></i>
+          <span class="d-none d-lg-inline">Catalog</span>
+        </a>
+
+        <a [routerLink]="['/employee', 'employee']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-person me-lg-2"></i>
+          <span class="d-none d-lg-inline">Employee</span>
+        </a>
+
+        <a [routerLink]="['/employee', 'setting']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-gear me-lg-2"></i>
+          <span class="d-none d-lg-inline">Setting</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- main -->
+    <main class="col-10 pt-4 ps-3">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

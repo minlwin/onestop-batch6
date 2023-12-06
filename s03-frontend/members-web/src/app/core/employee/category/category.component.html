@@ -1,0 +1,41 @@
+<!-- Category Search -->
+<div class="row justify-content-between g-2">
+  <div class="col-md-auto col-12">
+    <button class="btn btn-danger text-white w-100" (click)="openCategoryForm()">
+      <i class="bi bi-plus"></i> Add Category
+    </button>
+  </div>
+  <div class="col-md-auto col-12">
+    <div class="row g-2">
+      <div class="col-md-auto col-10">
+        <input #nameVal (keyup)="params.name = nameVal.value; search()" type="text" class="form-control"
+          placeholder="Category name">
+      </div>
+      <div class="col-md-auto col-2">
+        <button class="btn btn-danger text-white w-100" (click)="search()">
+          <i class="bi bi-search"></i>
+          <span class="d-none d-md-inline"> Search</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Category List -->
+<div class="row mt-3 g-2">
+  <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let category of categories">
+    <div class="card rounded-2">
+      <div class="card-body d-flex justify-content-between">
+        <div>
+          {{ category.name }}
+        </div>
+        <span class="icon-link" (click)="editCategory(category)">
+          <i class="bi bi-pencil-square"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-category-form (onSave)="saveCategory($event)"></app-category-form>

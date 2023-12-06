@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <app-modal-dialog btnColor="danger" [modalTitle]="id.value == 0 ? 'Add Category' : 'Category Edit'"
+    [modalIcon]="id.value == 0 ? 'plus-square' : 'pencil-square'" modalId="employeeCategoryFormModalDialog">
+
+    <ng-container body>
+      <app-form-group label="Name" [valid]="name.valid">
+        <input formControlName="name" type="text" class="form-control" placeholder="Category name">
+      </app-form-group>
+    </ng-container>
+
+    <button class="btn btn-outline-danger" (click)="saveCategory()">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </app-modal-dialog>
+</form>

@@ -1,0 +1,7 @@
+<label class="form-label">{{ label }}</label>
+<div class="input-group" [class.mb-3]="margin">
+  <ng-content></ng-content>
+  <span class="input-group-text">
+    <i class="bi" [ngClass]="valid ? 'bi-check text-success' : 'bi-x text-danger'"></i>
+  </span>
+</div>

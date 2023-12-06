@@ -1,0 +1,30 @@
+<div class="bg-white p-3">
+  <h3 class="fw-bold">
+    <i class="bi" [ngClass]="id.value == 0 ? 'bi-plus-square' : 'bi-pencil-square'"></i>
+    {{ id.value == 0 ? 'Add New Member' : 'Member Edit' }}
+  </h3>
+
+  <div class="row mt-4 g-3">
+    <div class="col-lg-6 col-md-8 col-12">
+
+      <form [formGroup]="form">
+
+        <!-- Member name and email -->
+        <div class="row mb-lg-3 g-3">
+          <div class="col">
+            <app-form-group [valid]="name.valid" label="Name">
+              <input formControlName="name" type="text" class="form-control" placeholder="Member name">
+            </app-form-group>
+          </div>
+          <div class="col">
+            <app-form-group [valid]="email.valid" label="Email">
+              <input formControlName="email" type="email" class="form-control" placeholder="example@gmail.com">
+            </app-form-group>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
