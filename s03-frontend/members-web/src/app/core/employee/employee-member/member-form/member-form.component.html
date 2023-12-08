@@ -1,25 +1,98 @@
-<div class="bg-white p-3">
-  <h3 class="fw-bold">
-    <i class="bi" [ngClass]="id.value == 0 ? 'bi-plus-square' : 'bi-pencil-square'"></i>
-    {{ id.value == 0 ? 'Add New Member' : 'Member Edit' }}
-  </h3>
+<div class="row justify-content-center g-3">
 
-  <div class="row mt-4 g-3">
-    <div class="col-lg-6 col-md-8 col-12">
+  <div class="col-lg-8 col-md-10 col-12">
+
+    <div class="bg-white p-4 rounded-3">
+
+      <div class="mb-md-4 mb-2 d-flex justify-content-center position-relative">
+        <a [routerLink]="['..']" class="icon-link position-absolute start-0 top-25 h3 d-none d-md-inline">
+          <i class="bi bi-caret-left-fill"></i>
+        </a>
+
+        <h4 class="fw-bold text-center">
+          <i class="bi" [ngClass]="id.value == 0 ? 'bi-plus-square' : 'bi-pencil-square'"></i>
+          {{ id.value == 0 ? 'Add New Member' : 'Member Edit' }}
+        </h4>
+      </div>
 
       <form [formGroup]="form">
 
         <!-- Member name and email -->
-        <div class="row mb-lg-3 g-3">
-          <div class="col">
-            <app-form-group [valid]="name.valid" label="Name">
-              <input formControlName="name" type="text" class="form-control" placeholder="Member name">
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12">
+            <app-form-group icon="bi-card-heading" label="Name" [valid]="name.valid" [touch]="name.touched"
+              [dirty]="name.dirty">
+              <input formControlName="name" type="text" class="form-control" placeholder="eg. Emily Rudd">
             </app-form-group>
           </div>
           <div class="col">
-            <app-form-group [valid]="email.valid" label="Email">
+            <app-form-group icon="bi-envelope" label="Email" [valid]="email.valid" [touch]="email.touched"
+              [dirty]="email.dirty">
               <input formControlName="email" type="email" class="form-control" placeholder="example@gmail.com">
             </app-form-group>
+          </div>
+        </div>
+
+        <!-- Phone and NRC -->
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12">
+            <app-form-group icon="bi-telephone" label="Phone" [valid]="phone.valid" [touch]="phone.touched"
+              [dirty]="phone.dirty">
+              <input formControlName="phone" type="tel" class="form-control" placeholder="09-xxx-xxx-xxx">
+            </app-form-group>
+          </div>
+          <div class="col">
+            <app-form-group icon="bi-person-vcard" label="NRC" [valid]="nrc.valid" [touch]="nrc.touched"
+              [dirty]="nrc.dirty">
+              <input formControlName="nrc" type="email" class="form-control" placeholder="1/KaKhaGa(N)100200">
+            </app-form-group>
+          </div>
+        </div>
+
+        <!-- Gender and Address -->
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12 align-self--md-center">
+            <label class="form-label mb-1">Gender</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input formControlName="gender" type="radio" id="male" class="form-check-input" value="Male">
+                <label for="male" class="form-check-label">Male</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input formControlName="gender" type="radio" id="female" class="form-check-input" value="Female">
+                <label for="female" class="form-check-label">Female</label>
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input formControlName="gender" type="radio" id="other" class="form-check-input" value="Other">
+                <label for="other" class="form-check-label">Other</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <app-form-group icon="bi-geo-alt" label="Address" [valid]="address.valid" [touch]="address.touched"
+              [dirty]="address.dirty">
+              <input formControlName="address" type="email" class="form-control"
+                placeholder="eg. 28(B), Bo Gyoke Rd, Latha">
+            </app-form-group>
+          </div>
+        </div>
+
+        <!-- Remark -->
+        <div class="row mb-3 g-3 mx-5">
+          <div class="col">
+            <app-form-group icon="bi-card-text" label="Remark">
+              <textarea formControlName="remark" class="form-control" placeholder="Remark for member"></textarea>
+            </app-form-group>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col">
+            <button class="btn btn-danger text-white w-100" (click)="saveMember()"><i class="bi bi-save"></i>
+              Save</button>
           </div>
         </div>
 
@@ -27,4 +100,5 @@
 
     </div>
   </div>
+
 </div>

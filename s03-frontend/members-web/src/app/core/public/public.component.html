@@ -41,11 +41,13 @@
     modalId="publicLoginModalDialog">
 
     <ng-container body>
-      <app-form-group label="Email" [margin]="true" [valid]="email.valid">
+      <app-form-group label="Email" icon="bi-envelope" [margin]="true" [valid]="email.valid" [touch]="email.touched"
+        [dirty]="email.dirty">
         <input formControlName="email" type="email" class="form-control" placeholder="someone@gmail.com">
       </app-form-group>
 
-      <app-form-group label="Password" [valid]="password.valid">
+      <app-form-group label="Password" icon="bi-key" [valid]="password.valid" [touch]="password.touched"
+        [dirty]="password.dirty">
         <input formControlName="password" type="password" class="form-control" placeholder="Enter password">
       </app-form-group>
     </ng-container>

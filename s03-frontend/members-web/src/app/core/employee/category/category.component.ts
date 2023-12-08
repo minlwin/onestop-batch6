@@ -26,7 +26,10 @@ export class CategoryComponent implements OnInit {
 
   search() {
     this.employeeCategoryService.search(this.params)
-      .subscribe(resp => this.categories = resp)
+      .subscribe(resp => {
+        console.log(resp)
+        this.categories = resp
+      })
   }
 
   openCategoryForm() {

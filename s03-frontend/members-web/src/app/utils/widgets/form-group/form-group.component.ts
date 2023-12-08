@@ -13,9 +13,18 @@ export class FormGroupComponent {
   label!: string
 
   @Input()
-  valid = false
+  icon!: string
 
   @Input()
   margin = false
+
+  @Input()
+  valid = false
+
+  @Input()
+  dirty = false
+
+  @Input()
+  touch = false
 
 }

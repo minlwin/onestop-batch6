@@ -35,6 +35,9 @@ body {
 .navmenu {
   font-size: 1.1rem;
   padding-top: 1.5rem;
+  position: sticky;
+  left: 0;
+  top: 56px;
 }
 
 .navmenu a {
@@ -68,8 +71,14 @@ body {
   color: #fff;
 }
 
-.form-control:focus {
+.form-control:focus, .form-check-input:focus {
   border-color: #eeb7b6;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(237, 118, 116, 0.20);
 }
+
+.form-check-input:checked {
+  background-color: #f76967;
+  border-color: #f76967;
+}
+
