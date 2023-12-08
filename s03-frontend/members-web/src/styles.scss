@@ -35,7 +35,7 @@ body {
 .navmenu {
   font-size: 1.1rem;
   padding-top: 1.5rem;
-  position: sticky;
+  position: fixed;
   left: 0;
   top: 56px;
 }
@@ -58,11 +58,16 @@ body {
   color: #fff;
 }
 
+.content {
+  position: absolute;
+  left: 16.66666667%;
+}
+
 .icon-link {
   color: $dark;
 }
 
-.icon-link:hover {
+.icon-link:hover i {
   color: $danger;
   cursor: pointer;
 }
@@ -80,5 +85,15 @@ body {
 .form-check-input:checked {
   background-color: #f76967;
   border-color: #f76967;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * > span, .table-striped > tbody > tr:nth-of-type(even) > * > span {
+  background-color: white;
+  border-radius: 0.3rem;
+  padding: 0.2rem 1rem;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) > * > span {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 

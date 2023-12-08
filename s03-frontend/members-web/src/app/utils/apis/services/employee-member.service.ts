@@ -40,4 +40,8 @@ export class EmployeeMemberService {
     return of(this._members)
   }
 
+  findById(id: number) {
+    return of(this._members.filter(member => member.id == id).pop())
+  }
+
 }

@@ -12,7 +12,7 @@ import { CategoryComponent } from './core/employee/category/category.component';
 import { CatalogComponent } from './core/employee/catalog/catalog.component';
 import { EmployeeMemberComponent } from './core/employee/employee-member/employee-member.component';
 import { MemberFormComponent } from './core/employee/employee-member/member-form/member-form.component';
-import { MemberDetailComponent } from './core/employee/member/member-detail/member-detail.component';
+import { MemberDetailComponent } from './core/employee/employee-member/member-detail/member-detail.component';
 
 export const routes: Routes = [
   { path: 'public', component: PublicComponent, children: [

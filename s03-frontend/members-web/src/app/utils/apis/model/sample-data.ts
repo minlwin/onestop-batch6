@@ -13,6 +13,23 @@ export interface Category {
   name: string
 }
 
+export interface CatalogSearch {
+  id: number
+  keyword: string
+}
+
+export interface Catalog {
+  id: number
+  name: string
+  category: Category
+  weight: number
+  purity: number
+  undercount: number
+  coverImage: string
+  images: string[]
+  remark: string
+}
+
 export interface MemberSearch {
   keyword: string
 }

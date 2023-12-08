@@ -31,11 +31,23 @@ export class MemberFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let id = 0
     this.route.queryParamMap.subscribe(param => {
+      if(param.get('id')) {
+        id = + (param.get('id') as string)
+      }
+
       if(param.get('checkout')) {
         this.checkout = Boolean(param.get('checkout') as string)
       }
     })
+
+    if(id) {
+      this.employeeMemberService.findById(id).subscribe(resp => {
+        if(resp)
+          this.form.patchValue(resp)
+      })
+    }
   }
 
   get id() {

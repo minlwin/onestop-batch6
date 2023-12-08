@@ -1,0 +1,58 @@
+<div class="row g-3">
+  <div class="col-lg-7 col-12">
+    <div class="bg-white rounded-3 p-3">
+
+      <div class="card rounded-2">
+        <div class="card-header bg-secondary">
+          <h5 class="fw-bold">Information of {{ member.name }}</h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-4">Name</div>
+            <div class="col">{{ member.name }}</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">Email</div>
+            <div class="col">{{ member.email }}</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">Phone</div>
+            <div class="col">{{ member.phone }}</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">NRC No</div>
+            <div class="col">{{ member.nrc }}</div>
+          </div>
+
+          <div class="row mb-2">
+            <div class="col-4">Gender</div>
+            <div class="col">{{ member.gender }}</div>
+          </div>
+
+          <div class="row" [ngClass]="member.remark ? 'mb-2' : 'mb-4'">
+            <div class="col-4">Address</div>
+            <div class="col">{{ member.address }}</div>
+          </div>
+
+          <div class="row mb-4" *ngIf="member.remark">
+            <div class="col-4">Remark</div>
+            <div class="col">{{ member.remark }}</div>
+          </div>
+
+          <div class="text-end">
+            <a [routerLink]="['../', 'management']" class="btn btn-outline-danger">To Member List</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-lg-5 col-12">
+    <div class="bg-white rounded-3 p-3">
+      <h4>Hello</h4>
+    </div>
+  </div>
+</div>

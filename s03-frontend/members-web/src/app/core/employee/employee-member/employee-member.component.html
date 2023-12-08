@@ -29,7 +29,7 @@
         <th>Phone</th>
         <th>Nrc</th>
         <th>Gender</th>
-        <th>Address</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -40,7 +40,17 @@
         <td>{{ mem.phone }}</td>
         <td>{{ mem.nrc }}</td>
         <td>{{ mem.gender }}</td>
-        <td>{{ mem.address }}</td>
+        <td>
+          <span class="w-100 align-center">
+            <a [routerLink]="['/employee', 'member', 'form']" [queryParams]="{id: mem.id}" class="icon-link me-3">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+
+            <a [routerLink]="['/employee', 'member', 'detail']" [queryParams]="{id: mem.id}" class="icon-link">
+              <i class="bi bi-send"></i>
+            </a>
+          </span>
+        </td>
       </tr>
     </tbody>
   </table>
