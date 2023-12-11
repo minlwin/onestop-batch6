@@ -103,11 +103,12 @@ body {
   margin: 0;
 }
 
-a.card {
+.card-link {
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
 
-a.card:hover {
+.card-link:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
@@ -143,4 +144,16 @@ a.card:hover {
   .profile-image {
     width: 30%;
   }
+}
+
+.carousel-item > img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-img-indicator {
+  width: calc((100% / 5) - 2px);
+  height: 120px;
+  cursor: grab;
 }

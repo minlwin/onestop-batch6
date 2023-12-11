@@ -6,7 +6,9 @@
         <h5>Profile Picture</h5>
       </div>
       <div class="card-body text-center">
-        <img [src]="member.profileImage ?? '/assets/profile.png'" class="img-thumbnail rounded-circle profile-image">
+        <img
+          [src]="member.profileImage ?? member.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png'"
+          class="img-thumbnail rounded-circle profile-image">
 
         <div class="mt-3">
           <button class="btn btn-danger text-white">

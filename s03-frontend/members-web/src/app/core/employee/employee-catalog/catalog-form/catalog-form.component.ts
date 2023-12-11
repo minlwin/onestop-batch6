@@ -28,6 +28,8 @@ export class CatalogFormComponent implements OnInit {
       weight: [0, Validators.min(1)],
       purity: [0, Validators.min(1)],
       undercount: [0, Validators.min(1)],
+      size: [0, Validators.min(1)],
+      stock: 0,
       remark: ''
     })
   }
@@ -77,6 +79,14 @@ export class CatalogFormComponent implements OnInit {
     return this.getFormControl('undercount')
   }
 
+  get size() {
+    return this.getFormControl('size')
+  }
+
+  get stock() {
+    return this.getFormControl('stock')
+  }
+
   private getFormControl(formControlName: string) {
     return this.form.get(formControlName) as FormControl
   }
@@ -109,7 +119,15 @@ export class CatalogFormComponent implements OnInit {
     }
 
     this.form.patchValue({categories: result})
-    let {catInput, ...data} = this.form.value
+
+    if(this.form.valid) {
+      let {catInput, ...data} = this.form.value
+      this.employeeCatalogService.save(data).subscribe(resp => {
+        if(resp) {
+          this.router.navigate(['/employee', 'catalog', 'detail'], {queryParams: {id: resp.id}})
+        }
+      })
+    }
 
   }
 

@@ -1,0 +1,34 @@
+<div class="row g-3">
+
+  <img class="col-lg-7 col-12" *ngIf="!images?.length" src="/assets/no-image.png" height="100%" width="auto"
+    style="object-fit: cover;">
+  <div class="col-lg-7 col-12 border" *ngIf="images?.length">
+    <!-- Catalog Images -->
+    <div id="carouselExample" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <ng-container *ngFor="let image of images">
+          <div class="carousel-item active" [class.active]="activeCarousel == image">
+            <img class="d-block w-100 image-responsive" src="{{ image }}" #ig (click)="activeCarousel = ig.src">
+          </div>
+        </ng-container>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="d-flex my-1 gap-1">
+      <img *ngFor="let image of images" [src]="image" class="col img-thumbnail carousel-img-indicator"
+        (click)="activeCarousel = image">
+    </div>
+  </div>
+
+  <!-- Catalog Info -->
+  <div class="col">
+
+  </div>
+</div>

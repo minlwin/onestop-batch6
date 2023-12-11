@@ -31,7 +31,8 @@
         <div class="card-body position-relative">
 
           <img class="img-thumbnail rounded-circle position-absolute top-0 start-50 translate-middle"
-            [src]="mem.profileImage ?? '/assets/profile.png'" width="40%">
+            [src]="mem.profileImage ?? mem.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png'"
+            width="40%">
 
           <p class="fw-bold fs-5 text-center" style="margin-top: 55px;">{{ mem.name }}</p>
 

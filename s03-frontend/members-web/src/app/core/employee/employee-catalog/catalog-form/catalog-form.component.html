@@ -47,22 +47,38 @@
 
         <!-- Weight, Purity and Undercount -->
         <div class="row g-3 mb-3">
-          <div class="col-md-4 col-12">
-            <app-form-group icon="bi-box" label="Weight" [valid]="weight.valid" [touch]="weight.touched"
+          <div class="col-md col-12">
+            <app-form-group icon="bi-bucket" label="Weight" [valid]="weight.valid" [touch]="weight.touched"
               [dirty]="weight.dirty">
               <input formControlName="weight" type="number" class="form-control">
             </app-form-group>
           </div>
-          <div class="col-md-4 col-12">
+          <div class="col-md col-12">
             <app-form-group icon="bi-award" label="Purity" [valid]="purity.valid" [touch]="purity.touched"
               [dirty]="purity.dirty">
               <input formControlName="purity" type="number" class="form-control">
             </app-form-group>
           </div>
-          <div class="col-md-4 col-12">
-            <app-form-group icon="bi-c-circle" label="Undercount" [valid]="undercount.valid"
+          <div class="col-md col-12">
+            <app-form-group icon="bi-currency-exchange" label="Undercount" [valid]="undercount.valid"
               [touch]="undercount.touched" [dirty]="undercount.dirty">
               <input formControlName="undercount" type="number" class="form-control">
+            </app-form-group>
+          </div>
+        </div>
+
+        <!-- Size and Stock-->
+        <div class="row g-3 mb-3 px-3">
+          <div class="col-md col-12">
+            <app-form-group icon="bi-arrows-angle-expand" label="Size" [valid]="size.valid" [touch]="size.touched"
+              [dirty]="size.dirty">
+              <input formControlName="size" type="number" class="form-control">
+            </app-form-group>
+          </div>
+          <div class="col-md col-12">
+            <app-form-group icon="bi-box-seam" label="Stock" [valid]="stock.valid" [touch]="stock.touched"
+              [dirty]="stock.dirty">
+              <input formControlName="stock" type="number" class="form-control">
             </app-form-group>
           </div>
         </div>
@@ -78,7 +94,7 @@
         </div>
 
         <button class="btn btn-danger text-white w-100" (click)="saveCatalog()">
-          <i class="bi bi-save"></i> Save
+          <i class="bi bi-save2"></i> Save
         </button>
 
       </form>
