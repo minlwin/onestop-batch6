@@ -9,10 +9,12 @@ import { MemberHomeComponent } from './core/member/member-home/member-home.compo
 import { MemberPurchaseDetailComponent } from './core/member/member-purchase-detail/member-purchase-detail.component';
 import { SaleComponent } from './core/employee/sale/sale.component';
 import { CategoryComponent } from './core/employee/category/category.component';
-import { CatalogComponent } from './core/employee/catalog/catalog.component';
+import { EmployeeCatalogComponent } from './core/employee/employee-catalog/employee-catalog.component';
 import { EmployeeMemberComponent } from './core/employee/employee-member/employee-member.component';
 import { MemberFormComponent } from './core/employee/employee-member/member-form/member-form.component';
 import { MemberDetailComponent } from './core/employee/employee-member/member-detail/member-detail.component';
+import { CatalogFormComponent } from './core/employee/employee-catalog/catalog-form/catalog-form.component';
+import { CatalogDetailComponent } from './core/employee/employee-catalog/catalog-detail/catalog-detail.component';
 
 export const routes: Routes = [
   { path: 'public', component: PublicComponent, children: [
@@ -34,7 +36,12 @@ export const routes: Routes = [
       { path: '', redirectTo: '/employee/member/management', pathMatch: 'full' }
     ]},
     { path: 'category', component: CategoryComponent, title: 'Employee | Category' },
-    { path: 'catalog', component: CatalogComponent, title: 'Employee | Catalog' },
+    { path: 'catalog', children: [
+      { path: 'management', component: EmployeeCatalogComponent, title: 'Employee | Catalog' },
+      { path: 'form', component: CatalogFormComponent, title: 'Employee | Catalog Form'},
+      { path: 'detail', component: CatalogDetailComponent, title: 'Employee | Catalog Detail'},
+      { path: '', redirectTo: '/employee/catalog/management', pathMatch: 'full' }
+    ]},
     { path: '', redirectTo: '/employee/sale', pathMatch: 'full' }
   ]},
   { path: 'owner', component: OwnerComponent },

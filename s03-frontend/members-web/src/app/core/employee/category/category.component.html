@@ -23,8 +23,10 @@
     </div>
   </div>
 
+  <app-no-data label="Category" [marginTop]="true" *ngIf="!categories.length"></app-no-data>
+
   <!-- Category List -->
-  <div class="row mt-3 g-2">
+  <div class="row mt-3 g-2" *ngIf="categories.length">
     <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let category of categories">
       <div class="card rounded-2">
         <div class="card-body d-flex justify-content-between">

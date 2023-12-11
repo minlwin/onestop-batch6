@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-$primary: #FFCC00;
-$secondary: #FAF5E9;
+$primary: #6610f2;;
+$warning: #FFCC00;
+$bg: #FAF5E9;
 $success: #009B4D;
 $success-dark: #003400;
-$danger: #ED7674;
+$danger: #f05754;
+$danger-light: #ED7674;
 $info: #A2DCE0;
 $ptf: 'PT Serif', serif;
 $popf: 'Poppins', sans-serif;
@@ -16,6 +18,10 @@ $enable-rounded: false;
   color: $success-dark;
 }
 
+.bg-danger-light {
+  background-color: $danger-light;
+}
+
 .bg-white {
   background-color: #fff;
 }
@@ -24,7 +30,7 @@ body {
   font-size: 1.1rem;
   font-family: $ptf;
   font-weight: 400;
-  background-color: $secondary;
+  background-color: $bg;
 }
 
 .upnav-shadow {
@@ -67,7 +73,7 @@ body {
   color: $dark;
 }
 
-.icon-link:hover i {
+.icon-link:hover i, .icon-link:hover {
   color: $danger;
   cursor: pointer;
 }
@@ -76,7 +82,7 @@ body {
   color: #fff;
 }
 
-.form-control:focus, .form-check-input:focus {
+.form-control:focus, .form-check-input:focus, .form-select:focus {
   border-color: #eeb7b6;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(237, 118, 116, 0.20);
@@ -87,13 +93,54 @@ body {
   border-color: #f76967;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd) > * > span, .table-striped > tbody > tr:nth-of-type(even) > * > span {
-  background-color: white;
-  border-radius: 0.3rem;
-  padding: 0.2rem 1rem;
+.alert-box {
+  padding: $spacer;
+  border: 1px solid #f07a0b;
+  border-left: 5px solid #f07a0b;
 }
 
-.table-striped > tbody > tr:nth-of-type(even) > * > span {
-  background-color: rgba(0, 0, 0, 0.2);
+.alert-box > p {
+  margin: 0;
 }
 
+a.card {
+  text-decoration: none;
+}
+
+a.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.chips {
+  margin-top: 1px;
+}
+
+.chips span {
+  display: inline-block;
+  padding: 3px 10px;
+  background-color: $danger-light;
+  color: white;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.cat-input {
+  border: none;
+}
+
+.cat-input:focus {
+  border: none;
+  border-color: $light;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255);
+}
+
+.profile-image {
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+  .profile-image {
+    width: 30%;
+  }
+}

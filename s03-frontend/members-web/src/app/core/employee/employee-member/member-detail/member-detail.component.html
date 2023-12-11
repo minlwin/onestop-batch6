@@ -1,58 +1,78 @@
 <div class="row g-3">
-  <div class="col-lg-7 col-12">
-    <div class="bg-white rounded-3 p-3">
 
-      <div class="card rounded-2">
-        <div class="card-header bg-secondary">
-          <h5 class="fw-bold">Information of {{ member.name }}</h5>
+  <div class="col-lg-4 col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5>Profile Picture</h5>
+      </div>
+      <div class="card-body text-center">
+        <img [src]="member.profileImage ?? '/assets/profile.png'" class="img-thumbnail rounded-circle profile-image">
+
+        <div class="mt-3">
+          <button class="btn btn-danger text-white">
+            <i class="bi bi-upload"></i> Upload New Photo
+          </button>
         </div>
-        <div class="card-body">
-          <div class="row mb-2">
-            <div class="col-4">Name</div>
-            <div class="col">{{ member.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg col-12">
+    <div class="card">
+
+      <div class="card-header">
+        <h5>Member Detail</h5>
+      </div>
+
+      <div class="card-body">
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Name</h6>
+            <p class="fs-5">{{ member.name }}</p>
           </div>
 
-          <div class="row mb-2">
-            <div class="col-4">Email</div>
-            <div class="col">{{ member.email }}</div>
+          <div class="col-md col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Email</h6>
+            <p class="fs-5">{{ member.email }}</p>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Phone</h6>
+            <p class="fs-5">{{ member.phone }}</p>
           </div>
 
-          <div class="row mb-2">
-            <div class="col-4">Phone</div>
-            <div class="col">{{ member.phone }}</div>
+          <div class="col-md col-12">
+            <h6 class="mb-1 fw-bold text-secondary">NRC</h6>
+            <p class="fs-5">{{ member.nrc }}</p>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Gender</h6>
+            <p class="fs-5">{{ member.gender }}</p>
           </div>
 
-          <div class="row mb-2">
-            <div class="col-4">NRC No</div>
-            <div class="col">{{ member.nrc }}</div>
+          <div class="col-md col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Address</h6>
+            <p class="fs-5">{{ member.address }}</p>
           </div>
+        </div>
 
-          <div class="row mb-2">
-            <div class="col-4">Gender</div>
-            <div class="col">{{ member.gender }}</div>
+        <div class="row mb-2" *ngIf="member.remark">
+          <div class="col">
+            <h6 class="mb-1 fw-bold text-secondary">Remark</h6>
+            <p class="fs-5">{{ member.remark }}</p>
           </div>
+        </div>
 
-          <div class="row" [ngClass]="member.remark ? 'mb-2' : 'mb-4'">
-            <div class="col-4">Address</div>
-            <div class="col">{{ member.address }}</div>
-          </div>
-
-          <div class="row mb-4" *ngIf="member.remark">
-            <div class="col-4">Remark</div>
-            <div class="col">{{ member.remark }}</div>
-          </div>
-
-          <div class="text-end">
-            <a [routerLink]="['../', 'management']" class="btn btn-outline-danger">To Member List</a>
-          </div>
+        <div>
+          <a [routerLink]="['../', 'management']" class="btn btn-outline-danger">To Member List</a>
         </div>
       </div>
 
-    </div>
-  </div>
-  <div class="col-lg-5 col-12">
-    <div class="bg-white rounded-3 p-3">
-      <h4>Hello</h4>
     </div>
   </div>
 </div>

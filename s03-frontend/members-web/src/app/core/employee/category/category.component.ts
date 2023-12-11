@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CATEGORIES, Category, CategorySearch } from '../../../utils/apis/model/sample-data';
-import { CategoryFormComponent } from './category-form/category-form.component';
+import { Category, CategorySearch } from '../../../utils/apis/model/sample-data';
 import { EmployeeCategoryService } from '../../../utils/apis/services/employee-category.service';
+import { NoDataComponent } from '../../../utils/widgets/no-data/no-data.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [CommonModule, CategoryFormComponent],
+  imports: [CommonModule, CategoryFormComponent, NoDataComponent],
   templateUrl: './category.component.html'
 })
 export class CategoryComponent implements OnInit {

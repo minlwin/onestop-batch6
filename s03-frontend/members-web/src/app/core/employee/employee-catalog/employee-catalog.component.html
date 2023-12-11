@@ -1,0 +1,68 @@
+<div class="row justify-content-between g-2">
+  <div class="col-md-auto col-12">
+    <button class="btn btn-danger text-white w-100" [routerLink]="['/employee', 'catalog', 'form']">
+      <i class="bi bi-plus-lg"></i> Add Catalog
+    </button>
+  </div>
+  <div class="col-md-auto col-12">
+    <div class="row g-2">
+      <div class="col-md-auto col-12">
+        <select #idVal class="form-select" (change)="params.id = +idVal.value; search()">
+          <option value="0">Select Category</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-auto col-10">
+        <input #keywordVal (keyup)="params.keyword = keywordVal.value; search()" type="text" class="form-control"
+          placeholder="Keyword for search catalog">
+      </div>
+      <div class="col-md-auto col-2">
+        <button class="btn btn-danger text-white w-100" (click)="search()">
+          <i class="bi bi-search"></i>
+          <span class="d-none d-md-inline"> Search</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-no-data label="Catalog" [marginTop]="true" *ngIf="!catalogs.length"></app-no-data>
+
+<div class="bg-white mt-3 p-4 rounded-3" *ngIf="catalogs.length">
+  <div class="row row-cols-md-4 row-cols-sm-6 row-cols-12 gap-2">
+
+    <a class="card" *ngFor="let catalog of catalogs" [routerLink]="['/employee', 'catalog', 'detail']"
+      [queryParams]="{id: catalog.id}">
+      <img class="card-img-top" [src]="catalog.coverImage || '/assets/no-image.png'">
+
+      <div class="card-body p-2">
+        <p class="text-center fw-bold mb-1 fs-5">{{ catalog.name }}</p>
+        <p class="text-center fs-5">{{ catalog.price | number }} MMK</p>
+
+        <div class="d-flex g-2 mb-3">
+          <div class="col">
+            <h6 class="text-secondary mb-0">Category</h6>
+            <p class="mb-0">{{ catalog.categories | categoryName }}</p>
+          </div>
+          <div class="col-auto text-end">
+            <h6 class="text-secondary mb-0">Purity</h6>
+            <p class="mb-0">{{ catalog.purity }} K</p>
+          </div>
+        </div>
+
+        <div class="d-flex g-2 mb-2">
+          <div class="col-auto">
+            <h6 class="text-secondary mb-0">Weight</h6>
+            <p class="mb-0">{{ catalog.weight }} YWE</p>
+          </div>
+          <div class="col text-end">
+            <h6 class="text-secondary mb-0">Undercount</h6>
+            <p class="mb-0">{{ catalog.undercount }} YWE</p>
+          </div>
+        </div>
+
+      </div>
+    </a>
+
+  </div>
+</div>

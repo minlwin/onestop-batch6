@@ -21,13 +21,14 @@ export interface CatalogSearch {
 export interface Catalog {
   id: number
   name: string
-  category: Category
+  categories: Category[]
   weight: number
   purity: number
   undercount: number
-  coverImage: string
-  images: string[]
-  remark: string
+  price?: number
+  coverImage?: string
+  images?: string[]
+  remark?: string
 }
 
 export interface MemberSearch {
@@ -42,8 +43,31 @@ export interface Member {
   nrc: string
   gender: 'Male' | 'Female' | 'Other'
   address: string
+  profileImage?: string
   remark?: string
 }
+
+export const EMPLOYEE_CATALOGS: Catalog[] = [
+  {
+    id: 1,
+    name: 'Black Earring',
+    categories: [
+      {
+        id: 1,
+        name: 'Earring'
+      },
+      {
+        id: 3,
+        name: 'Locket'
+      }
+    ],
+    weight: 54,
+    purity: 16,
+    undercount: 10,
+    price: 400000,
+    remark: 'Small Black Earring For Lady'
+  }
+]
 
 export const EMPLOYEE_MEMBERS: Member[] = [
   {
