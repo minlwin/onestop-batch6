@@ -3,8 +3,12 @@ package com.jdc.shop.api.employee;
 import java.util.List;
 
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,13 +34,16 @@ public class CatagoryManagementApi {
 		return null;
 	}
 
-	
-	public ApiResponse<DataModificationResult<Integer>> create(CategoryForm form, BindingResult result) {
+	@PostMapping
+	public ApiResponse<DataModificationResult<Integer>> create(
+			@Validated @RequestBody CategoryForm form, BindingResult result) {
 		// TODO implement here
 		return null;
 	}
 
-	public ApiResponse<DataModificationResult<Integer>> update(int id, CategoryForm form, BindingResult result) {
+	@PutMapping("{id}")
+	public ApiResponse<DataModificationResult<Integer>> update(@PathVariable int id, 
+			@Validated @RequestBody CategoryForm form, BindingResult result) {
 		// TODO implement here
 		return null;
 	}
