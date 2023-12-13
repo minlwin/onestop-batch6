@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Catalog } from '../../apis/model/sample-data';
+import { CategoryNamePipe } from '../../pipe/category-name.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-detail-widget',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CategoryNamePipe, RouterModule],
   templateUrl: './catalog-detail-widget.component.html'
 })
 export class CatalogDetailWidgetComponent implements OnInit {

@@ -73,6 +73,10 @@ body {
   color: $dark;
 }
 
+.icon-link-primary {
+  color: $primary;
+}
+
 .icon-link:hover i, .icon-link:hover {
   color: $danger;
   cursor: pointer;
@@ -133,7 +137,7 @@ body {
 .cat-input:focus {
   border: none;
   border-color: $light;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255);
+  box-shadow: 0 0 0 0 rgb(255, 255, 255);
 }
 
 .profile-image {
@@ -148,12 +152,33 @@ body {
 
 .carousel-item > img {
   height: 300px;
-  width: 100%;
+  width: auto;
   object-fit: cover;
 }
 
 .carousel-img-indicator {
   width: calc((100% / 5) - 2px);
-  height: 120px;
+  height: auto;
   cursor: grab;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+td > .dropdown {
+  width: 30px;
+  height: 30px;
+  padding: 0.2rem 0.37rem 0 0.37rem;
+}
+
+td > .dropdown:hover {
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #d4d4d4;
+}
+
+td > .dropdown > ul > li:hover {
+  background-color: #d4d4d4;
 }

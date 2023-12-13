@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <!-- Weight, Purity and Undercount -->
+        <!-- Weight, Purity and Wastage -->
         <div class="row g-3 mb-3">
           <div class="col-md col-12">
             <app-form-group icon="bi-bucket" label="Weight" [valid]="weight.valid" [touch]="weight.touched"
@@ -60,25 +60,25 @@
             </app-form-group>
           </div>
           <div class="col-md col-12">
-            <app-form-group icon="bi-currency-exchange" label="Undercount" [valid]="undercount.valid"
-              [touch]="undercount.touched" [dirty]="undercount.dirty">
-              <input formControlName="undercount" type="number" class="form-control">
+            <app-form-group icon="bi-currency-exchange" label="Wastage" [valid]="lostWeight.valid"
+              [touch]="lostWeight.touched" [dirty]="lostWeight.dirty">
+              <input formControlName="lostWeight" type="number" class="form-control">
             </app-form-group>
           </div>
         </div>
 
-        <!-- Size and Stock-->
+        <!-- Original Price and Making Charges-->
         <div class="row g-3 mb-3 px-3">
           <div class="col-md col-12">
-            <app-form-group icon="bi-arrows-angle-expand" label="Size" [valid]="size.valid" [touch]="size.touched"
-              [dirty]="size.dirty">
-              <input formControlName="size" type="number" class="form-control">
+            <app-form-group icon="bi-currency-dollar" label="Original Price" [valid]="basedPrice.valid"
+              [touch]="basedPrice.touched" [dirty]="basedPrice.dirty">
+              <input formControlName="basedPrice" type="number" class="form-control">
             </app-form-group>
           </div>
           <div class="col-md col-12">
-            <app-form-group icon="bi-box-seam" label="Stock" [valid]="stock.valid" [touch]="stock.touched"
-              [dirty]="stock.dirty">
-              <input formControlName="stock" type="number" class="form-control">
+            <app-form-group icon="bi-cash" label="Making Charges" [valid]="goldSmithFees.valid"
+              [touch]="goldSmithFees.touched" [dirty]="goldSmithFees.dirty">
+              <input formControlName="goldSmithFees" type="number" class="form-control">
             </app-form-group>
           </div>
         </div>
@@ -86,8 +86,8 @@
         <!-- remark -->
         <div class="row mb-3">
           <div class="col mx-5">
-            <app-form-group icon="bi-card-text" label="Remark">
-              <textarea formControlName="remark" cols="auto" rows="3" class="form-control"
+            <app-form-group icon="bi-card-text" label="Description">
+              <textarea formControlName="description" cols="auto" rows="3" class="form-control"
                 placeholder="Enter catalog remark"></textarea>
             </app-form-group>
           </div>

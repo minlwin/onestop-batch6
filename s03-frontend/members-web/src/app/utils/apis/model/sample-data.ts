@@ -15,22 +15,26 @@ export interface Category {
 
 export interface CatalogSearch {
   id: number
-  keyword: string
+  name: string
+  createFrom: string
+  priceFrom: number
+  priceTo: number
 }
 
 export interface Catalog {
   id: number
   name: string
-  categories: Category[]
+  categoryId: number
   weight: number
   purity: number
-  undercount: number
-  size: number
-  stock: number
+  lostWeight: number
+  goldSmithFees: number
+  basedPrice: number
   price?: number
   coverImage?: string
   images?: string[]
-  remark?: string
+  soldOut?: boolean
+  description?: string
 }
 
 export interface MemberSearch {
@@ -42,33 +46,37 @@ export interface Member {
   name: string
   email: string
   phone: string
-  nrc: string
-  gender: 'Male' | 'Female' | 'Other'
+  dob: string
+  gender: 'Male' | 'Female'
+  township: string
   address: string
+  registrationDate: string
   profileImage?: string
-  remark?: string
+}
+
+export interface MemberDto {
+  profile: Member
+  purchases: Purchase[]
+}
+
+export interface Purchase {
+  issuedAt: string
+  itemCount: number
+  total: number
 }
 
 export const EMPLOYEE_CATALOGS: Catalog[] = [
   {
     id: 1,
     name: 'Diamond Earring',
-    categories: [
-      {
-        id: 1,
-        name: 'Earring'
-      },
-      {
-        id: 8,
-        name: 'Gem'
-      }
-    ],
+    categoryId: 1,
     weight: 54,
     purity: 16,
-    undercount: 10,
-    size: 10,
-    stock: 2,
+    lostWeight: 10,
+    goldSmithFees: 50000,
+    basedPrice: 350000,
     price: 400000,
+    soldOut: false,
     coverImage: '/assets/diamond-earring/cover.jpg',
     images: [
       '/assets/diamond-earring/1.jpg',
@@ -76,27 +84,19 @@ export const EMPLOYEE_CATALOGS: Catalog[] = [
       '/assets/diamond-earring/3.jpg',
       '/assets/diamond-earring/4.jpg'
     ],
-    remark: '1 Carat Diamond Studs, Dainty Stud Earrings, Delicate Wedding Anniversary Round Beauty Stud Earrings Prongs Setting'
+    description: '1 Carat Diamond Studs, Dainty Stud Earrings, Delicate Wedding Anniversary Round Beauty Stud Earrings Prongs Setting'
   },
   {
     id: 2,
     name: '18k Gold Necklace with Heart Shape',
-    categories: [
-      {
-        id: 2,
-        name: 'Necklace'
-      },
-      {
-        id: 3,
-        name: 'Locket'
-      }
-    ],
+    categoryId: 2,
     weight: 250,
     purity: 16,
-    undercount: 78,
-    size: 86,
-    stock: 1,
+    lostWeight: 78,
+    goldSmithFees: 43000,
+    basedPrice: 1500000,
     price: 1800000,
+    soldOut: false,
     coverImage: '/assets/gold-necklace/cover.jpg',
     images: [
       '/assets/gold-necklace/1.jpg',
@@ -104,7 +104,7 @@ export const EMPLOYEE_CATALOGS: Catalog[] = [
       '/assets/gold-necklace/3.jpg',
       '/assets/gold-necklace/4.jpg'
     ],
-    remark: 'Custom Name Necklace, 18K Gold Plated Name Necklace, Personalized Name Necklace, Birthday Gift for Her, 2023 Christmas Gift, Gift for Mom'
+    description: 'Custom Name Necklace, 18K Gold Plated Name Necklace, Personalized Name Necklace, Birthday Gift for Her, 2023 Christmas Gift, Gift for Mom'
   }
 ]
 
@@ -114,19 +114,68 @@ export const EMPLOYEE_MEMBERS: Member[] = [
     name: 'U Min Khant',
     email: 'uminkhanthu@gmail.com',
     phone: '09256257252',
-    nrc: '9/PaThaKa(N)100200',
+    dob: '1986-01-06',
     gender: 'Male',
     address: '28(B), Yadanar Myaing Rd, Kamayut',
-    remark: 'FA Man'
+    township: 'Ayeyarwady Region',
+    registrationDate: '2023-01-20'
   },
   {
     id: 2,
     name: 'Theint Theint Thu',
     email: 'ttt@gmail.com',
     phone: '09100020002',
-    nrc: '8/PaKhaKa(N)300400',
+    dob: '2000-02-10',
     gender: 'Female',
-    address: '20, Yadanar Myaing Rd, Kamayut'
+    address: '20, Yadanar Myaing Rd, Kamayut',
+    township: 'Bago Region',
+    registrationDate: '2023-04-22'
+  }
+]
+
+export const EMPLOYEE_MEMBER_DTO: MemberDto[] = [
+  {
+    profile: {
+      id: 1,
+      name: 'U Min Khant',
+      email: 'uminkhanthu@gmail.com',
+      phone: '09256257252',
+      dob: '1986-01-06',
+      gender: 'Male',
+      address: '28(B), Yadanar Myaing Rd, Kamayut',
+      township: 'Ayeyarwady Region',
+      registrationDate: '2023-01-20'
+    },
+    purchases: [
+      {
+        issuedAt: '2023-6-10',
+        itemCount: 2,
+        total: 2500000
+      },
+      {
+        issuedAt: '2023-8-30',
+        itemCount: 3,
+        total: 3300000
+      }
+    ]
+  },
+  {
+    profile: {
+      id: 2,
+      name: 'Theint Theint Thu',
+      email: 'ttt@gmail.com',
+      phone: '09100020002',
+      dob: '2000-02-10',
+      gender: 'Female',
+      address: '20, Yadanar Myaing Rd, Kamayut',
+      township: 'Bago Region',
+      registrationDate: '2023-04-22'
+    },
+    purchases: [{
+      issuedAt: '2023-7-04',
+      itemCount: 1,
+      total: 4200000
+    }]
   }
 ]
 
@@ -163,4 +212,67 @@ export const CATEGORIES = [
     id: 8,
     name: 'Gem'
   }
+]
+
+export const STATES_DATA = [
+	{
+		id: 1,
+		name: "Ayeyarwady Region",
+	},
+	{
+		id: 2,
+		name: "Bago Region",
+	},
+	{
+		id: 3,
+		name: "Chin State",
+	},
+	{
+		id: 4,
+		name: "Kachin State",
+	},
+	{
+		id: 5,
+		name: "Kayah State",
+	},
+	{
+		id: 6,
+		name: "Kayin State",
+	},
+	{
+		id: 7,
+		name: "Magway Region",
+	},
+	{
+		id: 8,
+		name: "Mandalay Region",
+	},
+	{
+		id: 9,
+		name: "Mon State",
+	},
+	{
+		id: 10,
+		name: "Naypyidaw Union",
+	},
+	{
+		id: 11,
+		name: "Rakhine State",
+	},
+	{
+		id: 12,
+		name: "Sagaing Region",
+	},
+	{
+		id: 13,
+		name: "Shan State",
+	},
+	{
+		id: 14,
+		name: "Tanintharyi Region",
+	},
+	{
+		id: 15,
+		name: "Yangon Region",
+	},
 ]

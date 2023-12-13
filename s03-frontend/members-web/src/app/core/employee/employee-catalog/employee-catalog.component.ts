@@ -17,7 +17,10 @@ export class EmployeeCatalogComponent implements OnInit {
 
   params: CatalogSearch = {
     id: 0,
-    keyword: ''
+    name: '',
+    createFrom: '',
+    priceFrom: 0,
+    priceTo: 0
   }
 
   categories: any[] = []
