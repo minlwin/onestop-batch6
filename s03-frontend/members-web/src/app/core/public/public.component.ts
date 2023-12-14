@@ -38,7 +38,10 @@ export class PublicComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.items
-    this.user = this.securityService.activeUser
+    this.securityService.getActiveUser().subscribe(resp => {
+      console.log(resp)
+      this.user = resp
+    })
   }
 
   get email(): FormControl {

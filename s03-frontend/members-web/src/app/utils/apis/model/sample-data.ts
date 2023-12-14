@@ -60,9 +60,18 @@ export interface MemberDto {
 }
 
 export interface Purchase {
+  id: {
+    saleDate: string
+    saleSeq: number
+  }
   issuedAt: string
   itemCount: number
   total: number
+}
+
+export interface PurchaseSearch {
+  dateFrom: string
+  dateTo: string
 }
 
 export const EMPLOYEE_CATALOGS: Catalog[] = [
@@ -133,6 +142,36 @@ export const EMPLOYEE_MEMBERS: Member[] = [
   }
 ]
 
+export const PURCHASE_DATA: Purchase[] = [
+  {
+    id: {
+      saleDate: '2023-6-10',
+      saleSeq: 1
+    },
+    issuedAt: '2023-6-10',
+    itemCount: 2,
+    total: 2500000
+  },
+  {
+    id: {
+      saleDate: '2023-8-30',
+      saleSeq: 2
+    },
+    issuedAt: '2023-8-30',
+    itemCount: 3,
+    total: 3300000
+  },
+  {
+    id: {
+      saleDate: '2023-7-04',
+      saleSeq: 1
+    },
+    issuedAt: '2023-7-04',
+    itemCount: 1,
+    total: 4200000
+  }
+]
+
 export const EMPLOYEE_MEMBER_DTO: MemberDto[] = [
   {
     profile: {
@@ -148,11 +187,19 @@ export const EMPLOYEE_MEMBER_DTO: MemberDto[] = [
     },
     purchases: [
       {
+        id: {
+          saleDate: '2023-6-10',
+          saleSeq: 1
+        },
         issuedAt: '2023-6-10',
         itemCount: 2,
         total: 2500000
       },
       {
+        id: {
+          saleDate: '2023-8-30',
+          saleSeq: 2
+        },
         issuedAt: '2023-8-30',
         itemCount: 3,
         total: 3300000
@@ -172,6 +219,10 @@ export const EMPLOYEE_MEMBER_DTO: MemberDto[] = [
       registrationDate: '2023-04-22'
     },
     purchases: [{
+      id: {
+        saleDate: '2023-7-04',
+        saleSeq: 1
+      },
       issuedAt: '2023-7-04',
       itemCount: 1,
       total: 4200000

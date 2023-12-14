@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/sample-data';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class SecurityService {
 
   get activeUser(): User | undefined {
     return this._activeUser
+  }
+
+  getActiveUser() {
+    return of(this._activeUser)
   }
 
   clearStorage() {

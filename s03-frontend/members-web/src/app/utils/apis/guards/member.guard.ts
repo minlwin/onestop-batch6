@@ -6,7 +6,7 @@ import { AccessError } from '../model/access-error';
 export const memberGuard: CanActivateFn = (route, state) => {
   let role = inject(SecurityService).activeUser?.role as string
 
-  if(role == 'Owner' || role == 'Employee' || role == 'Member')
+  if(role == 'Member')
     return true;
 
   throw new AccessError

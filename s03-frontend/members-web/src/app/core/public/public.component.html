@@ -16,15 +16,24 @@
         </li>
       </ul>
 
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item" *ngIf="!user">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="!user">
+        <li class="nav-item">
           <button class="btn btn-light" (click)="showLoginForm()">
             <i class="bi bi-box-arrow-in-right"></i>
             <span class="d-none d-md-inline"> Login</span>
           </button>
         </li>
-        <li class="nav-item" *ngIf="user">
-          <button class="btn btn-light" (click)="logout()">
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngIf="user">
+        <li class="nav-item me-2">
+          <button class="btn btn-light" [routerLink]="['/', user.role.toLowerCase()]">
+            <span class="d-none d-md-inline">To Dashboard </span>
+            <i class="bi bi-arrow-right"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light" (click)="logout()">
             <span class="d-none d-md-inline">Log Out </span>
             <i class="bi bi-box-arrow-right"></i>
           </button>

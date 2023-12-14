@@ -32,7 +32,7 @@ export class ErrorDialogComponent implements OnInit {
     this.modalHeader = error.name
 
     if(error instanceof AccessError) {
-      this.router.navigate([`/${this.activeUser.role.toLowerCase()}`])
+      this.router.navigate(['/'.concat(this.activeUser && this.activeUser.role ? this.activeUser.role.toLowerCase() : 'public')])
       this.dialog.show()
     }
   }
