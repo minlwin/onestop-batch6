@@ -15,6 +15,8 @@
   </div>
 </nav>
 
+<app-second-nav [cartItems]="cartItems" *ngIf="cartItems.length > 0"></app-second-nav>
+
 <div class="container-fluid" style="height: calc(100% - 56px);">
   <div class="row h-100">
     <!-- left nav bar -->

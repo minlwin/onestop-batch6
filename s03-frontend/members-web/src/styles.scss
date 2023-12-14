@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-$primary: #6610f2;;
+$primary: #905ee2;;
 $warning: #FFCC00;
 $bg: #FAF5E9;
 $success: #009B4D;
@@ -34,7 +34,7 @@ body {
 }
 
 .upnav-shadow {
-  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
 }
 
 /* left nav bar */
@@ -75,6 +75,10 @@ body {
 
 .icon-link-primary {
   color: $primary;
+}
+
+.icon-link-light {
+  color: $light;
 }
 
 .icon-link:hover i, .icon-link:hover {
@@ -162,7 +166,7 @@ body {
   cursor: grab;
 }
 
-.dropdown-toggle::after {
+td .dropdown-toggle::after {
   display:none;
 }
 

@@ -56,7 +56,7 @@ export class MemberFormComponent implements OnInit {
     if(id) {
       this.employeeMemberService.findById(id).subscribe(resp => {
         if(resp)
-          this.form.patchValue(resp)
+          this.form.patchValue(resp.profile)
       })
     }
   }

@@ -15,6 +15,11 @@ import { MemberFormComponent } from './core/employee/employee-member/member-form
 import { MemberDetailComponent } from './core/employee/employee-member/member-detail/member-detail.component';
 import { CatalogFormComponent } from './core/employee/employee-catalog/catalog-form/catalog-form.component';
 import { CatalogDetailComponent } from './core/employee/employee-catalog/catalog-detail/catalog-detail.component';
+import { checkoutTitle } from './utils/apis/model/checkout-title';
+import { CheckoutComponent } from './utils/widgets/checkout/checkout.component';
+import { MemberPurchaseHistoryComponent } from './core/member/member-purchase-history/member-purchase-history.component';
+import { memberGuard } from './utils/apis/guards/member.guard';
+import { employeeGuard } from './utils/apis/guards/employee.guard';
 
 export const routes: Routes = [
   { path: 'public', component: PublicComponent, children: [
@@ -22,11 +27,19 @@ export const routes: Routes = [
     { path: 'catalog', component: PublicCatalogComponent, title: 'Public | Catalog' },
     { path: '', redirectTo: '/public/home', pathMatch: 'full' }
   ]},
+
+  { path: 'checkout', component: CheckoutComponent, title: checkoutTitle},
+
   { path: 'member', component: MemberComponent, children: [
     { path: 'home', component: MemberHomeComponent, title: 'Member | Home' },
-    { path: 'purchase-detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detial' },
+    { path: 'purchase', children: [
+      { path: 'history', component: MemberPurchaseHistoryComponent, title: 'Member | Purchase Histroy'},
+      { path: 'detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detail'},
+      { path: '', redirectTo: '/member/purchase/history', pathMatch: 'full' }
+    ]},
     { path: '', redirectTo: '/member/home', pathMatch: 'full' }
-  ]},
+  ], canActivate: [memberGuard]},
+
   { path: 'employee', component: EmployeeComponent, children: [
     { path: 'sale', component: SaleComponent, title: 'Employee | Sale' },
     { path: 'member', children: [
@@ -43,7 +56,9 @@ export const routes: Routes = [
       { path: '', redirectTo: '/employee/catalog/management', pathMatch: 'full' }
     ]},
     { path: '', redirectTo: '/employee/sale', pathMatch: 'full' }
-  ]},
+  ], canActivate: [employeeGuard]},
+
   { path: 'owner', component: OwnerComponent },
+
   { path: '', redirectTo: '/public', pathMatch: 'full' }
 ];
