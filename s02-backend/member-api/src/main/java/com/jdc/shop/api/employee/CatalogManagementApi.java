@@ -33,7 +33,6 @@ public class CatalogManagementApi {
 	@PostMapping
 	public ApiResponse<DataModificationResult<Integer>> create(
 			@Validated @RequestBody CatalogForm form, BindingResult result) {
-		// TODO implement here
 		return null;
 	}
 
@@ -41,7 +40,6 @@ public class CatalogManagementApi {
 	public ApiResponse<DataModificationResult<Integer>> update(
 			@PathVariable int id, 
 			@Validated @RequestBody CatalogForm form, BindingResult result) {
-		// TODO implement here
 		return null;
 	}
 
