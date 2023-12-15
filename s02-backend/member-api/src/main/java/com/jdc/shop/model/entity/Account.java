@@ -14,12 +14,14 @@ import lombok.Data;
 public class Account {
 
 	@Id
-	public String loginId;
+	private String loginId;
+	
+	private String name;
 
 	@Column(nullable = false)
-	public String password;
+	private String password;
 
 	@Column(nullable = false)
-	public Role role;
+	private Role role;
 
 }
