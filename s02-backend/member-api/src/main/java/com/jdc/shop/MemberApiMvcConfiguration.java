@@ -19,6 +19,7 @@ public class MemberApiMvcConfiguration implements WebMvcConfigurer{
 		registry.addMapping("/**")
 			.allowedOrigins("*")
 			.allowedHeaders("*")
-			.allowedMethods("*");
+			.allowedMethods("*")
+			.exposedHeaders("Authorization");
 	}
 }
