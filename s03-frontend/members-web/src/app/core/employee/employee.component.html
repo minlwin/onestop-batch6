@@ -8,12 +8,14 @@
     <ul class="navbar-nav ms-auto">
       <li class="nav-item">
         <button class="btn btn-danger text-white" (click)="logout()">
-          Log Out <i class="bi bi-box-arrow-right"></i>
+          <span class="d-none d-md-inline">Logout </span> <i class="bi bi-box-arrow-right"></i>
         </button>
       </li>
     </ul>
   </div>
 </nav>
+
+<app-second-nav [cartItems]="cartItems" *ngIf="cartItems.length > 0"></app-second-nav>
 
 <div class="container-fluid" style="height: calc(100% - 56px);">
   <div class="row h-100">

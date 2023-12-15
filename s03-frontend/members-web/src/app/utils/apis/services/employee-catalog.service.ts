@@ -35,21 +35,21 @@ export class EmployeeCatalogService {
   }
 
   search(params: CatalogSearch) {
-    if(params.id || params.keyword) {
-      return of(this._catalogs.filter(catalog => {
-        let categoryResult = false
-        let catalogResult = false
+    // if(params.id || params.keyword) {
+    //   return of(this._catalogs.filter(catalog => {
+    //     let categoryResult = false
+    //     let catalogResult = false
 
-        if(params.id) {
-          let result = catalog.categories.filter(category => category.id == params.id).pop()
-          categoryResult = result ? true : false
-        }
+    //     if(params.id) {
+    //       let result = catalog.categories.filter(category => category.id == params.id).pop()
+    //       categoryResult = result ? true : false
+    //     }
 
-        if(params.keyword)
-          catalogResult = catalog.name.startsWith(params.keyword) || catalog.purity == + params.keyword || catalog.price ? catalog.price! >= + params.keyword : false
-        return categoryResult || catalogResult
-      }))
-    }
+    //     if(params.keyword)
+    //       catalogResult = catalog.name.startsWith(params.keyword) || catalog.purity == + params.keyword || catalog.price ? catalog.price! >= + params.keyword : false
+    //     return categoryResult || catalogResult
+    //   }))
+    // }
     return of(this._catalogs)
   }
 

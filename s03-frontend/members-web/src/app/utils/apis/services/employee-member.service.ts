@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPLOYEE_MEMBERS, Member, MemberSearch } from '../model/sample-data';
+import { EMPLOYEE_MEMBERS, EMPLOYEE_MEMBER_DTO, Member, MemberSearch } from '../model/sample-data';
 import { of } from 'rxjs';
 import { generate } from '../model/id-generator';
 
@@ -41,7 +41,7 @@ export class EmployeeMemberService {
   }
 
   findById(id: number) {
-    return of(this._members.filter(member => member.id == id).pop())
+    return of(EMPLOYEE_MEMBER_DTO.filter(dto => dto.profile.id == id).pop())
   }
 
 }

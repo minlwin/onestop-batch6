@@ -41,17 +41,56 @@
             </app-form-group>
           </div>
           <div class="col">
-            <app-form-group icon="bi-person-vcard" label="NRC" [valid]="nrc.valid" [touch]="nrc.touched"
-              [dirty]="nrc.dirty">
-              <input formControlName="nrc" type="email" class="form-control" placeholder="1/KaKhaGa(N)100200">
+            <app-form-group icon="bi-calendar-date" label="Date of Birth" [valid]="dob.valid" [touch]="dob.touched"
+              [dirty]="dob.dirty">
+              <input formControlName="dob" type="date" class="form-control">
             </app-form-group>
           </div>
         </div>
 
-        <!-- Gender and Address -->
+        <!-- State and District -->
         <div class="row mb-3 g-3">
-          <div class="col-md col-12 align-self--md-center">
-            <label class="form-label mb-1">Gender</label>
+          <div class="col-md col-12">
+            <app-form-group icon="bi-globe-central-south-asia" label="State">
+              <select formControlName="state" class="form-select">
+                <option value="0">Select State</option>
+                <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+              </select>
+            </app-form-group>
+          </div>
+
+          <div class="col">
+            <app-form-group icon="bi-pin-map" label="District">
+              <select formControlName="district" class="form-select">
+                <option value="0">Select District</option>
+                <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
+              </select>
+            </app-form-group>
+          </div>
+        </div>
+
+        <!-- Township and Address -->
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12">
+            <app-form-group icon="bi-geo-alt" label="Township">
+              <select formControlName="township" class="form-select">
+                <option value="0">Select State</option>
+                <option *ngFor="let township of townships" [value]="township.id">{{ township.name }}</option>
+              </select>
+            </app-form-group>
+          </div>
+
+          <div class="col">
+            <app-form-group icon="bi-cursor" label="Address" [valid]="address.valid" [touch]="address.touched"
+              [dirty]="address.dirty">
+              <input formControlName="address" type="email" class="form-control"
+                placeholder="eg. 28(B), Bo Gyoke Rd, Latha">
+            </app-form-group>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+          <div class="col-auto">
             <div>
               <div class="form-check form-check-inline">
                 <input formControlName="gender" type="radio" id="male" class="form-check-input" value="Male">
@@ -62,29 +101,7 @@
                 <input formControlName="gender" type="radio" id="female" class="form-check-input" value="Female">
                 <label for="female" class="form-check-label">Female</label>
               </div>
-
-              <div class="form-check form-check-inline">
-                <input formControlName="gender" type="radio" id="other" class="form-check-input" value="Other">
-                <label for="other" class="form-check-label">Other</label>
-              </div>
             </div>
-          </div>
-
-          <div class="col">
-            <app-form-group icon="bi-geo-alt" label="Address" [valid]="address.valid" [touch]="address.touched"
-              [dirty]="address.dirty">
-              <input formControlName="address" type="email" class="form-control"
-                placeholder="eg. 28(B), Bo Gyoke Rd, Latha">
-            </app-form-group>
-          </div>
-        </div>
-
-        <!-- Remark -->
-        <div class="row mb-3 g-3 mx-5">
-          <div class="col">
-            <app-form-group icon="bi-card-text" label="Remark">
-              <textarea formControlName="remark" class="form-control" placeholder="Remark for member"></textarea>
-            </app-form-group>
           </div>
         </div>
 

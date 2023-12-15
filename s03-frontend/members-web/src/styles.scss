@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-$primary: #6610f2;;
+$primary: #905ee2;;
 $warning: #FFCC00;
 $bg: #FAF5E9;
 $success: #009B4D;
@@ -34,7 +34,7 @@ body {
 }
 
 .upnav-shadow {
-  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
 }
 
 /* left nav bar */
@@ -71,6 +71,14 @@ body {
 
 .icon-link {
   color: $dark;
+}
+
+.icon-link-primary {
+  color: $primary;
+}
+
+.icon-link-light {
+  color: $light;
 }
 
 .icon-link:hover i, .icon-link:hover {
@@ -133,7 +141,7 @@ body {
 .cat-input:focus {
   border: none;
   border-color: $light;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255);
+  box-shadow: 0 0 0 0 rgb(255, 255, 255);
 }
 
 .profile-image {
@@ -148,12 +156,33 @@ body {
 
 .carousel-item > img {
   height: 300px;
-  width: 100%;
+  width: auto;
   object-fit: cover;
 }
 
 .carousel-img-indicator {
   width: calc((100% / 5) - 2px);
-  height: 120px;
+  height: auto;
   cursor: grab;
+}
+
+td .dropdown-toggle::after {
+  display:none;
+}
+
+td > .dropdown {
+  width: 30px;
+  height: 30px;
+  padding: 0.2rem 0.37rem 0 0.37rem;
+}
+
+td > .dropdown:hover {
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #d4d4d4;
+}
+
+td > .dropdown > ul > li:hover {
+  background-color: #d4d4d4;
 }

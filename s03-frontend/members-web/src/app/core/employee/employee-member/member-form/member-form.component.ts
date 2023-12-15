@@ -4,6 +4,7 @@ import { FormGroupComponent } from '../../../../utils/widgets/form-group/form-gr
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EmployeeMemberService } from '../../../../utils/apis/services/employee-member.service';
+import { LocationService } from '../../../../utils/apis/services/location.service';
 
 @Component({
   selector: 'app-member-form',
@@ -14,23 +15,33 @@ import { EmployeeMemberService } from '../../../../utils/apis/services/employee-
 export class MemberFormComponent implements OnInit {
 
   form: FormGroup
-
+  states: any[] = []
+  districts: any[] = []
+  townships: any[] = []
   checkout = false
 
-  constructor(fb: FormBuilder, private employeeMemberService: EmployeeMemberService, private router: Router, private route: ActivatedRoute) {
+  constructor(fb: FormBuilder,
+    private employeeMemberService: EmployeeMemberService,
+    private locationService: LocationService,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.form = fb.group({
       id: 0,
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('')]],
-      nrc: ['', [Validators.required, Validators.pattern('')]],
+      dob: ['', [Validators.required, Validators.pattern('')]],
       gender: ['Male', Validators.required],
+      state: 0,
+      district: 0,
+      township: [0, Validators.min(1)],
       address: ['', Validators.required],
-      remark: ''
     })
   }
 
   ngOnInit(): void {
+    this.locationService.getAllStates().subscribe(resp => this.states = resp)
+
     let id = 0
     this.route.queryParamMap.subscribe(param => {
       if(param.get('id')) {
@@ -45,7 +56,7 @@ export class MemberFormComponent implements OnInit {
     if(id) {
       this.employeeMemberService.findById(id).subscribe(resp => {
         if(resp)
-          this.form.patchValue(resp)
+          this.form.patchValue(resp.profile)
       })
     }
   }
@@ -66,12 +77,16 @@ export class MemberFormComponent implements OnInit {
     return this.getFormControl('phone')
   }
 
-  get nrc() {
-    return this.getFormControl('nrc')
+  get dob() {
+    return this.getFormControl('dob')
   }
 
   get address() {
     return this.getFormControl('address')
+  }
+
+  get township() {
+    return this.getFormControl('township')
   }
 
   private getFormControl(formControlName: string) {

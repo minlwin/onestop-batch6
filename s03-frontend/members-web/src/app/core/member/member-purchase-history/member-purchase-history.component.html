@@ -1,0 +1,46 @@
+<div class="row bg-white p-3 mx-1 rounded-3">
+  <div class="col-md-auto col-12 mb-md-0 mb-2">
+    <label for="dateFrom" class="form-label mb-1">Date From</label>
+    <input #dateFromVal (keyup)="addDateFromValue(dateFromVal.value)" (change)="addDateFromValue(dateFromVal.value)"
+      type="date" id="dateFrom" class="form-control">
+  </div>
+  <div class="col-md-auto col-12 mb-md-0 mb-3">
+    <label for="dateTo" class="form-label mb-1">Date To</label>
+    <input #dateToVal (keyup)="addDateToValue(dateFromVal.value)" (change)="addDateToValue(dateFromVal.value)"
+      type="date" id="dateTo" class="form-control">
+  </div>
+  <div class="col-md-auto col-12 align-self-end">
+    <button class="btn btn-danger text-white w-100" (click)="search()">
+      <i class="bi bi-search"></i> Search
+    </button>
+  </div>
+</div>
+
+<div class="row bg-white p-3 mx-1 rounded-3 mt-3" *ngIf="purchases.length">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Issued Date</th>
+        <th>Item Count</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let purchase of purchases">
+        <td>{{ purchase.id | saleId }}</td>
+        <td>{{ purchase.issuedAt }}</td>
+        <td>{{ purchase.itemCount }}</td>
+        <td>{{ purchase.total }}</td>
+        <td>
+          <a [routerLink]="['/member', 'purchase', 'detail']" [queryParams]="{id: purchase.id}"
+            class="icon-link icon-link-hover">
+            Detail
+            <i class="bi bi-send mb-1"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

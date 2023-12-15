@@ -27,10 +27,10 @@ export class CatalogFormComponent implements OnInit {
       name: ['', Validators.required],
       weight: [0, Validators.min(1)],
       purity: [0, Validators.min(1)],
-      undercount: [0, Validators.min(1)],
-      size: [0, Validators.min(1)],
-      stock: 0,
-      remark: ''
+      lostWeight: [0, Validators.min(1)],
+      basedPrice: [0, Validators.min(1)],
+      goldSmithFees: [0, Validators.min(1)],
+      description: ''
     })
   }
 
@@ -42,9 +42,10 @@ export class CatalogFormComponent implements OnInit {
       if(id) {
         this.employeeCatalogService.findById(id).subscribe(resp => {
           if(resp) {
+            let catId: number = resp.categoryId
+            let cat = this.categories.filter(category => category.id == catId).pop()
+            this.categoriesControl.push(this.fb.control(cat))
             this.form.patchValue(resp)
-            let arr: Category[] = resp.categories
-            arr.map(name => this.categoriesControl.push(this.fb.control(name)))
           }
         })
       }
@@ -75,16 +76,16 @@ export class CatalogFormComponent implements OnInit {
     return this.getFormControl('purity')
   }
 
-  get undercount() {
-    return this.getFormControl('undercount')
+  get lostWeight() {
+    return this.getFormControl('lostWeight')
   }
 
-  get size() {
-    return this.getFormControl('size')
+  get basedPrice() {
+    return this.getFormControl('basedPrice')
   }
 
-  get stock() {
-    return this.getFormControl('stock')
+  get goldSmithFees() {
+    return this.getFormControl('goldSmithFees')
   }
 
   private getFormControl(formControlName: string) {
@@ -121,7 +122,11 @@ export class CatalogFormComponent implements OnInit {
     this.form.patchValue({categories: result})
 
     if(this.form.valid) {
-      let {catInput, ...data} = this.form.value
+      let {catInput, categories, ...data} = this.form.value
+
+      let cat = this.categories.filter(category => category.id == categories[0].id).pop()
+      data.categoryId = cat.id
+
       this.employeeCatalogService.save(data).subscribe(resp => {
         if(resp) {
           this.router.navigate(['/employee', 'catalog', 'detail'], {queryParams: {id: resp.id}})

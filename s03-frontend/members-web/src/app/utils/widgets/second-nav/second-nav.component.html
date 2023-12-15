@@ -1,0 +1,8 @@
+<nav class="bg-{{ bgColor || 'white' }} text-center fs-6 shadow-sm">
+  <p class="py-1 {{ textColor }}">{{ cartItems.length }} {{ cartItems.length == 1 ? 'item' : 'items' }} in cart.
+    <a class="icon-link {{ textColor }} icon-link-hover" [routerLink]="['/checkout']">
+      Check Out
+      <i class="bi bi-arrow-right mb-1"></i>
+    </a>
+  </p>
+</nav>

@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Category } from '../apis/model/sample-data';
+import { EmployeeCategoryService } from '../apis/services/employee-category.service';
 
 @Pipe({
   name: 'categoryName',
@@ -7,19 +8,14 @@ import { Category } from '../apis/model/sample-data';
 })
 export class CategoryNamePipe implements PipeTransform {
 
-  transform(value: Category[]) {
-    if(value.length > 1) {
-      let result = ''
-      for (let index = 0; index < value.length; index++) {
-        result += value[index].name
-        if(index != value.length - 1) {
-          result += ", "
-        }
-      }
+  categories: Category[] = []
 
-      return result
-    }
-    return value[0].name;
+  constructor(employeeCategoryService: EmployeeCategoryService) {
+    employeeCategoryService.search({name: ''}).subscribe(resp => this.categories = resp)
+  }
+
+  transform(value: number) {
+    return this.categories.filter(category => category.id == value).pop()?.name
   }
 
 }

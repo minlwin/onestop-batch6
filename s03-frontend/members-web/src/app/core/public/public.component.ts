@@ -6,22 +6,30 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { PublicLoginService } from '../../utils/apis/services/public-login.service';
 import { CommonModule } from '@angular/common';
 import { SecurityService } from '../../utils/apis/services/security.service';
+import { Catalog } from '../../utils/apis/model/sample-data';
+import { SecondNavComponent } from '../../utils/widgets/second-nav/second-nav.component';
+import { CartService } from '../../utils/apis/services/cart.service';
 
 @Component({
   selector: 'app-public',
   standalone: true,
-  imports: [CommonModule, RouterModule, ModalDialogComponent, FormGroupComponent, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ModalDialogComponent, FormGroupComponent, ReactiveFormsModule, SecondNavComponent],
   templateUrl: './public.component.html'
 })
 export class PublicComponent implements OnInit {
 
   @ViewChild(ModalDialogComponent)
   dialog!: ModalDialogComponent
+  cartItems: Catalog[] = []
 
   form: FormGroup
   user: any
 
-  constructor(fb: FormBuilder, private publicLoginService: PublicLoginService, private securityService: SecurityService, private router: Router) {
+  constructor(fb: FormBuilder,
+    private publicLoginService: PublicLoginService,
+    private cartService: CartService,
+    private securityService: SecurityService,
+    private router: Router) {
     this.form = fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]]
@@ -29,7 +37,11 @@ export class PublicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.securityService.activeUser
+    this.cartItems = this.cartService.items
+    this.securityService.getActiveUser().subscribe(resp => {
+      console.log(resp)
+      this.user = resp
+    })
   }
 
   get email(): FormControl {

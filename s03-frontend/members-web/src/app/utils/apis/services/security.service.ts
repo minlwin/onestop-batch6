@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/sample-data';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { User } from '../model/sample-data';
 export class SecurityService {
 
   APP_USER_KEY: string = "com.jdc.user"
-  _activeUser: User | undefined
+  private _activeUser: User | undefined
 
   constructor() {
     let user = localStorage.getItem(this.APP_USER_KEY)
@@ -23,6 +24,10 @@ export class SecurityService {
 
   get activeUser(): User | undefined {
     return this._activeUser
+  }
+
+  getActiveUser() {
+    return of(this._activeUser)
   }
 
   clearStorage() {

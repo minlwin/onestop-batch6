@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../model/sample-data';
+import { USERS_DATA, User } from '../model/sample-data';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -16,21 +16,3 @@ export class PublicLoginService {
   }
 
 }
-
-const USERS_DATA: User[] = [
-  {
-    email: 'member@gmail.com',
-    password: 'member',
-    role: 'Member'
-  },
-  {
-    email: 'employee@gmail.com',
-    password: 'employee',
-    role: 'Employee'
-  },
-  {
-    email: 'owner@gmail.com',
-    password: 'owner',
-    role: 'Owner'
-  }
-]
