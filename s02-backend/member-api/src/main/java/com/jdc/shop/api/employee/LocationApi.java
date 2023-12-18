@@ -28,8 +28,7 @@ public class LocationApi {
 
 	@GetMapping("state")
 	public ApiResponse<List<StateDto>> searchStates() {
-		// TODO implement here
-		return null;
+		return ApiResponse.success(List.of());
 	}
 
 	@GetMapping("district")

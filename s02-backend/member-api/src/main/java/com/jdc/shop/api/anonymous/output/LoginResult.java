@@ -1,18 +1,22 @@
 package com.jdc.shop.api.anonymous.output;
 
 import com.jdc.shop.model.constants.Role;
+import com.jdc.shop.model.entity.Account;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginResult {
 
-	private int id;
-
+	private String loginId;
 	private String name;
-
 	private Role role;
-
-	private String token;
-
+	
+	public static LoginResult from(Account account) {
+		return new LoginResult(account.getLoginId(), account.getName(), account.getRole());
+	}
 }
