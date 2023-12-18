@@ -1,1 +1,60 @@
-<p>member-purchase-detail works!</p>
+<div class="row">
+  <div class="col-md col-12">
+    <div class="card mb-3" *ngFor="let item of detail.items">
+      <div class="card-header">{{ item.baseInfo.name }}</div>
+      <div class="card-body">
+
+        <div class="row justify-content-between mb-4">
+          <div class="col-auto">
+            <h6 class="text-secondary mb-1">Category</h6>
+            <p class="card-text fs-5">{{ item.baseInfo.categoryName }}</p>
+          </div>
+          <div class="col-auto text-end">
+            <h6 class="text-secondary mb-1">Price</h6>
+            <p class="card-text fs-5">{{ item.baseInfo.price }}</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-between mb-4">
+          <div class="col-auto">
+            <h6 class="text-secondary mb-1">Weight</h6>
+            <p class="card-text fs-5">{{ item.weight }} YWE</p>
+          </div>
+          <div class="col-auto text-end">
+            <h6 class="text-secondary mb-1">Wastage</h6>
+            <p class="card-text fs-5">{{ item.lostWeight }} YWE</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-between mb-4">
+          <div class="col-auto">
+            <h6 class="text-secondary mb-1">Purity</h6>
+            <p class="card-text fs-5">{{ item.purity }}</p>
+          </div>
+          <div class="col-auto text-end">
+            <h6 class="text-secondary mb-1">Create At</h6>
+            <p class="card-text fs-5">{{ item.baseInfo.createAt | date: 'yyyy MMM EE' }}</p>
+          </div>
+        </div>
+
+        <div *ngIf="item.baseInfo.description">
+          <h6 class="text-secondary mb-1">Description</h6>
+          <p class="cart-text text-justify">{{ item.baseInfo.description }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md col">
+    <div class="card">
+      <div class="card-body">
+
+        <h5 class="card-title">{{ detail.id | saleId }}</h5>
+
+        <p class="cart-text">Issued At: {{ detail.issuedAt | date: 'yyyy MMM EE' }}</p>
+        <p class="cart-text">Total: {{ detail.total }} MMK</p>
+
+      </div>
+    </div>
+  </div>
+</div>

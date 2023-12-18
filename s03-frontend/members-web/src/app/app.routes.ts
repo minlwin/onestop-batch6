@@ -18,8 +18,9 @@ import { CatalogDetailComponent } from './core/employee/employee-catalog/catalog
 import { checkoutTitle } from './utils/apis/model/checkout-title';
 import { CheckoutComponent } from './utils/widgets/checkout/checkout.component';
 import { MemberPurchaseHistoryComponent } from './core/member/member-purchase-history/member-purchase-history.component';
-import { memberGuard } from './utils/apis/guards/member.guard';
-import { employeeGuard } from './utils/apis/guards/employee.guard';
+import { purchaseHistoryResolver } from './utils/resolver/purchase-history.resolver';
+import { memberGuard } from './utils/guards/member.guard';
+import { employeeGuard } from './utils/guards/employee.guard';
 
 export const routes: Routes = [
   { path: 'public', component: PublicComponent, children: [
@@ -33,8 +34,8 @@ export const routes: Routes = [
   { path: 'member', component: MemberComponent, children: [
     { path: 'home', component: MemberHomeComponent, title: 'Member | Home' },
     { path: 'purchase', children: [
-      { path: 'history', component: MemberPurchaseHistoryComponent, title: 'Member | Purchase Histroy'},
-      { path: 'detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detail'},
+      { path: 'history', component: MemberPurchaseHistoryComponent, title: 'Member | Purchase Histroy' },
+      { path: 'detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detail', resolve: { purchase: purchaseHistoryResolver } },
       { path: '', redirectTo: '/member/purchase/history', pathMatch: 'full' }
     ]},
     { path: '', redirectTo: '/member/home', pathMatch: 'full' }

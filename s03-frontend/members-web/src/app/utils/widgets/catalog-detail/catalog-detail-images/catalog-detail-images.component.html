@@ -1,0 +1,39 @@
+<div class="bg-white p-2">
+  <div id="carouselExample" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="d-md-none d-block">
+      <div class="carousel-indicators">
+        <button *ngIf="images.length >= 1" type="button" data-bs-target="#carouselExample" data-bs-slide-to="0"
+          class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button *ngIf="images.length >= 2" type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"
+          aria-current="true" aria-label="Slide 2"></button>
+        <button *ngIf="images.length >= 3" type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"
+          aria-current="true" aria-label="Slide 3"></button>
+        <button *ngIf="images.length >= 4" type="button" data-bs-target="#carouselExample" data-bs-slide-to="3"
+          aria-current="true" aria-label="Slide 4"></button>
+        <button *ngIf="images.length >= 5" type="button" data-bs-target="#carouselExample" data-bs-slide-to="4"
+          aria-current="true" aria-label="Slide 5"></button>
+      </div>
+    </div>
+    <div class="carousel-inner">
+      <ng-container *ngFor="let image of images">
+        <div class="carousel-item active" [class.active]="activeCarousel == image">
+          <img class="d-block w-100 image-responsive" src="{{ image }}" #ig (click)="activeCarousel = ig.src">
+        </div>
+      </ng-container>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="d-none d-md-block">
+    <div class="d-flex my-1 gap-1">
+      <img *ngFor="let image of images" [src]="image" class="col img-thumbnail carousel-img-indicator"
+        (click)="activeCarousel = image">
+    </div>
+  </div>
+</div>

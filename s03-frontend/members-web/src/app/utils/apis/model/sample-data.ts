@@ -114,6 +114,21 @@ export const EMPLOYEE_CATALOGS: Catalog[] = [
       '/assets/gold-necklace/4.jpg'
     ],
     description: 'Custom Name Necklace, 18K Gold Plated Name Necklace, Personalized Name Necklace, Birthday Gift for Her, 2023 Christmas Gift, Gift for Mom'
+  },
+  {
+    id: 3,
+    name: 'Wedding Ring',
+    categoryId: 6,
+    weight: 210,
+    purity: 16,
+    lostWeight: 35,
+    goldSmithFees: 80000,
+    basedPrice: 3100000,
+    price: 3500000,
+    soldOut: false,
+    coverImage: '/assets/gold-necklace/cover.jpg',
+    images: [],
+    description: 'Custom Name Necklace, 18K Gold Plated Name Necklace, Personalized Name Necklace, Birthday Gift for Her, 2023 Christmas Gift, Gift for Mom'
   }
 ]
 

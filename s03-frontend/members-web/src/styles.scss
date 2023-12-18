@@ -186,3 +186,13 @@ td > .dropdown:hover {
 td > .dropdown > ul > li:hover {
   background-color: #d4d4d4;
 }
+
+.catalog-no-image:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  filter: invert(1) grayscale(100);
+}
+
+.text-justify {
+  text-align: justify;
+}

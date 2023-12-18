@@ -20,7 +20,7 @@ export class MemberPurchaseHistoryComponent implements OnInit {
 
   purchases: Purchase[] = []
 
-  constructor(private memberPurchaseSerice: MemberPurchaseService) {}
+  constructor(private memberPurchaseService: MemberPurchaseService) {}
 
   ngOnInit(): void {
     this.search()
@@ -37,7 +37,7 @@ export class MemberPurchaseHistoryComponent implements OnInit {
   }
 
   search() {
-    this.memberPurchaseSerice.search(this.params).subscribe(resp => this.purchases = resp)
+    this.memberPurchaseService.search(this.params).subscribe(resp => this.purchases = resp)
   }
 
 }

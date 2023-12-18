@@ -4,11 +4,12 @@ import { SecurityService } from '../../utils/apis/services/security.service';
 import { Catalog } from '../../utils/apis/model/sample-data';
 import { SecondNavComponent } from '../../utils/widgets/second-nav/second-nav.component';
 import { CartService } from '../../utils/apis/services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [RouterModule, SecondNavComponent],
+  imports: [CommonModule, RouterModule, SecondNavComponent],
   templateUrl: './employee.component.html'
 })
 export class EmployeeComponent implements OnInit {

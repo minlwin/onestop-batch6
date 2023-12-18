@@ -1,0 +1,17 @@
+<div class="row g-3">
+  <div class="col-lg-7 col-12" *ngIf="!images?.length">
+    <img src="/assets/no-image.png" class="img-fluid border">
+  </div>
+
+  <!-- Catalog Images -->
+  <div class="col-lg-7 col-12" *ngIf="images?.length">
+    <app-catalog-detail-images [images]="images"></app-catalog-detail-images>
+  </div>
+
+
+  <!-- Catalog Info -->
+  <div class="col">
+    <app-catalog-detail-info [catalog]="catalog" [activeUser]="activeUser"></app-catalog-detail-info>
+  </div>
+
+</div>
