@@ -1,9 +1,6 @@
 package com.jdc.shop.api.employee.input;
 
 import java.math.BigDecimal;
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import com.jdc.shop.model.constants.Purity;
 
@@ -24,8 +21,6 @@ public class CatalogForm {
 	
 	@NotNull(message = "Please enter based price.")
 	private BigDecimal basedPrice;
-
-	private List<MultipartFile> images;
 
 	@NotNull(message = "Please enter purity.")
 	private Purity purity;

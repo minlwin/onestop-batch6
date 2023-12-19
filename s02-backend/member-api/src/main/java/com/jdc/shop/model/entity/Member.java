@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.jdc.shop.model.constants.Gender;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,7 +32,7 @@ public class Member extends AbstractEntity {
 	private String name;
 
 	@OneToOne(optional = false, fetch = FetchType.LAZY)
-	private Account account;
+	private Account account = new Account();
 	
 	@Column(nullable = false)
 	private String phone;
@@ -47,7 +48,17 @@ public class Member extends AbstractEntity {
 
 	private LocalDateTime registAt;
 	
-	@OneToOne(mappedBy = "member")
+	@OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Address address;
+	
+	public void setAddress(Address address) {
+		this.address = address;
+		address.setMember(this);
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+		this.account.setName(name);
+	}
 
 }

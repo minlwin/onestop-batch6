@@ -2,6 +2,7 @@ package com.jdc.shop.api.owner;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -17,41 +18,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jdc.shop.api.owner.input.GlodPriceForm;
 import com.jdc.shop.api.owner.input.GoldPriceSearch;
 import com.jdc.shop.api.owner.output.GlodPriceDto;
+import com.jdc.shop.model.service.GoldPriceService;
 import com.jdc.shop.utils.io.ApiResponse;
 import com.jdc.shop.utils.io.DataModificationResult;
 
 @RestController
 @RequestMapping("member/price")
 public class GoldPriceManagementApi {
+	
+	@Autowired
+	private GoldPriceService service;
 
 	@GetMapping
 	public ApiResponse<Page<GlodPriceDto>> search(
 			GoldPriceSearch form, 
 			@RequestParam(required = false, defaultValue = "0") int page, 
 			@RequestParam(required = false, defaultValue = "10") int size) {
-		// TODO implement here
-		return null;
+		return ApiResponse.success(service.search(form, page, size));
 	}
 
 	@GetMapping("{id}")
 	public ApiResponse<GlodPriceDto> findById(@PathVariable long id) {
-		// TODO implement here
-		return null;
+		return ApiResponse.success(service.findById(id));
 	}
 
 	@PostMapping
 	public ApiResponse<DataModificationResult<LocalDateTime>> create(
 			@RequestBody @Validated GlodPriceForm form, BindingResult result) {
-		// TODO implement here
-		return null;
+		return ApiResponse.success(service.create(form));
 	}
 
 	@PutMapping("{id}")
 	public ApiResponse<DataModificationResult<LocalDateTime>> update(
-			long id, 
+			@PathVariable long id, 
 			@RequestBody @Validated GlodPriceForm form, BindingResult result) {
-		// TODO implement here
-		return null;
+		return ApiResponse.success(service.update(id, form));
 	}
 
 }

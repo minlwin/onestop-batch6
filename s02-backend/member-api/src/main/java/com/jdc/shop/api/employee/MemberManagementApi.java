@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jdc.shop.api.employee.input.MemberForm;
 import com.jdc.shop.api.employee.input.MemberSearch;
@@ -52,4 +53,9 @@ public class MemberManagementApi {
 		return ApiResponse.success(service.update(id, form));
 	}
 
+	@PutMapping("{id}/photo")
+	public ApiResponse<DataModificationResult<Integer>> uploadPhoto(int id, 
+			@RequestParam MultipartFile file) {
+		return ApiResponse.success(service.uploadPhoto(id, file));
+	}
 }

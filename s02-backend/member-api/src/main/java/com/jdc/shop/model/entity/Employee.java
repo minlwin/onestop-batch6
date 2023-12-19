@@ -28,7 +28,7 @@ public class Employee extends AbstractEntity {
 	private String name;
 
 	@OneToOne(optional = false, fetch = FetchType.LAZY)
-	private Account account;
+	private Account account = new Account();
 
 	@Column(nullable = false)
 	private String phone;
@@ -41,4 +41,8 @@ public class Employee extends AbstractEntity {
 
 	private LocalDate retiredAt;
 
+	public void setName(String name) {
+		this.name = name;
+		account.setName(name);
+	}
 }
