@@ -51,6 +51,7 @@ public class ExceptionHandlers {
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.UNAUTHORIZED)
 	public ApiResponse<String> handle(AuthenticationException e) {
+		e.printStackTrace();
 		return ApiResponse.securityError(Optional.ofNullable(MESSAGES.get(e.getClass())).orElse("Authentication Error."));
 	}
 	

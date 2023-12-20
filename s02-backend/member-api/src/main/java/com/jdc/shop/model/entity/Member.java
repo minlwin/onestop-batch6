@@ -31,7 +31,7 @@ public class Member extends AbstractEntity {
 	@Column(nullable = false)
 	private String name;
 
-	@OneToOne(optional = false, fetch = FetchType.LAZY)
+	@OneToOne(optional = false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Account account = new Account();
 	
 	@Column(nullable = false)
