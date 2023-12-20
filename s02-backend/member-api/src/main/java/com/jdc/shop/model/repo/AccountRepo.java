@@ -5,4 +5,6 @@ import com.jdc.shop.model.entity.Account;
 
 public interface AccountRepo extends BaseRepository<Account, String>{
 
+	long countByLoginId(String loginId);
+
 }

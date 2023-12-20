@@ -2,9 +2,11 @@ package com.jdc.shop.api.employee.input;
 
 import java.time.LocalDate;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.jdc.shop.model.constants.Gender;
+import com.jdc.shop.model.constants.Role;
+import com.jdc.shop.model.entity.Member;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,11 +14,11 @@ import lombok.Data;
 
 @Data
 public class MemberForm {
+	
+	private String loginId;
 
 	@NotBlank(message = "Please enter customer name.")
 	private String name;
-
-	private MultipartFile profileImage;
 
 	@NotBlank(message = "Please enter phone number.")
 	private String phone;
@@ -31,5 +33,19 @@ public class MemberForm {
 	private String address;
 
 	private int townshipId;
+
+	public Member entity(PasswordEncoder passwordEncoder) {
+		var entity = new Member();
+		entity.setName(name);
+		var account = entity.getAccount();
+		account.setLoginId(loginId);
+		account.setRole(Role.Member);
+		account.setPassword(passwordEncoder.encode(loginId));
+		entity.setPhone(phone);
+		entity.setEmail(email);
+		entity.setDob(dob);
+		entity.setGender(gender);
+		return entity;
+	}
 
 }
