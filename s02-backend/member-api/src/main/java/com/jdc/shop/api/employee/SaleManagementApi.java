@@ -17,7 +17,6 @@ import com.jdc.shop.api.employee.input.SaleForm;
 import com.jdc.shop.api.employee.input.SaleSearch;
 import com.jdc.shop.api.employee.output.SaleDetailsDto;
 import com.jdc.shop.api.employee.output.SaleDto;
-import com.jdc.shop.model.entity.pk.SalePk;
 import com.jdc.shop.model.service.SaleService;
 import com.jdc.shop.utils.io.ApiResponse;
 import com.jdc.shop.utils.io.DataModificationResult;
@@ -42,13 +41,13 @@ public class SaleManagementApi {
 	}
 
 	@PostMapping
-	public ApiResponse<DataModificationResult<SalePk>> create(
+	public ApiResponse<DataModificationResult<String>> create(
 			@RequestBody @Validated SaleForm form, BindingResult result) {
 		return ApiResponse.success(service.create(form));
 	}
 
 	@PutMapping("{id}")
-	public ApiResponse<DataModificationResult<SalePk>> update(
+	public ApiResponse<DataModificationResult<String>> update(
 			@PathVariable String id, 
 			@RequestBody @Validated SaleForm form, BindingResult result) {
 		return ApiResponse.success(service.update(id, form));
