@@ -1,1 +1,45 @@
-<p>sale works!</p>
+<div class="row">
+  <div class="col-md-auto col-12">
+    <button class="btn btn-danger text-white w-100" [routerLink]="['/employee', 'sale', 'form']">
+      <i class="bi bi-plus-lg"></i> Create Sale
+    </button>
+  </div>
+</div>
+
+<div class="bg-white mt-3 p-3 pb-4">
+
+  <!-- Sale Search -->
+  <div class="row g-2 mb-3">
+    <div class="col-xl col-md-4 col-12">
+      <label for="category" class="form-label mb-1">Customer Name</label>
+      <input #nameVal id="name" (keyup)="params.customerName = nameVal.value; search()" type="text" class="form-control"
+        placeholder="Customer name">
+    </div>
+    <div class="col-xl col-md-4 col-12">
+      <label for="phone" class="form-label mb-1">Customer Phone</label>
+      <input #phoneVal id="phone" (keyup)="params.customerPhone = nameVal.value; search()" type="tel"
+        class="form-control" placeholder="Customer phone">
+    </div>
+    <div class="col-xl col-md-4 col-12">
+      <label for="from" class="form-label mb-1">Date From</label>
+      <input #formVal id="from" (change)="params.from = formVal.value; search()" type="date" class="form-control">
+    </div>
+    <div class="col-xl col-md-4 col-12">
+      <label for="To" class="form-label mb-1">Creation Date</label>
+      <input #toVal id="creation" (change)="params.to = toVal.value; search()" type="date" class="form-control">
+    </div>
+    <div class="col-xl-auto col-md-4 col-12 align-self-end">
+      <button class="btn btn-danger text-white w-100" (click)="search()">
+        <i class="bi bi-search"></i>
+        Search
+      </button>
+    </div>
+  </div>
+
+  <app-no-data label="Sale" [marginTop]="true" *ngIf="!sales.length"></app-no-data>
+
+  <!-- Sale List -->
+  <div class="row g-2">
+
+  </div>
+</div>

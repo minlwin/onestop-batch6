@@ -6,7 +6,7 @@ import { AccessError } from '../apis/model/access-error';
 export const employeeGuard: CanActivateFn = (route, state) => {
   let role = inject(SecurityService).activeUser?.role
 
-  if(role == 'Employee' || role == 'Owner')
+  if(role == 'Employee' || role == 'Owner' || role == 'Admin')
     return true;
 
   throw new AccessError

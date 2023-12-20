@@ -1,7 +1,9 @@
 import { ErrorHandler, Injectable, NgZone } from "@angular/core";
 import { ErrorDialogComponent } from "../../widgets/error-dialog/error-dialog.component";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AppErrorHandler implements ErrorHandler {
 
   errorDialog!: ErrorDialogComponent

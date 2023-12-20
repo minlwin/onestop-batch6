@@ -1,5 +1,5 @@
 export interface User {
-  email: string
+  username: string
   password: string
   role: 'Member' | 'Employee' | 'Owner'
 }
@@ -345,17 +345,17 @@ export const STATES_DATA = [
 
 export const USERS_DATA: User[] = [
   {
-    email: 'member@gmail.com',
+    username: 'member',
     password: 'member',
     role: 'Member'
   },
   {
-    email: 'employee@gmail.com',
+    username: 'employee',
     password: 'employee',
     role: 'Employee'
   },
   {
-    email: 'owner@gmail.com',
+    username: 'owner',
     password: 'owner',
     role: 'Owner'
   }

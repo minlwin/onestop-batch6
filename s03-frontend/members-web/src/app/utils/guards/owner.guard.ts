@@ -5,7 +5,7 @@ import { AccessError } from '../apis/model/access-error';
 
 export const ownerGuard: CanActivateFn = (route, state) => {
   let role = inject(SecurityService).activeUser?.role
-  if(role == 'Owner')
+  if(role == 'Owner' || role == 'Admin')
     return true;
   throw new AccessError
 };

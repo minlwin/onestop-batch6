@@ -9,6 +9,7 @@ import { SecurityService } from '../../utils/apis/services/security.service';
 import { Catalog } from '../../utils/apis/model/sample-data';
 import { SecondNavComponent } from '../../utils/widgets/second-nav/second-nav.component';
 import { CartService } from '../../utils/apis/services/cart.service';
+import { ApiResponse } from '../../utils/apis/model/api-dto';
 
 @Component({
   selector: 'app-public',
@@ -31,21 +32,18 @@ export class PublicComponent implements OnInit {
     private securityService: SecurityService,
     private router: Router) {
     this.form = fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(5)]]
     })
   }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.items
-    this.securityService.getActiveUser().subscribe(resp => {
-      console.log(resp)
-      this.user = resp
-    })
+    this.user = this.securityService.activeUser
   }
 
   get email(): FormControl {
-    return this.form.get('email') as FormControl
+    return this.form.get('username') as FormControl
   }
 
   get password(): FormControl {
@@ -59,10 +57,10 @@ export class PublicComponent implements OnInit {
 
   login() {
     if(this.form.valid) {
-      this.publicLoginService.login(this.form.value).subscribe(user => {
-        if(user) {
-          this.securityService.activeUser = user
-          this.router.navigate([`/${user.role.toLocaleLowerCase()}`])
+      this.publicLoginService.login(this.form.value).subscribe((resp: any) => {
+        if(resp) {
+          this.securityService.activeUser = resp.payload
+          this.router.navigate(['/employee'])
         }
         this.dialog.hideDialog()
       })

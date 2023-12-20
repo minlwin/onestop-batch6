@@ -1,11 +1,21 @@
 <div class="row g-3">
   <div class="col-lg-7 col-12" *ngIf="!images?.length">
-    <img src="/assets/no-image-for-admin.png" class="img-fluid catalog-no-image" (click)="uploadImage.click()">
+    <img src="/assets/no-image-for-admin.png" class="img-fluid catalog-no-image" (click)="imageUpload.click()">
   </div>
 
   <!-- Catalog Images -->
   <div class="col-lg-7 col-12" *ngIf="images?.length">
-    <app-catalog-detail-images [images]="images"></app-catalog-detail-images>
+    <div class="bg-white p-2">
+      <app-catalog-detail-images [images]="images"></app-catalog-detail-images>
+
+      <div class="mt-2 mb-1 text-center">
+        <button class="btn btn-warning" *ngIf="images.length && uploadStatus" (click)="uploadImages()">Upload
+          Images</button>
+
+        <button class="btn btn-warning" *ngIf="images.length && !uploadStatus" (click)="imageUpload.click()">Choose New
+          Images</button>
+      </div>
+    </div>
   </div>
 
   <!-- Catalog Info -->
@@ -32,5 +42,5 @@
 </div>
 
 <form action="#" class="d-none">
-  <input #imageInput type="file" #uploadImage multiple (change)="showImage(imageInput.files!)">
+  <input #imageUpload type="file" accept="images/*" multiple (change)="showImage($event)">
 </form>

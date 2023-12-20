@@ -54,9 +54,9 @@
     modalId="publicLoginModalDialog">
 
     <ng-container body>
-      <app-form-group label="Email" icon="bi-envelope" [margin]="true" [valid]="email.valid" [touch]="email.touched"
+      <app-form-group label="Login Id" icon="bi-envelope" [margin]="true" [valid]="email.valid" [touch]="email.touched"
         [dirty]="email.dirty">
-        <input formControlName="email" type="email" class="form-control" placeholder="someone@gmail.com">
+        <input formControlName="username" type="text" class="form-control" placeholder="Enter Login Id">
       </app-form-group>
 
       <app-form-group label="Password" icon="bi-key" [valid]="password.valid" [touch]="password.touched"

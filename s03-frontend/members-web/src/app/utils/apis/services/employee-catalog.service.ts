@@ -56,4 +56,15 @@ export class EmployeeCatalogService {
   findById(id: number) {
     return of(this._catalogs.filter(catalog => catalog.id == id).pop())
   }
+
+  uploadImages(id: number, imageFiles: FileList) {
+    const index = this._catalogs.findIndex(catalog => catalog.id == id)
+    this._catalogs[index].images = []
+    const length = imageFiles.length > 5 ? 5 : imageFiles.length
+    for(let i = 0; i < length; i++) {
+      this._catalogs[index].images?.push(URL.createObjectURL(imageFiles.item(i) as Blob))
+    }
+    return of(this._catalogs[index])
+  }
+
 }

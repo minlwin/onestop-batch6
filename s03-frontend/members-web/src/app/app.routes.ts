@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 import { PublicComponent } from './core/public/public.component';
 import { MemberComponent } from './core/member/member.component';
 import { EmployeeComponent } from './core/employee/employee.component';
@@ -21,45 +21,57 @@ import { MemberPurchaseHistoryComponent } from './core/member/member-purchase-hi
 import { purchaseHistoryResolver } from './utils/resolver/purchase-history.resolver';
 import { memberGuard } from './utils/guards/member.guard';
 import { employeeGuard } from './utils/guards/employee.guard';
+import { SaleFormComponent } from './core/employee/sale/sale-form/sale-form.component';
+import { SaleDetailComponent } from './core/employee/sale/sale-detail/sale-detail.component';
+
+const publicRoute: Route = { path: 'public', component: PublicComponent, children: [
+  { path: 'home', component: PublicHomeComponent, title: 'Public | Home' },
+  { path: 'catalog', component: PublicCatalogComponent, title: 'Public | Catalog' },
+  { path: '', redirectTo: '/public/home', pathMatch: 'full' }
+]}
+
+const checkoutRoute: Route = { path: 'checkout', component: CheckoutComponent, title: checkoutTitle}
+
+const memberRoute: Route = { path: 'member', component: MemberComponent, children: [
+  { path: 'home', component: MemberHomeComponent, title: 'Member | Home' },
+  { path: 'purchase', children: [
+    { path: 'history', component: MemberPurchaseHistoryComponent, title: 'Member | Purchase Histroy' },
+    { path: 'detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detail', resolve: { purchase: purchaseHistoryResolver } },
+    { path: '', redirectTo: '/member/purchase/history', pathMatch: 'full' }
+  ]},
+  { path: '', redirectTo: '/member/home', pathMatch: 'full' }
+], canActivate: [memberGuard]}
+
+const employeeRoute: Route = { path: 'employee', component: EmployeeComponent, children: [
+  { path: 'sale', children: [
+    { path: 'management', component: SaleComponent, title: 'Employee | Sale' },
+    { path: 'form', component: SaleFormComponent, title: 'Employee | Sale Form' },
+    { path: 'detail', component: SaleDetailComponent, title: 'Employee | Sale Detail' },
+    { path: '', redirectTo: '/employee/sale/management', pathMatch: 'full' }
+  ]},
+  { path: 'member', children: [
+    { path: 'management', component: EmployeeMemberComponent, title: 'Employee | Member' },
+    { path: 'form', component: MemberFormComponent, title: 'Employee | Member Form' },
+    { path: 'detail', component: MemberDetailComponent, title: 'Employee | Member Detail' },
+    { path: '', redirectTo: '/employee/member/management', pathMatch: 'full' }
+  ]},
+  { path: 'category', component: CategoryComponent, title: 'Employee | Category' },
+  { path: 'catalog', children: [
+    { path: 'management', component: EmployeeCatalogComponent, title: 'Employee | Catalog' },
+    { path: 'form', component: CatalogFormComponent, title: 'Employee | Catalog Form'},
+    { path: 'detail', component: CatalogDetailComponent, title: 'Employee | Catalog Detail'},
+    { path: '', redirectTo: '/employee/catalog/management', pathMatch: 'full' }
+  ]},
+  { path: '', redirectTo: '/employee/sale', pathMatch: 'full' }
+], canActivate: [employeeGuard]}
+
+const ownerRoute: Route = { path: 'owner', component: OwnerComponent }
 
 export const routes: Routes = [
-  { path: 'public', component: PublicComponent, children: [
-    { path: 'home', component: PublicHomeComponent, title: 'Public | Home' },
-    { path: 'catalog', component: PublicCatalogComponent, title: 'Public | Catalog' },
-    { path: '', redirectTo: '/public/home', pathMatch: 'full' }
-  ]},
-
-  { path: 'checkout', component: CheckoutComponent, title: checkoutTitle},
-
-  { path: 'member', component: MemberComponent, children: [
-    { path: 'home', component: MemberHomeComponent, title: 'Member | Home' },
-    { path: 'purchase', children: [
-      { path: 'history', component: MemberPurchaseHistoryComponent, title: 'Member | Purchase Histroy' },
-      { path: 'detail', component: MemberPurchaseDetailComponent, title: 'Member | Purchase Detail', resolve: { purchase: purchaseHistoryResolver } },
-      { path: '', redirectTo: '/member/purchase/history', pathMatch: 'full' }
-    ]},
-    { path: '', redirectTo: '/member/home', pathMatch: 'full' }
-  ], canActivate: [memberGuard]},
-
-  { path: 'employee', component: EmployeeComponent, children: [
-    { path: 'sale', component: SaleComponent, title: 'Employee | Sale' },
-    { path: 'member', children: [
-      { path: 'management', component: EmployeeMemberComponent, title: 'Employee | Member' },
-      { path: 'form', component: MemberFormComponent, title: 'Employee | Member Form' },
-      { path: 'detail', component: MemberDetailComponent, title: 'Employee | Member Detail' },
-      { path: '', redirectTo: '/employee/member/management', pathMatch: 'full' }
-    ]},
-    { path: 'category', component: CategoryComponent, title: 'Employee | Category' },
-    { path: 'catalog', children: [
-      { path: 'management', component: EmployeeCatalogComponent, title: 'Employee | Catalog' },
-      { path: 'form', component: CatalogFormComponent, title: 'Employee | Catalog Form'},
-      { path: 'detail', component: CatalogDetailComponent, title: 'Employee | Catalog Detail'},
-      { path: '', redirectTo: '/employee/catalog/management', pathMatch: 'full' }
-    ]},
-    { path: '', redirectTo: '/employee/sale', pathMatch: 'full' }
-  ], canActivate: [employeeGuard]},
-
-  { path: 'owner', component: OwnerComponent },
-
+  publicRoute,
+  checkoutRoute,
+  memberRoute,
+  employeeRoute,
+  ownerRoute,
   { path: '', redirectTo: '/public', pathMatch: 'full' }
 ];
