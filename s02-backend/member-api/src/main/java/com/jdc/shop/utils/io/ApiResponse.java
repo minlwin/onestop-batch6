@@ -29,6 +29,10 @@ public class ApiResponse<T> {
 		return new ApiResponse<T>(Status.PlatformError, data);
 	}
 
+	public static <T> ApiResponse<T> securityError(T data) {
+		return new ApiResponse<T>(Status.SecurityError, data);
+	}
+
 	public enum Status {
 		Success,
 		ValidationError,

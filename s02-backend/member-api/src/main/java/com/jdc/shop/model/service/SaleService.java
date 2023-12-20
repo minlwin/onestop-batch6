@@ -1,6 +1,7 @@
 package com.jdc.shop.model.service;
 
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import com.jdc.shop.api.employee.input.SaleForm;
 import com.jdc.shop.api.employee.input.SaleSearch;
@@ -9,6 +10,7 @@ import com.jdc.shop.api.employee.output.SaleDto;
 import com.jdc.shop.model.entity.pk.SalePk;
 import com.jdc.shop.utils.io.DataModificationResult;
 
+@Service
 public class SaleService {
 
 	public Page<SaleDto> search(SaleSearch form, int page, int size) {

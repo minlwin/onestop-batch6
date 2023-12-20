@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.jdc.shop.model.constants.Role;
 import com.jdc.shop.security.JwtTokenFilter;
+import com.jdc.shop.utils.exceptions.ApiSecurityExceptionResolver;
 
 @Configuration
 @EnableMethodSecurity
@@ -22,6 +23,9 @@ public class MemberApiSecurityConfiguration {
 	
 	@Autowired
 	private JwtTokenFilter jwtTokenFilter;
+	
+	@Autowired
+	private ApiSecurityExceptionResolver apiSecurityExceptionResolver;
 	
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -39,6 +43,11 @@ public class MemberApiSecurityConfiguration {
 		
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		http.httpBasic(basic -> basic.disable());
+		
+		http.exceptionHandling(config -> {
+			config.accessDeniedHandler(apiSecurityExceptionResolver);
+			config.authenticationEntryPoint(apiSecurityExceptionResolver);
+		});
 		
 		http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 		
