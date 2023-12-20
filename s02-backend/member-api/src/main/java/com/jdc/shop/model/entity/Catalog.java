@@ -1,6 +1,7 @@
 package com.jdc.shop.model.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.jdc.shop.model.constants.Purity;
@@ -38,10 +39,15 @@ public class Catalog extends AbstractEntity {
 	private String description;
 
 	@Column(nullable = false)
-	private BigDecimal basedPrice;
+	private BigDecimal basedPrice = BigDecimal.ZERO;
+	
+	private LocalDateTime marketTime;
+	private BigDecimal marketPrice = BigDecimal.ZERO;
 
-	private BigDecimal salePrice;
+	private BigDecimal salePrice = BigDecimal.ZERO;
+	private BigDecimal lostWeightFee = BigDecimal.ZERO;
 
+	@Column(nullable = false)
 	private Purity purity;
 
 	@Column(nullable = false)

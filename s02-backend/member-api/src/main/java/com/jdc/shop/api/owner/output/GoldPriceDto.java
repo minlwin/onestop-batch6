@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class GlodPriceDto {
+public class GoldPriceDto {
 
 	@Getter
 	private LocalDateTime id;
@@ -28,7 +28,7 @@ public class GlodPriceDto {
 	private Status status;
 	
 	
-	public static void select(CriteriaQuery<GlodPriceDto> cq, Root<GoldPrice> root) {
+	public static void select(CriteriaQuery<GoldPriceDto> cq, Root<GoldPrice> root) {
 		cq.multiselect(
 			root.get(GoldPrice_.businessTime),
 			root.get(GoldPrice_.basePrice),
@@ -36,6 +36,14 @@ public class GlodPriceDto {
 			root.get(GoldPrice_.diffFor15P),
 			root.get(GoldPrice_.status)			
 		);
+	}
+	
+	public static GoldPriceDto from(GoldPrice entity) {
+		return new GoldPriceDto(entity.getBusinessTime(), 
+				entity.getBasePrice(), 
+				entity.getDiffFor16P(), 
+				entity.getDiffFor15P(), 
+				entity.getStatus());
 	}
 	
 
