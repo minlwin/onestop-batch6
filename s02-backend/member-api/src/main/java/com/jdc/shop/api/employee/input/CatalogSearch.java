@@ -49,7 +49,7 @@ public class CatalogSearch {
 			list.add(cb.le(root.get(Catalog_.salePrice), priceTo));
 		}
 		
-		if(null == soldOut) {
+		if(null != soldOut) {
 			list.add(cb.equal(root.get(Catalog_.soldOut), soldOut));
 		}
 		

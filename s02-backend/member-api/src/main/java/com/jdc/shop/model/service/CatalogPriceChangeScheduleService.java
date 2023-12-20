@@ -69,7 +69,7 @@ public class CatalogPriceChangeScheduleService {
 		
 		var goldPriceDto = GoldPriceDto.from(goldPrice);
 		
-		var catalogsNeedToBeCalculated = catalogRepo.findIdBySoldOutIsFalseAndDeletedIsFalse();
+		var catalogsNeedToBeCalculated = catalogRepo.searchIdForPriceChange();
 		
 		log.info("{} catalogs are need to be calculated.", catalogsNeedToBeCalculated.size());
 		

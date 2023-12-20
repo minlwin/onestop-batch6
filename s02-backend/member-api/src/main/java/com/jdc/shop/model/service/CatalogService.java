@@ -86,7 +86,7 @@ public class CatalogService {
 		
 		var entity = form.entity();
 		entity.setCategory(category);
-		
+	
 		entity = catalogRepo.saveAndFlush(entity);
 		priceChangeService.calculate(entity.getId(), goldPrice);
 		

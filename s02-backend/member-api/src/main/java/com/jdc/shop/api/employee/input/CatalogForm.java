@@ -35,6 +35,8 @@ public class CatalogForm {
 	@NotNull(message = "Please enter gold smith fees.")
 	private BigDecimal goldSmithFees;
 	
+	private boolean soldOut;
+	
 	public Catalog entity() {
 		var entity = new Catalog();
 		entity.setName(name);
@@ -44,6 +46,7 @@ public class CatalogForm {
 		entity.setWeight(weight);
 		entity.setLostWeight(lostWeight);
 		entity.setGoldSmithFees(goldSmithFees);
+		entity.setSoldOut(soldOut);
 		return entity;
 	}
 
