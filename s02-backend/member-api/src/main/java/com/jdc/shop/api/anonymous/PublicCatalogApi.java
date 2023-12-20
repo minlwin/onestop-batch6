@@ -35,7 +35,7 @@ public class PublicCatalogApi {
 	}
 
 	@GetMapping("{id}")
-	public ApiResponse<CatalogDetailsDto> showDetails(@PathVariable long id) {
+	public ApiResponse<CatalogDetailsDto> showDetails(@PathVariable int id) {
 		return ApiResponse.success(service.findById(id));
 	}
 

@@ -1,15 +1,8 @@
 package com.jdc.shop.model.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,11 +41,9 @@ public class MemberService {
 	private TownshipRepo townshipRepo;
 	@Autowired
 	private AccountRepo accountRepo;
-
-	@Value("${app.image.folder}")
-	private String imageFolder;
-
-	private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+	
+	@Autowired
+	private PhotoUploadService photoUploadService;
 
 	public Page<MemberProfile> search(MemberSearch form, int page, int size) {
 		Function<CriteriaBuilder, CriteriaQuery<Long>> countFunc = cb -> {
@@ -132,38 +123,12 @@ public class MemberService {
 	@Transactional
 	public DataModificationResult<Integer> uploadPhoto(int id, MultipartFile file) {
 
-		var imageName = saveImage(id, file);
+		var imageName = photoUploadService.saveProfileImage(id, file);
 
 		var entity = repo.findById(id).orElseThrow(() -> new ApiBusinessException("Invalid member id."));
 		entity.setProfileImage(imageName);
 
 		return new DataModificationResult<>(entity.getId(), "Profile image has been uploaded.");
-	}
-
-	private String saveImage(int id, MultipartFile file) {
-
-		try {
-			var extension = getFileExtension(file);
-			var dateTime = LocalDateTime.now().format(DF);
-			var imageName = "%s_%s.%s".formatted(dateTime, id, extension);
-
-			var imageFolderPath = Path.of(imageFolder);
-			if (!Files.exists(imageFolderPath)) {
-				Files.createDirectories(imageFolderPath);
-			}
-			
-			Files.copy(file.getInputStream(), imageFolderPath.resolve(imageName), StandardCopyOption.REPLACE_EXISTING);
-
-			return imageName;
-		} catch (IOException e) {
-			throw new ApiBusinessException(e.getMessage());
-		}
-	}
-
-	private String getFileExtension(MultipartFile file) {
-		var fileName = file.getOriginalFilename();
-		var array = fileName.split("\\.");
-		return array[array.length - 1];
 	}
 
 }

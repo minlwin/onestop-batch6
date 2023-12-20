@@ -1,27 +1,26 @@
 package com.jdc.shop.api.anonymous.output;
 
-import java.math.BigDecimal;
-
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class GoldWeight {
 
-	private BigDecimal netWeight;
+	private final int netWeight;
 
-	public BigDecimal getKyat() {
-		// TODO implement here
-		return null;
+	public int getKyat() {
+		return netWeight / 128;
 	}
 
-	public BigDecimal getPae() {
-		// TODO implement here
-		return null;
+	public int getPae() {
+		var remain = netWeight % 128;
+		return remain / 8;
 	}
 
-	public BigDecimal getYwe() {
-		// TODO implement here
-		return null;
+	public int getYwe() {
+		var remain = netWeight % 128;
+		return remain % 8;
 	}
 
 }

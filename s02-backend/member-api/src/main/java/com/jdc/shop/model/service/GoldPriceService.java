@@ -8,6 +8,7 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jdc.shop.api.owner.input.GlodPriceForm;
 import com.jdc.shop.api.owner.input.GoldPriceSearch;
@@ -22,6 +23,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
 @Service
+@Transactional(readOnly = true)
 public class GoldPriceService {
 	
 	@Autowired
@@ -60,7 +62,12 @@ public class GoldPriceService {
 				.orElseThrow(() -> new ApiBusinessException("Invalid gold price id."));
 	}
 
+	@Transactional
 	public DataModificationResult<Long> create(GlodPriceForm form) {
+
+		if(form.getBusinessTime().isBefore(LocalDateTime.now())) {
+			throw new ApiBusinessException("You can't create old data.");
+		}
 		
 		var entity = goldPriceRepo.save(form.entity());
 		priceChangeService.createSchedule(entity.getBusinessTime());
@@ -70,6 +77,7 @@ public class GoldPriceService {
 		return new DataModificationResult<Long>(idValue, "Gold Price has been created.");
 	}
 
+	@Transactional
 	public DataModificationResult<Long> update(long id, GlodPriceForm form) {
 		
 		var businessTime = Instant.ofEpochMilli(id).atZone(ZoneId.systemDefault()).toLocalDateTime();

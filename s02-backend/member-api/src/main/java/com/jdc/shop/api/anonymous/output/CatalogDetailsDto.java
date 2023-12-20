@@ -1,9 +1,8 @@
 package com.jdc.shop.api.anonymous.output;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import com.jdc.shop.model.constants.Purity;
+import com.jdc.shop.model.entity.Catalog;
 
 import lombok.Data;
 
@@ -11,13 +10,13 @@ import lombok.Data;
 public class CatalogDetailsDto {
 
 	private CatalogDto baseInfo;
-
 	private List<String> images;
-
-	private Purity purity;
-
-	private GoldWeight weight;
-
-	private BigDecimal lostWeight;
+	
+	public static CatalogDetailsDto from(Catalog entity) {
+		var dto = new CatalogDetailsDto();
+		dto.setBaseInfo(CatalogDto.from(entity));
+		dto.setImages(entity.getImages());
+		return dto;
+	}
 
 }

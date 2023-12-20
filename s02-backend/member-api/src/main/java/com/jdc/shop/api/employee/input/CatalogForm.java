@@ -3,6 +3,7 @@ package com.jdc.shop.api.employee.input;
 import java.math.BigDecimal;
 
 import com.jdc.shop.model.constants.Purity;
+import com.jdc.shop.model.entity.Catalog;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,5 +34,17 @@ public class CatalogForm {
 
 	@NotNull(message = "Please enter gold smith fees.")
 	private BigDecimal goldSmithFees;
+	
+	public Catalog entity() {
+		var entity = new Catalog();
+		entity.setName(name);
+		entity.setDescription(description);
+		entity.setBasedPrice(basedPrice);
+		entity.setPurity(purity);
+		entity.setWeight(weight);
+		entity.setLostWeight(lostWeight);
+		entity.setGoldSmithFees(goldSmithFees);
+		return entity;
+	}
 
 }

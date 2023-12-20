@@ -31,8 +31,10 @@ public class CatalogPriceChangeService {
 		catalog.setMarketTime(goldPriceDto.getId());
 		catalog.setMarketPrice(priceForCalculation);
 		
-		catalog.setSalePrice(catalog.getWieght().multiply(priceForOneYwae));
+		catalog.setNetPrice(catalog.getWeight().multiply(priceForOneYwae));
 		catalog.setLostWeightFee(catalog.getLostWeight().multiply(priceForOneYwae));
+		
+		catalog.setSalePrice(catalog.getNetPrice().add(catalog.getLostWeightFee()).add(catalog.getGoldSmithFees()));
 	}
 
 }

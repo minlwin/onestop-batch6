@@ -2,6 +2,7 @@ package com.jdc.shop.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.jdc.shop.model.constants.Purity;
@@ -44,14 +45,16 @@ public class Catalog extends AbstractEntity {
 	private LocalDateTime marketTime;
 	private BigDecimal marketPrice = BigDecimal.ZERO;
 
-	private BigDecimal salePrice = BigDecimal.ZERO;
+	private BigDecimal netPrice = BigDecimal.ZERO;
 	private BigDecimal lostWeightFee = BigDecimal.ZERO;
+
+	private BigDecimal salePrice = BigDecimal.ZERO;
 
 	@Column(nullable = false)
 	private Purity purity;
 
 	@Column(nullable = false)
-	private BigDecimal wieght;
+	private BigDecimal weight;
 
 	@Column(nullable = false)
 	private BigDecimal lostWeight;
@@ -65,6 +68,6 @@ public class Catalog extends AbstractEntity {
 	
 	@ElementCollection
 	@CollectionTable(name = "CATALOG_IMAGES")
-	private List<String> images;
+	private List<String> images = new ArrayList<String>();
 
 }
