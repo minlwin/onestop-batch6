@@ -27,5 +27,11 @@ public class GoldPrice extends AbstractEntity {
 
 	@Column(nullable = false)
 	private BigDecimal diffFor15P;
+	
+	private Status status;
+	
+	public enum Status {
+		Created, Calculated
+	}
 
 }
