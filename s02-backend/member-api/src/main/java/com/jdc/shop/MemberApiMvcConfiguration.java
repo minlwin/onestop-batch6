@@ -34,11 +34,11 @@ public class MemberApiMvcConfiguration implements WebMvcConfigurer{
 	
 	@Bean
 	Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
-		var dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		var dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		var dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		var dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		
 		return builder -> {
-			builder.simpleDateFormat("yyyy/MM/dd");
+			builder.simpleDateFormat("yyyy-MM-dd");
 			builder.serializers(new LocalDateSerializer(dateFormat));
 			builder.serializers(new LocalDateTimeSerializer(dateTimeFormat));
 			builder.deserializers(new LocalDateDeserializer(dateFormat));
