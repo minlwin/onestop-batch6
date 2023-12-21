@@ -123,7 +123,7 @@ public class CatalogService {
 		var images = photoUploadService.saveCatalogImages(id, files);
 		entity.getImages().addAll(images);
 		
-		if(StringUtils.hasLength(entity.getCoverImage()) && !entity.getImages().isEmpty()) {
+		if(!StringUtils.hasLength(entity.getCoverImage()) && !entity.getImages().isEmpty()) {
 			entity.setCoverImage(entity.getImages().get(0));
 		}
 		

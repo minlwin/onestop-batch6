@@ -1,0 +1,904 @@
+{
+	"info": {
+		"_postman_id": "486887e6-1794-4cdb-a6ab-a98d28a67ab8",
+		"name": "onestop-6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2989298"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "admin-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.json().status == 'Success') {",
+									"    let token = pm.response.headers.get('Authorization')",
+									"    pm.collectionVariables.set('adminToken', token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/public/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get states",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/location/state",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"location",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "location upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/minlwin/Downloads/location-upload-data.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/location/upload",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"location",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get district",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/location/district",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"location",
+								"district"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "gold-price",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/owner/price",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owner",
+								"price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-gold-price",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"businessTime\": \"2023/12/21 21:32:00\",\n  \"basePrice\": 3500000,\n  \"diffFor16P\": 50000,\n  \"diffFor15P\": 45000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owner/price",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owner",
+								"price"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "find-all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/category",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Chains\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/category",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/owner/employee?name=thidar&phone=09282727272&from=2023/12/01&to=2023/12/23",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owner",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "thidar"
+								},
+								{
+									"key": "phone",
+									"value": "09282727272"
+								},
+								{
+									"key": "from",
+									"value": "2023/12/01"
+								},
+								{
+									"key": "to",
+									"value": "2023/12/23"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginId\": \"thidar\",\n  \"name\": \"Thidar Aung\",\n  \"phone\": \"09282727272\",\n  \"email\": \"thidar@gmail.com\",\n  \"role\": \"Employee\",\n  \"assignAt\": \"2023/12/20\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owner/employee",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owner",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/member",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"member"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "thidar",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "09282727272",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "2023/12/01",
+									"disabled": true
+								},
+								{
+									"key": "to",
+									"value": "2023/12/23",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"loginId\": \"aungaung\",\n  \"name\": \"Aung Aung\",\n  \"phone\": \"0912341234\",\n  \"email\": \"aung@gmail.com\",\n  \"dob\": \"2000/12/20\",\n  \"gender\": \"Male\",\n  \"address\": \"No 1. Yadanar Myaing Street, Kamayut 1 Block\",\n  \"townshipId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/member",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"member"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "catalog",
+			"item": [
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/catalog?catalogId=1&name=mc&createFrom=2023/12/21&soldOut=false",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"catalog"
+							],
+							"query": [
+								{
+									"key": "catalogId",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "mc"
+								},
+								{
+									"key": "createFrom",
+									"value": "2023/12/21"
+								},
+								{
+									"key": "soldOut",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json()",
+									"",
+									"if(response.status == 'Success') {",
+									"    pm.collectionVariables.set('catalogId', response.payload.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"MC Chain\",\n  \"categoryId\": 1,\n  \"description\": \"Big Chain\",\n  \"basedPrice\": 3800000,\n  \"purity\": \"Fifteen\",\n  \"weight\": 150,\n  \"lostWeight\": 10,\n  \"goldSmithFees\": 6000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/catalog",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"catalog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload-photo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{adminToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": [
+										"/Users/minlwin/Downloads/ring1.jpg",
+										"/Users/minlwin/Downloads/ring2.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/catalog/{{catalogId}}/photos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"catalog",
+								"{{catalogId}}",
+								"photos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sale",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.json().status == 'Success') {",
+									"    let token = pm.response.headers.get('Authorization')",
+									"    pm.collectionVariables.set('employeeToken', token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"thidar\",\n  \"password\": \"thidar@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/public/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{employeeToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json()",
+									"",
+									"if(response.status == 'Success') {",
+									"    pm.collectionVariables.set('invoiceNumber', response.payload.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{employeeToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"customerId\": 1,\n  \"discount\": 50000,\n  \"items\": [\n    1\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employee/sales",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{employeeToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/employee/sales/{{invoiceNumber}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employee",
+								"sales",
+								"{{invoiceNumber}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "purchase",
+			"item": [
+				{
+					"name": "member-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.json().status == 'Success') {",
+									"    let token = pm.response.headers.get('Authorization')",
+									"    pm.collectionVariables.set('memberToken', token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"aungaung\",\n  \"password\": \"aungaung\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/public/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{memberToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/member/purchase",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"member",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{memberToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/member/purchase/{{invoiceNumber}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"member",
+								"purchase",
+								"{{invoiceNumber}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "catalogId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "employeeToken",
+			"value": ""
+		},
+		{
+			"key": "invoiceNumber",
+			"value": "INV-202312210001",
+			"type": "string"
+		},
+		{
+			"key": "memberToken",
+			"value": ""
+		}
+	]
+}

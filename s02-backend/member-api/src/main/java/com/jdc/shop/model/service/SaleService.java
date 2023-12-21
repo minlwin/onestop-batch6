@@ -85,7 +85,9 @@ public class SaleService {
 		var customer = memberRepo.findById(form.getCustomerId())
 				.orElseThrow(() -> new ApiBusinessException("Invalid customer id."));
 		
-		var employee = employeeRepo.findOneByAccountLoginId(SecurityContextHolder.getContext().getAuthentication().getName())
+		var username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		var employee = employeeRepo.findOneByAccountLoginId(username)
 				.orElseThrow(() -> new ApiBusinessException("Invalid login id."));
 				
 		var catalogs = catalogRepo.findAllById(form.getItems());
@@ -110,6 +112,7 @@ public class SaleService {
 			var item = new SaleItem();
 			item.setCatalog(catalog);
 			entity.addItem(item);
+			catalog.setSoldOut(true);
 		}
 		
 		entity = repo.save(entity);

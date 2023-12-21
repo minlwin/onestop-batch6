@@ -34,7 +34,14 @@ public class AppUserDetailsService implements UserDetailsService{
 		if(account.getRole() == Role.Employee) {
 			var employee = employeeRepo.findOneByAccountLoginId(username)
 					.orElseThrow(() -> new UsernameNotFoundException(username));
-			builder.accountExpired(LocalDate.now().compareTo(employee.getRetiredAt()) >= 0);
+			
+			if(null != employee.getAssignAt()) {
+				builder.disabled(LocalDate.now().compareTo(employee.getAssignAt()) < 0);
+			}
+			
+			if(null != employee.getRetiredAt()) {
+				builder.accountExpired(LocalDate.now().compareTo(employee.getRetiredAt()) >= 0);
+			}			
 		}
 		
 		return builder.build();
