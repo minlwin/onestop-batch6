@@ -51,8 +51,7 @@ export class CategoryFormComponent {
   }
 
   saveCategory() {
-    if(this.form.valid)
-      this.onSave.emit(this.form.value)
+    this.onSave.emit(this.form.value)
   }
 
   initForm() {

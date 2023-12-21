@@ -4,6 +4,7 @@ import { EmployeeCatalogService } from '../../../../utils/apis/services/employee
 import { Catalog } from '../../../../utils/apis/model/sample-data';
 import { CatalogDetailForAdminComponent } from '../../../../utils/widgets/catalog-detail/catalog-detail-for-admin/catalog-detail-for-admin.component';
 import { SecurityService } from '../../../../utils/apis/services/security.service';
+import { findCatalogById } from '../../../../utils/apis/model/id-generator';
 
 @Component({
   selector: 'app-catalog-detail',
@@ -26,7 +27,8 @@ export class CatalogDetailComponent implements OnInit {
     this.route.queryParamMap.subscribe(param => {
       let id = + (param.get('id') as string)
       if(id) {
-        this.employeeCatalogService.findById(id).subscribe(resp => this.catalog = resp as Catalog)
+        findCatalogById(id).subscribe(resp => this.catalog = resp)
+        // this.employeeCatalogService.findById(id).subscribe(resp => this.catalog = resp.payload)
       }
     })
   }

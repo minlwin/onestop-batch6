@@ -4,40 +4,19 @@
       <h4 class="mb-md-4 mb-2 fw-bold text-center">{{ id.value == 0 ? 'Add New Catalog' : 'Catalog Edit' }}</h4>
 
       <form [formGroup]="form">
-        <!-- Category -->
-        <label for="categories" class="form-label mb-1">Categories</label>
 
-        <div [ngClass]="categoriesControl.controls.length > 0 ? 'mb-2' : ''">
-          <div formArrayName="categories" class="row g-1 chips m-0"
-            [class.justify-content-between]="categoriesControl.controls.length > 4">
-            <div class="col-auto mt-0" *ngFor="let ctrl of categoriesControl.controls; index as i">
-              <input [formControlName]="i" type="text" class="d-none">
-              <span class="rounded-pill">{{ ctrl.value.name }}
-                <i class="bi bi-x" (click)="removeSelected(i)"></i>
-              </span>
-            </div>
+        <!-- Category and Catalog Name -->
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12">
+            <app-form-group label="Category" icon="bi-tag" [valid]="categoryId.valid" [touch]="categoryId.touched"
+              [dirty]="categoryId.dirty">
+              <select formControlName="categoryId" class="form-select">
+                <option value="0">Select Category</option>
+                <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+              </select>
+            </app-form-group>
           </div>
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="form-control p-0">
-            <div>
-              <input #categoryVal formControlName="catInput"
-                (keyup.enter)="selectCategory(categoryVal.value); categoryVal.value = ''" type="text" list="categories"
-                class="form-control cat-input" placeholder="Type category name and hit enter">
-              <datalist id="categories">
-                <option *ngFor="let category of categories">{{
-                  category.name }}</option>
-              </datalist>
-            </div>
-          </div>
-          <span class="input-group-text"><i class="bi"
-              [ngClass]="catInput.touched ? (catInput.dirty && categoriesControl.length > 0 ? 'bi-check text-success' : 'bi-x text-danger') : (!catInput.dirty ? 'bi-tags' : (categoriesControl.length > 0 ? 'bi-check text-success' : 'bi-x text-danger'))"></i></span>
-        </div>
-
-        <!-- Name -->
-        <div class="row mb-3">
-          <div class="col">
+          <div class="col-md col-12">
             <app-form-group label="Name" icon="bi-card-heading" [valid]="name.valid" [touch]="name.touched"
               [dirty]="name.dirty">
               <input formControlName="name" type="text" class="form-control" placeholder="Enter catalog name">
@@ -56,7 +35,10 @@
           <div class="col-md col-12">
             <app-form-group icon="bi-award" label="Purity" [valid]="purity.valid" [touch]="purity.touched"
               [dirty]="purity.dirty">
-              <input formControlName="purity" type="number" class="form-control">
+              <select formControlName="purity" class="form-select">
+                <option value="">Select Purity</option>
+                <option *ngFor="let item of purityConst" [value]="item">{{ item }}</option>
+              </select>
             </app-form-group>
           </div>
           <div class="col-md col-12">
@@ -90,6 +72,13 @@
               <textarea formControlName="description" cols="auto" rows="3" class="form-control"
                 placeholder="Enter catalog remark"></textarea>
             </app-form-group>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-3">
+          <div class="col-auto">
+            <input formControlName="soldOut" id="soldOut" type="checkbox" class="form-check-input">
+            <label class="ms-2 form-check-label" for="soldOut">Sold Out</label>
           </div>
         </div>
 

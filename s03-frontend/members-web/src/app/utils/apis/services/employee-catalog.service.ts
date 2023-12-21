@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Catalog, CatalogSearch, EMPLOYEE_CATALOGS } from '../model/sample-data';
-import { generate } from '../model/id-generator';
-import { of } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const API = `${environment.url}/employee/catalog`
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeCatalogService {
 
-  private _catalogs: Catalog[] = EMPLOYEE_CATALOGS
-
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   save(catalog: any) {
     const {id, ...data} = catalog
@@ -18,53 +17,30 @@ export class EmployeeCatalogService {
       return this.update(data, id)
     }
 
-    return this.add(catalog)
+    return this.add(data)
   }
 
-  add(catalog: any) {
-    catalog.id = generate(this._catalogs) + 1
-    this._catalogs.push(catalog)
-    return of(this._catalogs[this._catalogs.length - 1])
+  private add(catalog: any) {
+    return this.http.post<any>(API, catalog)
   }
 
-  update(data: any, id: number) {
-    let index = this._catalogs.findIndex(catalog => catalog.id == id)
-    data.id = id
-    this._catalogs[index] = data
-    return of(this._catalogs[index])
+  private update(data: any, id: number) {
+    return this.http.put<any>(`${API}/${id}`, data)
   }
 
-  search(params: CatalogSearch) {
-    // if(params.id || params.keyword) {
-    //   return of(this._catalogs.filter(catalog => {
-    //     let categoryResult = false
-    //     let catalogResult = false
-
-    //     if(params.id) {
-    //       let result = catalog.categories.filter(category => category.id == params.id).pop()
-    //       categoryResult = result ? true : false
-    //     }
-
-    //     if(params.keyword)
-    //       catalogResult = catalog.name.startsWith(params.keyword) || catalog.purity == + params.keyword || catalog.price ? catalog.price! >= + params.keyword : false
-    //     return categoryResult || catalogResult
-    //   }))
-    // }
-    return of(this._catalogs)
+  search(params: any) {
+    return this.http.get<any>(API, {params: params})
   }
 
   findById(id: number) {
-    return of(this._catalogs.filter(catalog => catalog.id == id).pop())
+    return this.http.get<any>(`${API}/${id}`)
   }
 
   uploadImages(id: number, imageFiles: FileList) {
-    const index = this._catalogs.findIndex(catalog => catalog.id == id)
-    this._catalogs[index].images = []
-    const length = imageFiles.length > 5 ? 5 : imageFiles.length
-    for(let i = 0; i < length; i++) {
-      this._catalogs[index].images?.push(URL.createObjectURL(imageFiles.item(i) as Blob))
-    }
-    return of(this._catalogs[index])
+    var formData = new FormData
+
+
+    return this.http.put(`${API}/${id}/photos}`, formData)
   }
 
 }

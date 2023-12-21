@@ -14,7 +14,6 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 export class CategoryComponent implements OnInit {
 
   categories: any = []
-  params: CategorySearch = { name: '' }
 
   @ViewChild(CategoryFormComponent)
   form!: CategoryFormComponent
@@ -26,8 +25,8 @@ export class CategoryComponent implements OnInit {
   }
 
   search() {
-    this.employeeCategoryService.search(this.params)
-      .subscribe(resp => this.categories = resp)
+    this.employeeCategoryService.search()
+      .subscribe(resp => this.categories = resp.payload)
   }
 
   openCategoryForm() {
@@ -38,6 +37,8 @@ export class CategoryComponent implements OnInit {
     this.employeeCategoryService.save(category).subscribe(resp => {
       if(resp) {
         this.search()
+        this.form.hideForm()
+      } else {
         this.form.hideForm()
       }
     })

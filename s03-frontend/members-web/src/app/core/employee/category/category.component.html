@@ -6,21 +6,6 @@
         <i class="bi bi-plus"></i> Add Category
       </button>
     </div>
-    <div class="col-md-auto col-12">
-      <div class="row g-2">
-        <div class="col-md-auto col-10">
-          <input #nameVal (keyup)="params.name = nameVal.value; search()" type="text" class="form-control"
-            placeholder="Category name">
-        </div>
-        <div class="col-md-auto col-2">
-          <button class="btn btn-danger text-white w-100" (click)="search()">
-            <i class="bi bi-search"></i>
-            <span class="d-none d-md-inline"> Search</span>
-          </button>
-        </div>
-      </div>
-
-    </div>
   </div>
 
   <app-no-data label="Category" [marginTop]="true" *ngIf="!categories.length"></app-no-data>

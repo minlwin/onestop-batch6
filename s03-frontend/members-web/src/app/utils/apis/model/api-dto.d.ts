@@ -1,4 +1,16 @@
-export interface ApiResponse {
+export interface ApiResponse<T> {
   status: string
-  playload: any
+  playload: T
+}
+
+export interface PagerResponse {
+  content: any[]
+  pager: Pager
+}
+
+interface Pager {
+  totalPages: number
+  totalElements: number
+  size: number
+  currentPage: number
 }

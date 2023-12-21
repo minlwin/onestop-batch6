@@ -1,41 +1,32 @@
 import { Injectable } from '@angular/core';
-import { CATEGORIES, Category } from '../model/sample-data';
-import { of } from 'rxjs';
-import { generate } from '../model/id-generator';
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const API = `${environment.url}/employee/category`
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeCategoryService {
 
-  private _categories: Category[] = []
-
-  constructor() {
-    this._categories = CATEGORIES
-  }
+  constructor(private http: HttpClient) {}
 
   save(category: any) {
-    if(category.id == 0)
-      return this.add(category)
-    return this.update(category)
+    const {id, ...form} = category
+    if(id == 0)
+      return this.add(form)
+    return this.update(id, form)
   }
 
-  add(category: Category) {
-    let id = generate(this._categories) + 1
-    category.id = id
-    this._categories.push(category)
-    return of(this._categories[this._categories.length - 1])
+  private add(category: any) {
+    return this.http.post<any>(API, category)
   }
 
-  update(category: Category) {
-    let index = this._categories.findIndex(cat => cat.id == category.id)
-    this._categories[index] = category
-    return of(this._categories[index])
+  private update(id: number, category: any) {
+    return this.http.put<any>(`${API}/${id}`, category)
   }
 
-  search(params: any) {
-    if(params.name)
-      return of(this._categories.filter(cat => cat.name.startsWith(params.name)))
-    return of(this._categories)
+  search() {
+    return this.http.get<any>(API)
   }
 }

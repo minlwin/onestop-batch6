@@ -15,12 +15,14 @@ import { CategoryNamePipe } from '../../../utils/pipe/category-name.pipe';
 })
 export class EmployeeCatalogComponent implements OnInit {
 
-  params: CatalogSearch = {
+  params = {
     id: 0,
     name: '',
     createFrom: '',
     priceFrom: 0,
-    priceTo: 0
+    priceTo: 0,
+    page: 0,
+    size: 10
   }
 
   categories: any[] = []
@@ -29,12 +31,12 @@ export class EmployeeCatalogComponent implements OnInit {
   constructor(private employeeCatalogService: EmployeeCatalogService, private employeeCategoryService: EmployeeCategoryService) {}
 
   ngOnInit(): void {
-    this.employeeCategoryService.search({name: ''}).subscribe(resp => this.categories = resp)
+    this.employeeCategoryService.search().subscribe(resp => this.categories = resp.payload)
     this.search()
   }
 
   search() {
-    this.employeeCatalogService.search(this.params).subscribe(resp => this.catalogs = resp)
+    this.employeeCatalogService.search(this.params).subscribe(resp => this.catalogs = resp.payload.content)
   }
 
 }

@@ -69,6 +69,7 @@ export class PublicComponent implements OnInit {
 
   logout() {
     this.securityService.clearStorage()
+    this.user = undefined
   }
 
   initForm() {

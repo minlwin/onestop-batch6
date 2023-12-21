@@ -1,0 +1,24 @@
+<div class="d-flex" [class.justify-content-end]="alighment == 'end'" [class.justify-content-start]="alighment == 'start'"  >
+  <div class="row">
+    <div class="col-auto">
+      <select *ngIf="pages.length" #sizeSelect (change)="changePageSize(sizeSelect.value)" class="form-select">
+        <option *ngFor="let item of sizes" [value]="item">{{item}}</option>
+      </select>
+    </div>
+    <div class="col">
+
+      <a *ngIf="showFirst" (click)="clickLink(0)" class="btn btn-outline-primary me-1">
+        <i class="bi bi-skip-backward"></i>
+      </a>
+
+      <a *ngFor="let item of pages" (click)="clickLink(item)" class="btn me-1" [class.btn-outline-primary]="item != current" [class.btn-primary]="item == current">
+        {{item + 1}}
+      </a>
+
+      <a *ngIf="showLast" (click)="clickLink(lastPage)" class="btn btn-outline-primary">
+        <i class="bi bi-skip-forward"></i>
+      </a>
+
+    </div>
+  </div>
+</div>
