@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 
 import org.springframework.util.StringUtils;
 
+import com.jdc.shop.utils.exceptions.ApiBusinessException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -40,6 +42,6 @@ public class SalePk implements Serializable{
 			return new SalePk(LocalDate.parse(key, DF), seq);
 		}
 		
-		return null;
+		throw new ApiBusinessException("Invalid invoice number");
 	}
 }
