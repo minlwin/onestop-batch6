@@ -1,0 +1,55 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-lg-6 col-12">
+    <div class="card">
+
+      <div class="card-header">
+        <h5 class="fw-bold">Employee Detail</h5>
+      </div>
+
+      <div class="card-body">
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Name</h6>
+            <p class="fs-5">{{ employee?.name }}</p>
+          </div>
+
+          <div class="col-md col-12 text-md-end">
+            <h6 class="mb-1 fw-bold text-secondary">Phone</h6>
+            <p class="fs-5">{{ employee?.phone }}</p>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Email</h6>
+            <p class="fs-5">{{ employee?.email }}</p>
+          </div>
+
+          <div class="col-md col-12 text-md-end">
+            <h6 class="mb-1 fw-bold text-secondary">Role</h6>
+            <p class="fs-5">{{ employee?.role }}</p>
+          </div>
+        </div>
+
+        <div class="row mb-2 g-3">
+          <div class="col-md-5 col-12">
+            <h6 class="mb-1 fw-bold text-secondary">Assign At</h6>
+            <p class="fs-5">{{ employee?.assignAt | date: 'yyyy MMM EEE' }}</p>
+          </div>
+
+          <div class="col-md col-12 text-md-end">
+            <h6 class="mb-1 fw-bold text-secondary">Retired At</h6>
+            <p class="fs-5">{{ employee?.retiredAt ? (employee?.retiredAt | date: 'yyyy MMM EEE') : 'Not retire yet!' }}
+            </p>
+          </div>
+        </div>
+
+        <a [routerLink]="['../', 'management']"
+          class="icon-link icon-link-primary icon-link-hover text-decoration-none fs-6">
+          To Employee List <i class="bi bi-arrow-right mb-1"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

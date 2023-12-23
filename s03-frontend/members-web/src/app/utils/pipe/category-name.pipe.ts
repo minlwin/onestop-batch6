@@ -11,7 +11,7 @@ export class CategoryNamePipe implements PipeTransform {
   categories: Category[] = []
 
   constructor(employeeCategoryService: EmployeeCategoryService) {
-    employeeCategoryService.search().subscribe(resp => this.categories = resp)
+    employeeCategoryService.search().subscribe(resp => this.categories = resp.payload)
   }
 
   transform(value: number) {

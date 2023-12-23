@@ -10,6 +10,7 @@ import { Catalog } from '../../utils/apis/model/sample-data';
 import { SecondNavComponent } from '../../utils/widgets/second-nav/second-nav.component';
 import { CartService } from '../../utils/apis/services/cart.service';
 import { ApiResponse } from '../../utils/apis/model/api-dto';
+import { Observer, catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-public',
@@ -21,6 +22,7 @@ export class PublicComponent implements OnInit {
 
   @ViewChild(ModalDialogComponent)
   dialog!: ModalDialogComponent
+
   cartItems: Catalog[] = []
 
   form: FormGroup
@@ -39,6 +41,10 @@ export class PublicComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartItems = this.cartService.items
+    this.setActiveUser()
+  }
+
+  setActiveUser() {
     this.user = this.securityService.activeUser
   }
 
@@ -56,15 +62,24 @@ export class PublicComponent implements OnInit {
   }
 
   login() {
-    if(this.form.valid) {
-      this.publicLoginService.login(this.form.value).subscribe((resp: any) => {
+    const part: Partial<Observer<any>> = {
+      next: (resp: any) => {
         if(resp) {
           this.securityService.activeUser = resp.payload
-          this.router.navigate(['/employee'])
+          this.setActiveUser()
+          this.router.navigate([`/${this.user.role == 'Admin' ? 'owner' : this.user.role.toLowerCase()}`])
         }
         this.dialog.hideDialog()
-      })
+      },
+      error: err => {
+        this.dialog.hideDialog()
+        throw err
+      },
+      complete: () => {
+        console.log('Complete')
+      }
     }
+    this.publicLoginService.login(this.form.value).subscribe(part)
   }
 
   logout() {
@@ -74,7 +89,7 @@ export class PublicComponent implements OnInit {
 
   initForm() {
     this.form.patchValue({
-      email: '',
+      username: '',
       password: ''
     })
   }

@@ -18,7 +18,7 @@ export class ErrorDialogComponent implements OnInit {
 
   activeUser: any
   modalHeader = 'Error'
-  messages: any[] = ['Error Occured!']
+  messages: any[] = []
 
   constructor(private seurityService: SecurityService,
     private router: Router) {}
@@ -29,10 +29,16 @@ export class ErrorDialogComponent implements OnInit {
   }
 
   openDialog(error: any) {
+    this.messages = []
     if(error.error) {
       // Api Error
       this.modalHeader = this.apiExceptionModalHeader(error.error.status)
-      this.messages = error.error.payload
+
+      if(error.error.status == 'SecurityError') {
+        this.messages.push(error.error.payload)
+      } else {
+        this.messages = error.error.payload
+      }
     } else {
 
       this.modalHeader = error.name

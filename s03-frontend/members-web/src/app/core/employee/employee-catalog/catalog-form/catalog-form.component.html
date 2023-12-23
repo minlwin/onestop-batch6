@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-lg-7 col-md-10 col-12">
+  <div class="col-lg-7 col-12">
     <div class="bg-white p-4 rounded-3">
       <h4 class="mb-md-4 mb-2 fw-bold text-center">{{ id.value == 0 ? 'Add New Catalog' : 'Catalog Edit' }}</h4>
 
@@ -27,7 +27,7 @@
         <!-- Weight, Purity and Wastage -->
         <div class="row g-3 mb-3">
           <div class="col-md col-12">
-            <app-form-group icon="bi-bucket" label="Weight" [valid]="weight.valid" [touch]="weight.touched"
+            <app-form-group icon="bi-inbox" label="Weight" [valid]="weight.valid" [touch]="weight.touched"
               [dirty]="weight.dirty">
               <input formControlName="weight" type="number" class="form-control">
             </app-form-group>
@@ -42,8 +42,8 @@
             </app-form-group>
           </div>
           <div class="col-md col-12">
-            <app-form-group icon="bi-currency-exchange" label="Wastage" [valid]="lostWeight.valid"
-              [touch]="lostWeight.touched" [dirty]="lostWeight.dirty">
+            <app-form-group icon="bi-hr" label="Wastage" [valid]="lostWeight.valid" [touch]="lostWeight.touched"
+              [dirty]="lostWeight.dirty">
               <input formControlName="lostWeight" type="number" class="form-control">
             </app-form-group>
           </div>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Pager } from 'src/app/services/dto/api-result';
+import { Pager } from '../../apis/model/api-dto';
 
 @Component({
   selector: 'app-pagination',

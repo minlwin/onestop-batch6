@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <app-modal-dialog modalId="goldPriceModalDialogId"
+    [modalTitle]="id.value == 0 ? 'Set Gold Price' : 'Gold Price Update'"
+    [modalIcon]="id.value == 0 ? 'plus-square' : 'pencil'" btnColor="danger">
+    <ng-container body>
+      <app-form-group label="Buiness Time" icon="bi-clock" [margin]="true" [valid]="businessTime.valid"
+        [touch]="businessTime.touched" [dirty]="businessTime.dirty">
+        <input formControlName="businessTime" type="datetime-local" class="form-control">
+      </app-form-group>
+
+      <app-form-group label="Original Price" icon="bi-currency-dollar" [margin]="true" [valid]="basePrice.valid"
+        [touch]="basePrice.touched" [dirty]="basePrice.dirty">
+        <input formControlName="basePrice" type="number" class="form-control">
+      </app-form-group>
+
+      <app-form-group label="Diff 16P Price" icon="bi-cash-coin" [margin]="true" [valid]="diffFor16P.valid"
+        [touch]="diffFor16P.touched" [dirty]="diffFor16P.dirty">
+        <input formControlName="diffFor16P" type="number" class="form-control">
+      </app-form-group>
+
+      <app-form-group label="Diff 15P Price" icon="bi-cash-coin" [valid]="diffFor15P.valid" [touch]="diffFor15P.touched"
+        [dirty]="diffFor15P.dirty">
+        <input formControlName="diffFor15P" type="number" class="form-control">
+      </app-form-group>
+    </ng-container>
+
+    <button class="btn btn-outline-danger" (click)="savePrice()">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </app-modal-dialog>
+</form>

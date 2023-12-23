@@ -38,8 +38,6 @@ export class CategoryComponent implements OnInit {
       if(resp) {
         this.search()
         this.form.hideForm()
-      } else {
-        this.form.hideForm()
       }
     })
   }

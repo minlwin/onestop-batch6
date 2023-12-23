@@ -1,0 +1,27 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <h5>Catalog Detail For Owner</h5>
+  </div>
+  <div class="card-body">
+    <div class="row g-3 justify-content-between mb-3">
+      <div class="col-md-auto col-12">
+        <h5 class="text-secondary mb-1">Market Time</h5>
+        <h5 class="fs-5 fw-bold">{{ catalog?.marketTime | date: 'yyyy MMM EE HH:mm' }}</h5>
+      </div>
+      <div class="col-auto text-md-end">
+        <h5 class="text-secondary mb-1">Market Price</h5>
+        <h5 class="fs-5 fw-bold">{{ catalog?.marketPrice | number }} MMK</h5>
+      </div>
+    </div>
+    <div class="row g-3 justify-content-between">
+      <div class="col-md-auto col-12">
+        <h5 class="text-secondary mb-1">Original Price</h5>
+        <h5 class="fs-5 fw-bold">{{ catalog?.netPrice | number }} MMK</h5>
+      </div>
+      <div class="col-auto text-md-end">
+        <h5 class="text-secondary mb-1">Wastage Price</h5>
+        <h5 class="fs-5 fw-bold">{{ catalog?.lostWeightFee | number }} MMK</h5>
+      </div>
+    </div>
+  </div>
+</div>

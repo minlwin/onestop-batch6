@@ -3,14 +3,14 @@ export interface ApiResponse<T> {
   playload: T
 }
 
-export interface PagerResponse {
-  content: any[]
-  pager: Pager
+export interface PageResult {
+  list:any[]
+  pager:Pager
 }
 
-interface Pager {
-  totalPages: number
-  totalElements: number
+export interface Pager {
+  current: number
   size: number
-  currentPage: number
+  totalCount: number
+  totalPage:number
 }

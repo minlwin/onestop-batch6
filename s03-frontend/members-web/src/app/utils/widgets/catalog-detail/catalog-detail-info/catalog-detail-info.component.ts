@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../../../apis/services/cart.service';
-import { CategoryNamePipe } from '../../../pipe/category-name.pipe';
+import { GoldWeightPipe } from '../../../pipe/gold-weight.pipe';
 
 @Component({
   selector: 'app-catalog-detail-info',
   standalone: true,
-  imports: [CommonModule, CategoryNamePipe],
+  imports: [CommonModule, GoldWeightPipe],
   templateUrl: './catalog-detail-info.component.html'
 })
 export class CatalogDetailInfoComponent implements OnInit {

@@ -14,6 +14,10 @@ $enable-rounded: false;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+.btn-outline-success:hover, .btn-danger, .btn-success {
+  color: white;
+}
+
 .text-success-dark {
   color: $success-dark;
 }
@@ -113,36 +117,13 @@ body {
 }
 
 .card-link {
-  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
 
 .card-link:hover {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   cursor: pointer;
-}
-
-.chips {
-  margin-top: 1px;
-}
-
-.chips span {
-  display: inline-block;
-  padding: 3px 10px;
-  background-color: $danger-light;
-  color: white;
-  font-size: 12px;
-  margin-right: 4px;
-}
-
-.cat-input {
-  border: none;
-}
-
-.cat-input:focus {
-  border: none;
-  border-color: $light;
-  box-shadow: 0 0 0 0 rgb(255, 255, 255);
 }
 
 .profile-image {

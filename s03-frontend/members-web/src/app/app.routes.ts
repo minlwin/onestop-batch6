@@ -23,6 +23,10 @@ import { memberGuard } from './utils/guards/member.guard';
 import { employeeGuard } from './utils/guards/employee.guard';
 import { SaleFormComponent } from './core/employee/sale/sale-form/sale-form.component';
 import { SaleDetailComponent } from './core/employee/sale/sale-detail/sale-detail.component';
+import { GoldPriceSettingComponent } from './core/owner/gold-price-setting/gold-price-setting.component';
+import { OwnerEmployeeComponent } from './core/owner/owner-employee/owner-employee.component';
+import { EmployeeDetailComponent } from './core/owner/owner-employee/employee-detail/employee-detail.component';
+import { ownerGuard } from './utils/guards/owner.guard';
 
 const publicRoute: Route = { path: 'public', component: PublicComponent, children: [
   { path: 'home', component: PublicHomeComponent, title: 'Public | Home' },
@@ -65,7 +69,15 @@ const employeeRoute: Route = { path: 'employee', component: EmployeeComponent, c
   { path: '', redirectTo: '/employee/sale', pathMatch: 'full' }
 ], canActivate: [employeeGuard]}
 
-const ownerRoute: Route = { path: 'owner', component: OwnerComponent }
+const ownerRoute: Route = { path: 'owner', component: OwnerComponent, children: [
+  { path: 'gold-price', component: GoldPriceSettingComponent, title: 'Owner | Gold Price Setting' },
+  { path: 'employee', children: [
+    { path: 'management', component: OwnerEmployeeComponent, title: 'Owner | Employee Management' },
+    { path: 'detail', component: EmployeeDetailComponent, title: 'Owner | Employee Detail' },
+    { path: '', redirectTo: '/owner/employee/management', pathMatch: 'full' }
+  ]},
+  { path: '', redirectTo: '/owner/gold-price', pathMatch: 'full' }
+], canActivate: [ownerGuard]}
 
 export const routes: Routes = [
   publicRoute,

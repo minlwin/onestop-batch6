@@ -12,7 +12,7 @@ export class PublicLoginService {
   constructor(private http: HttpClient) {}
 
   login(loginForm: any) {
-    return this.http.post(API, loginForm)
+    return this.http.post<any>(API, loginForm)
   }
 
 }

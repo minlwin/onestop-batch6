@@ -51,6 +51,18 @@ export class CatalogFormComponent implements OnInit {
     })
   }
 
+  saveCatalog() {
+
+    if(this.form.valid) {
+      this.employeeCatalogService.save(this.form.value).subscribe(resp => {
+        if(resp) {
+          this.router.navigate(['/employee', 'catalog', 'detail'], {queryParams: {id: resp.payload.id}})
+        }
+      })
+    }
+
+  }
+
   get id() {
     return this.getFormControl('id')
   }
@@ -85,18 +97,6 @@ export class CatalogFormComponent implements OnInit {
 
   private getFormControl(formControlName: string) {
     return this.form.get(formControlName) as FormControl
-  }
-
-  saveCatalog() {
-
-    if(this.form.valid) {
-      this.employeeCatalogService.save(this.form.value).subscribe(resp => {
-        if(resp) {
-          this.router.navigate(['/employee', 'catalog', 'detail'], {queryParams: {id: resp.id}})
-        }
-      })
-    }
-
   }
 
 }

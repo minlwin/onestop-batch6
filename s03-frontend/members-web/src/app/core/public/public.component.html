@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
   <div class="container">
     <a routerLink="/public" class="navbar-brand">Member Web</a>
 
@@ -54,8 +54,8 @@
     modalId="publicLoginModalDialog">
 
     <ng-container body>
-      <app-form-group label="Login Id" icon="bi-envelope" [margin]="true" [valid]="email.valid" [touch]="email.touched"
-        [dirty]="email.dirty">
+      <app-form-group label="Login Id" icon="bi-person-square" [margin]="true" [valid]="email.valid"
+        [touch]="email.touched" [dirty]="email.dirty">
         <input formControlName="username" type="text" class="form-control" placeholder="Enter Login Id">
       </app-form-group>
 

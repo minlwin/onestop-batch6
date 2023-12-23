@@ -1,11 +1,10 @@
-<div class="row g-3">
-  <div class="col-lg-7 col-12" *ngIf="!images?.length">
-    <img src="/assets/no-image-for-admin.png" class="img-fluid catalog-no-image" (click)="imageUpload.click()">
-  </div>
+<div class="row g-3 mb-3">
+  <div class="col-lg-7 col-12">
+    <img src="/assets/no-image-for-admin.png" class="img-fluid catalog-no-image w-100" (click)="imageUpload.click()"
+      *ngIf="!images?.length">
 
-  <!-- Catalog Images -->
-  <div class="col-lg-7 col-12" *ngIf="images?.length">
-    <div class="bg-white p-2">
+    <!-- Catalog Images -->
+    <div class="bg-white p-2" *ngIf="images?.length">
       <app-catalog-detail-images [images]="images"></app-catalog-detail-images>
 
       <div class="mt-2 mb-1 text-center">
@@ -16,6 +15,9 @@
           Images</button>
       </div>
     </div>
+
+    <app-catalog-detail-info-for-only-owner [catalog]="catalog"
+      *ngIf="activeUser.role == 'Owner' || activeUser.role == 'Admin'"></app-catalog-detail-info-for-only-owner>
   </div>
 
   <!-- Catalog Info -->
@@ -30,7 +32,7 @@
 
         <div class="col-md col-12">
           <a class="btn btn-outline-danger w-100" [routerLink]="['/employee', 'catalog', 'form']"
-            [queryParams]="{id: catalog.id}">
+            [queryParams]="{id: catalog?.id}">
             <i class="bi bi-pencil"></i> Edit
           </a>
         </div>
@@ -44,3 +46,6 @@
 <form action="#" class="d-none">
   <input #imageUpload type="file" accept="images/*" multiple (change)="showImage($event)">
 </form>
+
+<app-success-dialog modalId="imageUploadModalDialogId" modalTitle="Image Upload"
+  message="Image uploaded successfully."></app-success-dialog>

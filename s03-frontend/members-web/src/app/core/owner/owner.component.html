@@ -1,1 +1,40 @@
-<p>owner works!</p>
+<nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top">
+  <div class="container-fluid">
+    <a routerLink="/owner" class="navbar-brand ms-md-0 ms-3">
+      <i class="bi bi-house-gear-fill"></i>
+      <span class="d-none d-md-inline" style="font-size: 1.15rem;"> Owner Dashboard</span>
+    </a>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <button class="btn btn-danger text-white" (click)="logout()">
+          <span class="d-none d-md-inline">Logout </span> <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" style="height: calc(100% - 56px);">
+  <div class="row h-100">
+    <!-- left nav bar -->
+    <nav class="col-2 navmenu bg-white shadow h-100">
+      <div class="text-center text-lg-start h-100">
+        <a [routerLink]="['/owner', 'gold-price']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-gear-wide-connected me-lg-2"></i>
+          <span class="d-none d-lg-inline">Gold Price Setting</span>
+        </a>
+
+        <a [routerLink]="['/owner', 'employee']" routerLinkActive="nav-active" class="navmenu-link ps-lg-2">
+          <i class="bi bi-people-fill me-lg-2"></i>
+          <span class="d-none d-lg-inline">Employee</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- main -->
+    <main class="content col-10 mt-4 ps-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

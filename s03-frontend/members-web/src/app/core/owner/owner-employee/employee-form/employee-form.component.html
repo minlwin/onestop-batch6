@@ -1,0 +1,75 @@
+<form [formGroup]="form">
+
+  <app-modal-dialog modalId="ownerEmployeeModalDialogId" [modalIcon]="id.value == 0 ? 'plus-square' : 'pencil-square'"
+    [modalTitle]="id.value == 0 ? 'Add Employee' : 'Employee Edit'" btnColor="danger">
+    <ng-container body>
+
+      <!-- Login Id and Name-->
+      <div class="row g-3 mb-2">
+        <div class="col-md col-12">
+          <app-form-group label="Login Id" icon="bi-person-square" [valid]="loginId.valid" [touch]="loginId.touched"
+            [dirty]="loginId.dirty">
+            <input formControlName="loginId" type="text" class="form-control" placeholder="Login Id">
+          </app-form-group>
+        </div>
+
+        <div class="col-md col-12">
+          <app-form-group label="Name" icon="bi-card-text" [valid]="name.valid" [touch]="name.touched"
+            [dirty]="name.dirty">
+            <input formControlName="name" type="text" class="form-control" placeholder="Name">
+          </app-form-group>
+        </div>
+      </div>
+
+      <!-- Phone and Email -->
+      <div class="row g-3 mb-2">
+        <div class="col-md col-12">
+          <app-form-group label="Phone" icon="bi-phone" [valid]="phone.valid" [touch]="phone.touched"
+            [dirty]="phone.dirty">
+            <input formControlName="phone" type="tel" class="form-control" placeholder="Phone">
+          </app-form-group>
+        </div>
+
+        <div class="col-md col-12">
+          <app-form-group label="Email" icon="bi-envelope-at" [valid]="email.valid" [touch]="email.touched"
+            [dirty]="email.dirty">
+            <input formControlName="email" type="email" class="form-control" placeholder="Email">
+          </app-form-group>
+        </div>
+      </div>
+
+      <!-- Assign At and Retired At -->
+      <div class="row g-3 mb-3">
+        <div class="col-md col-12">
+          <app-form-group label="Assign At" icon="bi-calendar2-check" [valid]="assignAt.valid"
+            [touch]="assignAt.touched" [dirty]="assignAt.dirty">
+            <input formControlName="assignAt" type="date" class="form-control">
+          </app-form-group>
+        </div>
+
+        <div class="col-md col-12">
+          <app-form-group label="Retired At" icon="bi-calendar2-x">
+            <input formControlName="retiredAt" type="date" class="form-control">
+          </app-form-group>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <app-form-group icon="bi-person-gear" [valid]="role.valid" [touch]="role.touched" [dirty]="role.dirty">
+            <select formControlName="role" class="form-select">
+              <option value="">Select Role</option>
+              <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+          </app-form-group>
+        </div>
+      </div>
+
+    </ng-container>
+
+    <button class="btn btn-outline-danger" (click)="saveEmployee()">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </app-modal-dialog>
+
+</form>
