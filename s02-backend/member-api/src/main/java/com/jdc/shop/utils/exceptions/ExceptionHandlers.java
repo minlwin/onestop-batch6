@@ -13,6 +13,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -45,6 +46,13 @@ public class ExceptionHandlers {
 	}
 	
 	@ExceptionHandler
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ApiResponse<String> handle(MethodArgumentNotValidException e) {
+		return ApiResponse.platformError(e.getMessage());
+	}
+	
+	
+	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.FORBIDDEN)
 	public ApiResponse<String> handle(AccessDeniedException e) {
 		return ApiResponse.securityError("You have no permission to do this operation.");
@@ -53,9 +61,7 @@ public class ExceptionHandlers {
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.UNAUTHORIZED)
 	public ApiResponse<String> handle(AuthenticationException e) {
-		e.printStackTrace();
-		return ApiResponse.securityError(Optional.ofNullable(MESSAGES.get(e.getClass())).orElse("Authentication Error."));
+		return ApiResponse.securityError(Optional.ofNullable(MESSAGES.get(e.getClass()))
+				.orElse(e.getMessage()));
 	}
-	
-	
 }
