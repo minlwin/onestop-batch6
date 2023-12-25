@@ -5,26 +5,52 @@
     </button>
   </div>
   <div class="col-md-auto col-12">
-    <div class="row g-2">
-      <div class="col-md-auto col-10">
-        <input #infoVal (keyup)="params.keyword = infoVal.value; search()" type="text" class="form-control"
-          placeholder="Member Info">
-      </div>
-      <div class="col-md-auto col-2">
-        <button class="btn btn-danger text-white w-100" (click)="search()">
-          <i class="bi bi-search"></i>
-          <span class="d-none d-md-inline"> Search</span>
-        </button>
-      </div>
-    </div>
+    <button class="btn btn-danger text-white w-100" (click)="excleInput.click()">
+      <i class="bi bi-cloud-upload"></i> Upload Locations
+    </button>
   </div>
 </div>
 
-<app-no-data label="Member" *ngIf="!members.length" [marginTop]="true"></app-no-data>
+<form action="#" class="d-none" method="post">
+  <input type="file" #excleInput (change)="uploadLocations(excleInput.files!)">
+</form>
 
-<div class="mt-3 bg-white p-3" *ngIf="members.length">
+<div class="bg-white mt-3 p-3 pb-4">
 
-  <table class="table table-striped table-hover table-responsive">
+  <div class="row mb-3">
+    <div class="col-md-auto col-12">
+      <div class="row g-2">
+        <div class="col-xl col-md-4 col-12">
+          <label for="name" class="form-label mb-1">Name</label>
+          <input #nameVal id="name" (keyup)="params.name = nameVal.value; search()" type="text" class="form-control"
+            placeholder="Member name">
+        </div>
+        <div class="col-xl col-md-4 col-12">
+          <label for="phone" class="form-label mb-1">Phone</label>
+          <input #phoneVal id="phone" (keyup)="params.phone = phoneVal.value; search()" type="tel" class="form-control"
+            placeholder="Phone number">
+        </div>
+        <div class="col-xl col-md-4 col-12">
+          <label for="from" class="form-label mb-1">Date From</label>
+          <input #fromVal id="from" (change)="params.from = fromVal.value; search()" type="date" class="form-control">
+        </div>
+        <div class="col-xl col-md-4 col-12">
+          <label for="to" class="form-label mb-1">Date To</label>
+          <input #toVal id="to" (change)="params.to = toVal.value; search()" type="date" class="form-control">
+        </div>
+        <div class="col-xl-auto col-md-4 col-12 align-self-end">
+          <button class="btn btn-danger text-white w-100" (click)="search()">
+            <i class="bi bi-search"></i>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-no-data label="Member" *ngIf="!members.length" [marginTop]="true"></app-no-data>
+
+  <table class="table table-striped table-hover table-responsive" *ngIf="members.length">
     <thead>
       <tr>
         <th>Name</th>
@@ -59,3 +85,6 @@
   </table>
 
 </div>
+
+<app-success-dialog [modalTitle]="infoHeader" [message]="infoMessage"
+  modalId="locationModalDialogId"></app-success-dialog>

@@ -67,7 +67,7 @@ export class PublicComponent implements OnInit {
         if(resp) {
           this.securityService.activeUser = resp.payload
           this.setActiveUser()
-          this.router.navigate([`/${this.user.role == 'Admin' ? 'owner' : this.user.role.toLowerCase()}`])
+          this.router.navigate([`/${this.user.role == 'Admin' ? 'employee' : this.user.role.toLowerCase()}`])
         }
         this.dialog.hideDialog()
       },

@@ -16,6 +16,16 @@
 
       <form [formGroup]="form">
 
+        <!-- Login Id -->
+        <div class="row mb-3 g-3">
+          <div class="col-md col-12">
+            <app-form-group icon="bi-person-square" label="Login Id" [valid]="loginId.valid" [touch]="loginId.touched"
+              [dirty]="loginId.dirty">
+              <input formControlName="loginId" type="text" class="form-control" placeholder="Enter login id">
+            </app-form-group>
+          </div>
+        </div>
+
         <!-- Member name and email -->
         <div class="row mb-3 g-3">
           <div class="col-md col-12">
@@ -52,7 +62,7 @@
         <div class="row mb-3 g-3">
           <div class="col-md col-12">
             <app-form-group icon="bi-globe-central-south-asia" label="State">
-              <select formControlName="state" class="form-select">
+              <select #stateVal class="form-select" (change)="selectDistrict(stateVal.value)">
                 <option value="0">Select State</option>
                 <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
               </select>
@@ -61,7 +71,7 @@
 
           <div class="col">
             <app-form-group icon="bi-pin-map" label="District">
-              <select formControlName="district" class="form-select">
+              <select #districtVal class="form-select" (change)="selectTownship(districtVal.value)">
                 <option value="0">Select District</option>
                 <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
               </select>
@@ -72,9 +82,10 @@
         <!-- Township and Address -->
         <div class="row mb-3 g-3">
           <div class="col-md col-12">
-            <app-form-group icon="bi-geo-alt" label="Township">
-              <select formControlName="township" class="form-select">
-                <option value="0">Select State</option>
+            <app-form-group icon="bi-geo-alt" label="Township" [valid]="townshipId.valid" [touch]="townshipId.touched"
+              [dirty]="townshipId.dirty">
+              <select formControlName="townshipId" class="form-select">
+                <option value="0">Select Township</option>
                 <option *ngFor="let township of townships" [value]="township.id">{{ township.name }}</option>
               </select>
             </app-form-group>

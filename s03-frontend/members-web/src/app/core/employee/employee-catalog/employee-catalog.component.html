@@ -55,8 +55,7 @@
       <a class="card-link h-100" [routerLink]="['/employee', 'catalog', 'detail']" [queryParams]="{id: catalog.id}">
         <div class="card h-100">
           <img class="card-img-top"
-            [src]="catalog?.coverImage ? 'http://localhost:8080/resources/'.concat(catalog?.coverImage) : '/assets/no-image.png'"
-            height="170px">
+            [src]="catalog?.coverImage ? (catalog?.coverImage | apiImage) : '/assets/no-image.png'" height="170px">
 
           <div class="card-body p-3">
 
@@ -95,4 +94,7 @@
       </a>
     </div>
   </div>
+
+  <app-pagination class="mt-3" [sizes]="sizes" alighment="end"></app-pagination>
+
 </div>

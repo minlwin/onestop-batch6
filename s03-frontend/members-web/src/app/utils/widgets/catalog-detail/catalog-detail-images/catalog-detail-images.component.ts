@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ApiImagePipe } from '../../../pipe/api-image.pipe';
 
 @Component({
   selector: 'app-catalog-detail-images',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ApiImagePipe],
   templateUrl: './catalog-detail-images.component.html'
 })
 export class CatalogDetailImagesComponent implements OnInit, OnChanges {

@@ -14,6 +14,16 @@ import { LocationService } from '../../../../utils/apis/services/location.servic
 })
 export class MemberFormComponent implements OnInit {
 
+  disctrictParams = {
+    state: 0,
+    name: ''
+  }
+
+  townshipParams = {
+    district: 0,
+    name: ''
+  }
+
   form: FormGroup
   states: any[] = []
   districts: any[] = []
@@ -27,21 +37,18 @@ export class MemberFormComponent implements OnInit {
     private route: ActivatedRoute) {
     this.form = fb.group({
       id: 0,
+      loginId: ['', Validators.required],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('')]],
-      dob: ['', [Validators.required, Validators.pattern('')]],
+      phone: ['', Validators.required],
+      dob: ['', Validators.required],
       gender: ['Male', Validators.required],
-      state: 0,
-      district: 0,
-      township: [0, Validators.min(1)],
+      townshipId: [0, Validators.min(1)],
       address: ['', Validators.required],
     })
   }
 
   ngOnInit(): void {
-    this.locationService.getAllStates().subscribe(resp => this.states = resp)
-
     let id = 0
     this.route.queryParamMap.subscribe(param => {
       if(param.get('id')) {
@@ -56,13 +63,58 @@ export class MemberFormComponent implements OnInit {
     if(id) {
       this.employeeMemberService.findById(id).subscribe(resp => {
         if(resp)
-          this.form.patchValue(resp.profile)
+          this.form.patchValue(resp.payload.profile)
       })
     }
+    this.searchState()
+  }
+
+  searchState() {
+    this.locationService.getState().subscribe(resp => this.states = resp.payload)
+  }
+
+  searchDistrict() {
+    this.locationService.getDistrict(this.disctrictParams).subscribe(resp => this.districts = resp.payload)
+  }
+
+  searchTownship() {
+    this.locationService.getTownship(this.townshipParams).subscribe(resp => this.townships = resp.payload)
+  }
+
+  selectDistrict(state: any) {
+    if(state > 0) {
+      this.disctrictParams.state = state;
+    } else {
+      this.disctrictParams.state = state;
+      this.selectTownship(0)
+    }
+    this.searchDistrict()
+  }
+
+  selectTownship(district: any) {
+    if(district) {
+      this.townshipParams.district = district;
+    } else {
+      this.townshipParams.district = district;
+      this.form.patchValue({township: 0})
+    }
+    this.searchTownship()
+  }
+
+  saveMember() {
+    this.employeeMemberService.save(this.form.value).subscribe(resp => {
+      if(resp) {
+        this.router.navigate(this.checkout ? ['/employee', 'sale', 'checkout'] : ['/employee', 'member', 'detail'], {queryParams: {id: resp.id}})
+      }
+    })
   }
 
   get id() {
     return this.getFormControl('id')
+  }
+
+  get loginId() {
+    return this.getFormControl('loginId')
   }
 
   get name() {
@@ -85,22 +137,12 @@ export class MemberFormComponent implements OnInit {
     return this.getFormControl('address')
   }
 
-  get township() {
-    return this.getFormControl('township')
+  get townshipId() {
+    return this.getFormControl('townshipId')
   }
 
   private getFormControl(formControlName: string) {
     return this.form.get(formControlName) as FormControl
-  }
-
-  saveMember() {
-    if(this.form.valid) {
-      this.employeeMemberService.save(this.form.value).subscribe(resp => {
-        if(resp) {
-          this.router.navigate(this.checkout ? ['/employee', 'sale', 'checkout'] : ['/employee', 'member', 'detail'], {queryParams: {id: resp.id}})
-        }
-      })
-    }
   }
 
 }

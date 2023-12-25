@@ -1,17 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { STATES_DATA } from '../model/sample-data';
-import { of } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+
+const API = `${environment.url}/employee/location`
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  private _states = STATES_DATA
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
-
-  getAllStates() {
-    return of(this._states)
+  uploadLocations(file: any) {
+    var formData = new FormData
+    formData.append('file', file, file.name)
+    return this.http.post<any>(`${API}/upload`, formData)
   }
+
+  getState() {
+    return this.http.get<any>(`${API}/state`)
+  }
+
+  getDistrict(params: any) {
+    return this.http.get<any>(`${API}/district`, {params: params})
+  }
+
+  getTownship(params: any) {
+    return this.http.get<any>(`${API}/township`, {params: params})
+  }
+
 }

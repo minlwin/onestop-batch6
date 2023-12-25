@@ -29,7 +29,7 @@ export class CatalogDetailComponent implements OnInit {
       if(id) {
         this.employeeCatalogService.findById(id).subscribe(resp => {
           this.catalog = resp.payload.baseInfo
-          this.images = resp.payload.images.map((img: string) => `${environment.url}/resources/${img}`)
+          this.images = resp.payload.images
         })
       }
     })

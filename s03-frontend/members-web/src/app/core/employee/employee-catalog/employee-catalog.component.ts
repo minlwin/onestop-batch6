@@ -5,15 +5,18 @@ import { CommonModule } from '@angular/common';
 import { EmployeeCatalogService } from '../../../utils/apis/services/employee-catalog.service';
 import { EmployeeCategoryService } from '../../../utils/apis/services/employee-category.service';
 import { GoldWeightPipe } from '../../../utils/pipe/gold-weight.pipe';
+import { PaginationComponent } from '../../../utils/widgets/pagination/pagination.component';
+import { ApiImagePipe } from '../../../utils/pipe/api-image.pipe';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterModule, NoDataComponent, GoldWeightPipe],
+  imports: [CommonModule, RouterModule, NoDataComponent, PaginationComponent, GoldWeightPipe, ApiImagePipe],
   templateUrl: './employee-catalog.component.html'
 })
 export class EmployeeCatalogComponent implements OnInit {
 
+  sizes = [8, 12, 16]
   params = {
     categoryId: 0,
     name: '',
@@ -22,7 +25,7 @@ export class EmployeeCatalogComponent implements OnInit {
     priceTo: 0,
     soldOut: false,
     page: 0,
-    size: 10
+    size: 8
   }
 
   categories: any[] = []

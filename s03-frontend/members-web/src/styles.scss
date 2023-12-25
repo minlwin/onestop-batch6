@@ -31,7 +31,7 @@ $enable-rounded: false;
 }
 
 body {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: $ptf;
   font-weight: 400;
   background-color: $bg;
@@ -43,7 +43,7 @@ body {
 
 /* left nav bar */
 .navmenu {
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-top: 1.5rem;
   position: fixed;
   left: 0;
@@ -117,12 +117,10 @@ body {
 }
 
 .card-link {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
 
 .card-link:hover {
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }
 

@@ -7,21 +7,25 @@
       </div>
       <div class="card-body text-center">
         <img
-          [src]="member.profileImage ?? member.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png'"
+          [src]="(member?.profileImage | apiImage) || (member?.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png')"
           class="img-thumbnail rounded-circle profile-image">
 
         <div class="my-3">
-          <h5 class="fw-bold">{{ member.name }}</h5>
-          <p class="mb-1 text-secondary">{{ member.phone }}</p>
-          <p class="mb-1 text-secondary">{{ member.email }}</p>
+          <h5 class="fw-bold">{{ member?.name }}</h5>
+          <p class="mb-1 text-secondary">{{ member?.phone }}</p>
+          <p class="mb-1 text-secondary">{{ member?.email }}</p>
         </div>
 
-        <button class="btn btn-danger text-white">
+        <button class="btn btn-danger text-white" (click)="profileImageFile.click()">
           <i class="bi bi-upload"></i> Upload New Photo
         </button>
       </div>
     </div>
   </div>
+
+  <form action="#" class="d-none">
+    <input #profileImageFile type="file" accept="image/*" (change)="uploadProfileImage(profileImageFile.files!)">
+  </form>
 
   <div class="col-lg col-12">
 
@@ -35,36 +39,36 @@
         <div class="row mb-2 g-3">
           <div class="col-md-5 col-12">
             <h6 class="mb-1 fw-bold text-secondary">Birth Date</h6>
-            <p class="fs-5">{{ member.dob | date: 'yyyy MMM EE' }}</p>
+            <p class="fs-5">{{ member?.dob | date: 'yyyy MMM EE' }}</p>
           </div>
 
           <div class="col-md col-12">
             <h6 class="mb-1 fw-bold text-secondary">Gender</h6>
-            <p class="fs-5">{{ member.gender }}</p>
+            <p class="fs-5">{{ member?.gender }}</p>
           </div>
         </div>
 
         <div class="row mb-2 g-3">
           <div class="col-md-5 col-12">
             <h6 class="mb-1 fw-bold text-secondary">Registration Date</h6>
-            <p class="fs-5">{{ member.registrationDate | date: 'yyyy MMM EEE' }}</p>
+            <p class="fs-5">{{ member?.registrationDate | date: 'yyyy MMM EEE' }}</p>
           </div>
 
           <div class="col-md col-12">
             <h6 class="mb-1 fw-bold text-secondary">State</h6>
-            <p class="fs-5">{{ member.state ?? 'Not Yet' }}</p>
+            <p class="fs-5">{{ member?.state ?? 'Not Yet' }}</p>
           </div>
         </div>
 
         <div class="row mb-2 g-3">
           <div class="col-md-5 col-12">
             <h6 class="mb-1 fw-bold text-secondary">Township</h6>
-            <p class="fs-5">{{ member.township }}</p>
+            <p class="fs-5">{{ member?.township }}</p>
           </div>
 
           <div class="col-md col-12">
             <h6 class="mb-1 fw-bold text-secondary">Address</h6>
-            <p class="fs-5">{{ member.address }}</p>
+            <p class="fs-5">{{ member?.address }}</p>
           </div>
         </div>
 
@@ -105,3 +109,6 @@
       </div>
     </div>
   </div>
+
+  <app-success-dialog [modalTitle]="successHeader" [message]="successMessage"
+    modalId="uploadImageModalDialogId"></app-success-dialog>

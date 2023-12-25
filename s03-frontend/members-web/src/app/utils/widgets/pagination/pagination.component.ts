@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Pager } from '../../apis/model/api-dto';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styles: [
-  ]
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './pagination.component.html'
 })
 export class PaginationComponent {
 

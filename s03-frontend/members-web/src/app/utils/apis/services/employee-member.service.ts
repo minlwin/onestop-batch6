@@ -1,47 +1,44 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPLOYEE_MEMBERS, EMPLOYEE_MEMBER_DTO, Member, MemberSearch } from '../model/sample-data';
-import { of } from 'rxjs';
-import { generate } from '../model/id-generator';
+import { environment } from '../../../../environments/environment';
+
+const API = `${environment.url}/employee/member`
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeMemberService {
 
-  private _members: Member[] = EMPLOYEE_MEMBERS
+  constructor(private http: HttpClient) {}
 
-  constructor() {}
-
-  save(member: Member) {
+  save(member: any) {
     const {id, ...data} = member
     if(id == 0)
-      return this.add(member)
+      return this.add(data)
 
-    return this.update(data, id as number)
+    return this.update(data, id)
   }
 
-  add(member: Member) {
-    member.id = generate(this._members) + 1
-    this._members.push(member)
-    return of(this._members[this._members.length - 1])
+  add(member: any) {
+    return this.http.post<any>(API, member)
   }
 
-  update(member: Member, id: number) {
-    let index = this._members.findIndex(mem => mem.id == id)
-    this._members[index] = member
-    member.id = id
-    return of(this._members[index])
+  update(member: any, id: number) {
+    return this.http.put<any>(`${API}/${id}`, member)
   }
 
-  search(params: MemberSearch) {
-    if(params.keyword) {
-      return of(this._members.filter(member => (member.name.startsWith(params.keyword)) || (member.email.startsWith(params.keyword)) || member.gender == params.keyword))
-    }
-    return of(this._members)
+  search(params: any) {
+    return this.http.get<any>(API, {params: params})
   }
 
   findById(id: number) {
-    return of(EMPLOYEE_MEMBER_DTO.filter(dto => dto.profile.id == id).pop())
+    return this.http.get<any>(`${API}/${id}`)
+  }
+
+  uploadPhoto(id: number, file: any) {
+    var formData = new FormData
+    formData.append('file', file, file.name)
+    return this.http.put<any>(`${API}/${id}/photo`, formData)
   }
 
 }

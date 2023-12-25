@@ -16,7 +16,7 @@
   <div class="carousel-inner">
     <ng-container *ngFor="let image of images">
       <div class="carousel-item active" [class.active]="activeCarousel == image">
-        <img class="d-block w-100 image-responsive" src="{{ image }}" #ig (click)="activeCarousel = ig.src">
+        <img class="d-block w-100 image-responsive" src="{{ image | apiImage }}" #ig (click)="activeCarousel = ig.src">
       </div>
     </ng-container>
   </div>
@@ -31,7 +31,7 @@
 </div>
 <div class="d-none d-md-block">
   <div class="d-flex my-1 gap-1">
-    <img *ngFor="let image of images" [src]="image" class="col img-thumbnail carousel-img-indicator"
+    <img *ngFor="let image of images" [src]="image | apiImage" class="col img-thumbnail carousel-img-indicator"
       (click)="activeCarousel = image">
   </div>
 </div>
