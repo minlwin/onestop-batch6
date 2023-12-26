@@ -28,7 +28,8 @@ export class MemberFormComponent implements OnInit {
   states: any[] = []
   districts: any[] = []
   townships: any[] = []
-  checkout = false
+  checkout : any
+  update : any
 
   constructor(fb: FormBuilder,
     private employeeMemberService: EmployeeMemberService,
@@ -52,11 +53,15 @@ export class MemberFormComponent implements OnInit {
     let id = 0
     this.route.queryParamMap.subscribe(param => {
       if(param.get('id')) {
-        id = + (param.get('id') as string)
+        id = Number(param.get('id'))
       }
 
       if(param.get('checkout')) {
-        this.checkout = Boolean(param.get('checkout') as string)
+        this.checkout = param.get('checkout')
+      }
+
+      if(param.get('update')) {
+        this.update = param.get('update')
       }
     })
 
@@ -92,11 +97,11 @@ export class MemberFormComponent implements OnInit {
   }
 
   selectTownship(district: any) {
-    if(district) {
+    if(district > 0) {
       this.townshipParams.district = district;
     } else {
       this.townshipParams.district = district;
-      this.form.patchValue({township: 0})
+      this.form.patchValue({townshipId: 0})
     }
     this.searchTownship()
   }
@@ -104,7 +109,7 @@ export class MemberFormComponent implements OnInit {
   saveMember() {
     this.employeeMemberService.save(this.form.value).subscribe(resp => {
       if(resp) {
-        this.router.navigate(this.checkout ? ['/employee', 'sale', 'checkout'] : ['/employee', 'member', 'detail'], {queryParams: {id: resp.id}})
+        this.router.navigate(this.checkout ? ['/employee', 'sale', 'checkout'] : ['/employee', 'member', 'detail'], {queryParams: {id: resp.payload.id}})
       }
     })
   }

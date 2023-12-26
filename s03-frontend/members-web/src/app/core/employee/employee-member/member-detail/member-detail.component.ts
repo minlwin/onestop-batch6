@@ -27,12 +27,16 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(param => {
       if(param.get('id')) {
-        this.employeeMemberService.findById(+(param.get('id') as string)).subscribe(resp => {
-          if(resp) {
-            this.member = resp.payload.profile
-            this.purchases = resp.payload.purchases
-          }
-        })
+        this.findMemberById(Number(param.get('id')))
+      }
+    })
+  }
+
+  findMemberById(id: number) {
+    this.employeeMemberService.findById(id).subscribe(resp => {
+      if(resp) {
+        this.member = resp.payload.profile
+        this.purchases = resp.payload.purchases
       }
     })
   }
@@ -40,6 +44,7 @@ export class MemberDetailComponent implements OnInit {
   uploadProfileImage(fileList: FileList) {
     this.employeeMemberService.uploadPhoto(this.member.id, fileList[0]).subscribe(resp => {
       if(resp) {
+        this.findMemberById(this.member.id)
         this.successHeader = 'Upload Complete'
         this.successMessage = resp.payload.message
         this.successDialog.openDialog()

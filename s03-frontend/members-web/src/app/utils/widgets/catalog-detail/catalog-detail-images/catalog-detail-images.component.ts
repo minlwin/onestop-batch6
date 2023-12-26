@@ -13,6 +13,9 @@ export class CatalogDetailImagesComponent implements OnInit, OnChanges {
   @Input()
   images: any[] = []
 
+  @Input()
+  status = false
+
   activeCarousel!: string
 
   ngOnInit(): void {

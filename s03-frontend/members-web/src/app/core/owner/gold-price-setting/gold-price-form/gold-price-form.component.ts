@@ -29,7 +29,11 @@ export class GoldPriceFormComponent {
     })
   }
 
-  openPriceForm() {
+  openPriceForm(dto: any) {
+    this.initForm()
+    if(dto) {
+      this.form.patchValue(dto)
+    }
     this.dialog.openDialog()
   }
 
@@ -39,6 +43,16 @@ export class GoldPriceFormComponent {
 
   savePrice() {
     this.onSave.emit(this.form.value)
+  }
+
+  initForm() {
+    this.form.patchValue({
+      id: 0,
+      businessTime: '',
+      basePrice: 0,
+      diffFor16P: 0,
+      diffFor15P: 0
+    })
   }
 
   get id() {

@@ -40,7 +40,7 @@ export class EmployeeMemberComponent implements OnInit {
 
   uploadLocations(fileList: FileList) {
     let file: File = fileList[0];
-    if(file.name != 'xls' && file.name != 'xlsx') {
+    if(!file.name.endsWith('xls') && !file.name.endsWith('xlsx')) {
       this.infoHeader = 'Wrong File Format'
       this.infoMessage = 'Please select correct excel file!'
       this.infoDialog.openDialog()

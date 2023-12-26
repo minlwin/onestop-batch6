@@ -47,6 +47,9 @@ export class CatalogDetailForAdminComponent implements OnDestroy {
   uploadImages() {
     this.employeeCatalogService.uploadImages(this.catalog.id, this.imageFiles).subscribe(resp => {
       if(resp) {
+        this.employeeCatalogService.findById(this.catalog.id).subscribe(resp => {
+          this.images = resp.payload.images
+        })
         this.uploadStatus = !this.uploadStatus
         this.successDialog.openDialog()
       }

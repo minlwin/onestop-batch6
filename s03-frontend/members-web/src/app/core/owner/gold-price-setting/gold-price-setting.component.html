@@ -40,6 +40,7 @@
         <th>15P Sale Price</th>
         <th>16P Buy Price</th>
         <th>15P Buy Price</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -50,6 +51,14 @@
         <td>{{ dto.salePriceFor15P }}</td>
         <td>{{ dto.buyPriceFor16P }}</td>
         <td>{{ dto.buyPriceFor15P }}</td>
+        <td>
+          <div class="dropdown">
+            <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item" (click)="updatePriceForm(dto.id)"><i class="bi bi-pencil me-3"></i>Edit</li>
+            </ul>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

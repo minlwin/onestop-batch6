@@ -1,8 +1,9 @@
 <div class="row justify-content-between g-2">
   <div class="col-md-auto col-12">
-    <button class="btn btn-danger text-white w-100" [routerLink]="['/employee', 'member', 'form']">
+    <a class="btn btn-danger text-white w-100" [routerLink]="['/employee', 'member', 'form']"
+      [queryParams]="{update: false}">
       <i class="bi bi-plus-lg"></i> Add Member
-    </button>
+    </a>
   </div>
   <div class="col-md-auto col-12">
     <button class="btn btn-danger text-white w-100" (click)="excleInput.click()">
@@ -67,14 +68,14 @@
         <td>{{ member.name }}</td>
         <td>{{ member.gender }}</td>
         <td>{{ member.phone }}</td>
-        <td>{{ member.dob }}</td>
-        <td>{{ member.registrationDate }}</td>
+        <td>{{ member.dob | date }}</td>
+        <td>{{ member.registrationDate | date: 'MMM dd, yyyy HH:mm'}}</td>
         <td>
           <div class="dropdown">
             <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" [routerLink]="['/employee', 'member', 'form']"
-                  [queryParams]="{id: member.id}"><i class="bi bi-pencil me-3"></i>Edit</a></li>
+                  [queryParams]="{id: member.id, update: true}"><i class="bi bi-pencil me-3"></i>Edit</a></li>
               <li><a class="dropdown-item" [routerLink]="['/employee', 'member', 'detail']"
                   [queryParams]="{id: member.id}"><i class="bi bi-send me-3"></i>Detail</a></li>
             </ul>

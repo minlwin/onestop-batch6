@@ -25,6 +25,8 @@ export class OwnerEmployeeComponent implements OnInit {
 
   employees: any[] = []
 
+  updateStatus = false
+
   constructor(private ownerEmployeeService: OwnerEmployeeService) {}
 
   ngOnInit(): void {
@@ -32,6 +34,10 @@ export class OwnerEmployeeComponent implements OnInit {
   }
 
   openForm(employee: any) {
+    if(employee)
+      this.updateStatus = !this.updateStatus
+    else
+      this.updateStatus = !this.updateStatus
     this.employeeForm.openEmployeeForm(employee)
   }
 

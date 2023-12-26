@@ -17,7 +17,7 @@
       <form [formGroup]="form">
 
         <!-- Login Id -->
-        <div class="row mb-3 g-3">
+        <div class="row mb-3 g-3" *ngIf="update == 'false'">
           <div class="col-md col-12">
             <app-form-group icon="bi-person-square" label="Login Id" [valid]="loginId.valid" [touch]="loginId.touched"
               [dirty]="loginId.dirty">
@@ -94,7 +94,7 @@
           <div class="col">
             <app-form-group icon="bi-cursor" label="Address" [valid]="address.valid" [touch]="address.touched"
               [dirty]="address.dirty">
-              <input formControlName="address" type="email" class="form-control"
+              <input formControlName="address" type="text" class="form-control"
                 placeholder="eg. 28(B), Bo Gyoke Rd, Latha">
             </app-form-group>
           </div>

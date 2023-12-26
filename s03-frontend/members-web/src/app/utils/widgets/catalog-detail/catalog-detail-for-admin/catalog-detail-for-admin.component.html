@@ -5,7 +5,7 @@
 
     <!-- Catalog Images -->
     <div class="bg-white p-2" *ngIf="images?.length">
-      <app-catalog-detail-images [images]="images"></app-catalog-detail-images>
+      <app-catalog-detail-images [status]="uploadStatus" [images]="images"></app-catalog-detail-images>
 
       <div class="mt-2 mb-1 text-center">
         <button class="btn btn-warning" *ngIf="images.length && uploadStatus" (click)="uploadImages()">Upload

@@ -7,7 +7,7 @@
       </div>
       <div class="card-body text-center">
         <img
-          [src]="(member?.profileImage | apiImage) || (member?.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png')"
+          [src]="member?.profileImage ? (member?.profileImage | apiImage) : (member?.gender == 'Male' ? '/assets/profile-man.png' : '/assets/profile-woman.png')"
           class="img-thumbnail rounded-circle profile-image">
 
         <div class="my-3">
@@ -39,7 +39,7 @@
         <div class="row mb-2 g-3">
           <div class="col-md-5 col-12">
             <h6 class="mb-1 fw-bold text-secondary">Birth Date</h6>
-            <p class="fs-5">{{ member?.dob | date: 'yyyy MMM EE' }}</p>
+            <p class="fs-5">{{ member?.dob | date }}</p>
           </div>
 
           <div class="col-md col-12">
@@ -51,7 +51,7 @@
         <div class="row mb-2 g-3">
           <div class="col-md-5 col-12">
             <h6 class="mb-1 fw-bold text-secondary">Registration Date</h6>
-            <p class="fs-5">{{ member?.registrationDate | date: 'yyyy MMM EEE' }}</p>
+            <p class="fs-5">{{ member?.registrationDate | date: 'MMM dd, yyyy HH:mm' }}</p>
           </div>
 
           <div class="col-md col-12">

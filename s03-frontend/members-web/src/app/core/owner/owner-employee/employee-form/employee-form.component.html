@@ -6,7 +6,7 @@
 
       <!-- Login Id and Name-->
       <div class="row g-3 mb-2">
-        <div class="col-md col-12">
+        <div class="col-md col-12" *ngIf="!updateStatus">
           <app-form-group label="Login Id" icon="bi-person-square" [valid]="loginId.valid" [touch]="loginId.touched"
             [dirty]="loginId.dirty">
             <input formControlName="loginId" type="text" class="form-control" placeholder="Login Id">

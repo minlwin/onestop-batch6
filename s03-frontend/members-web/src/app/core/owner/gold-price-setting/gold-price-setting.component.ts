@@ -36,14 +36,38 @@ export class GoldPriceSettingComponent implements OnInit {
   }
 
   openPriceForm() {
-    this.priceForm.openPriceForm()
+    this.priceForm.openPriceForm(undefined)
+  }
+
+  updatePriceForm(date: any) {
+    let updateDto: any
+    let id: any = new Date(date).getTime()
+
+    this.ownerGoldPriceService.findById(id).subscribe({
+      next: resp => {
+        updateDto = resp.payload
+        this.priceForm.openPriceForm(updateDto)
+      },
+      error: err => {
+        this.priceForm.closePriceForm()
+        throw err
+      }
+    })
   }
 
   save(data: any) {
     data.businessTime = formatDate(data.businessTime, 'yyyy-MM-dd HH:mm:ss', 'en_US')
-    this.ownerGoldPriceService.save(data).subscribe(resp => {
-      if(resp)
+    this.ownerGoldPriceService.save(data).subscribe({
+      next: resp => {
+        if(resp) {
+          this.priceForm.closePriceForm()
+          this.search()
+        }
+      },
+      error: err => {
         this.priceForm.closePriceForm()
+        throw err
+      }
     })
   }
 

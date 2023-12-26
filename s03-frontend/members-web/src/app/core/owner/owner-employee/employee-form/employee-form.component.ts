@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ModalDialogComponent } from '../../../../utils/widgets/modal-dialog/modal-dialog.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ROLE } from '../../../../utils/apis/model/api-constant';
@@ -15,6 +15,9 @@ export class EmployeeFormComponent {
 
   @ViewChild(ModalDialogComponent)
   dialog!: ModalDialogComponent
+
+  @Input()
+  updateStatus = false
 
   roles = ROLE
   form: FormGroup
@@ -54,6 +57,7 @@ export class EmployeeFormComponent {
   initForm() {
     this.form.patchValue({
       id: 0,
+      loginId: '',
       name: '',
       phone: '',
       email: '',
