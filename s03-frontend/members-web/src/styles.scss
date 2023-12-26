@@ -14,7 +14,7 @@ $enable-rounded: false;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-.btn-outline-success:hover, .btn-danger, .btn-success {
+.btn-outline-success:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-primary {
   color: white;
 }
 

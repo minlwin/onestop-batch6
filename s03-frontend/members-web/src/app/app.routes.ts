@@ -15,8 +15,6 @@ import { MemberFormComponent } from './core/employee/employee-member/member-form
 import { MemberDetailComponent } from './core/employee/employee-member/member-detail/member-detail.component';
 import { CatalogFormComponent } from './core/employee/employee-catalog/catalog-form/catalog-form.component';
 import { CatalogDetailComponent } from './core/employee/employee-catalog/catalog-detail/catalog-detail.component';
-import { checkoutTitle } from './utils/apis/model/checkout-title';
-import { CheckoutComponent } from './utils/widgets/checkout/checkout.component';
 import { MemberPurchaseHistoryComponent } from './core/member/member-purchase-history/member-purchase-history.component';
 import { purchaseHistoryResolver } from './utils/resolver/purchase-history.resolver';
 import { memberGuard } from './utils/guards/member.guard';
@@ -27,14 +25,15 @@ import { GoldPriceSettingComponent } from './core/owner/gold-price-setting/gold-
 import { OwnerEmployeeComponent } from './core/owner/owner-employee/owner-employee.component';
 import { EmployeeDetailComponent } from './core/owner/owner-employee/employee-detail/employee-detail.component';
 import { ownerGuard } from './utils/guards/owner.guard';
+import { SaleCustomerComponent } from './core/employee/sale/sale-form/sale-customer/sale-customer.component';
+import { SaleDiscountComponent } from './core/employee/sale/sale-form/sale-discount/sale-discount.component';
+import { SaleItemsComponent } from './core/employee/sale/sale-form/sale-items/sale-items.component';
 
 const publicRoute: Route = { path: 'public', component: PublicComponent, children: [
   { path: 'home', component: PublicHomeComponent, title: 'Public | Home' },
   { path: 'catalog', component: PublicCatalogComponent, title: 'Public | Catalog' },
   { path: '', redirectTo: '/public/home', pathMatch: 'full' }
 ]}
-
-const checkoutRoute: Route = { path: 'checkout', component: CheckoutComponent, title: checkoutTitle}
 
 const memberRoute: Route = { path: 'member', component: MemberComponent, children: [
   { path: 'home', component: MemberHomeComponent, title: 'Member | Home' },
@@ -49,7 +48,12 @@ const memberRoute: Route = { path: 'member', component: MemberComponent, childre
 const employeeRoute: Route = { path: 'employee', component: EmployeeComponent, children: [
   { path: 'sale', children: [
     { path: 'management', component: SaleComponent, title: 'Employee | Sale' },
-    { path: 'form', component: SaleFormComponent, title: 'Employee | Sale Form' },
+    { path: 'form', component: SaleFormComponent, title: 'Employee | Sale Form', children: [
+      { path: 'customer', component: SaleCustomerComponent },
+      { path: 'discount', component: SaleDiscountComponent },
+      { path: 'items', component: SaleItemsComponent },
+      { path: '', redirectTo: '/employee/sale/form/customer', pathMatch: 'full' }
+    ]},
     { path: 'detail', component: SaleDetailComponent, title: 'Employee | Sale Detail' },
     { path: '', redirectTo: '/employee/sale/management', pathMatch: 'full' }
   ]},
@@ -81,7 +85,6 @@ const ownerRoute: Route = { path: 'owner', component: OwnerComponent, children: 
 
 export const routes: Routes = [
   publicRoute,
-  checkoutRoute,
   memberRoute,
   employeeRoute,
   ownerRoute,

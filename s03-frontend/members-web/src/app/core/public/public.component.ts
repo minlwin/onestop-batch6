@@ -7,15 +7,13 @@ import { PublicLoginService } from '../../utils/apis/services/public-login.servi
 import { CommonModule } from '@angular/common';
 import { SecurityService } from '../../utils/apis/services/security.service';
 import { Catalog } from '../../utils/apis/model/sample-data';
-import { SecondNavComponent } from '../../utils/widgets/second-nav/second-nav.component';
 import { CartService } from '../../utils/apis/services/cart.service';
-import { ApiResponse } from '../../utils/apis/model/api-dto';
-import { Observer, catchError, throwError } from 'rxjs';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-public',
   standalone: true,
-  imports: [CommonModule, RouterModule, ModalDialogComponent, FormGroupComponent, ReactiveFormsModule, SecondNavComponent],
+  imports: [CommonModule, RouterModule, ModalDialogComponent, FormGroupComponent, ReactiveFormsModule],
   templateUrl: './public.component.html'
 })
 export class PublicComponent implements OnInit {

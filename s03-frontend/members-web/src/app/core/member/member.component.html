@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a routerLink="/member" class="navbar-brand">Welcome {{ currentUsername }}!</a>
+    <a routerLink="/member" class="navbar-brand">Welcome {{ activeUser.name }}</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +18,17 @@
       </ul>
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown me-2" *ngIf="activeUser.role == 'Admin'">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dashboard
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/public']">To Public</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/employee']">To Employee</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/owner']">To Owner</a></li>
+          </ul>
+        </li>
+
         <li class="nav-item">
           <button class="btn btn-light" (click)="logout()">
             Log Out <i class="bi bi-box-arrow-right"></i>
@@ -27,7 +38,6 @@
     </div>
   </div>
 </nav>
-<app-second-nav [cartItems]="cartItems" *ngIf="cartItems.length > 0"></app-second-nav>
 
 <main class="container mt-4">
   <router-outlet></router-outlet>

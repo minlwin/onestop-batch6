@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Catalog, Category } from '../../../../utils/apis/model/sample-data';
 import { EmployeeCatalogService } from '../../../../utils/apis/services/employee-catalog.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmployeeCategoryService } from '../../../../utils/apis/services/employee-category.service';
 import { FormGroupComponent } from '../../../../utils/widgets/form-group/form-group.component';
 import { CommonModule } from '@angular/common';
@@ -40,7 +39,7 @@ export class CatalogFormComponent implements OnInit {
     this.employeeCategoryService.search().subscribe(resp => this.categories = resp.payload)
 
     this.route.queryParamMap.subscribe(param => {
-      let id = + (param.get('id') as string)
+      let id = Number(param.get('id'))
       if(id) {
         this.employeeCatalogService.findById(id).subscribe(resp => {
           if(resp) {

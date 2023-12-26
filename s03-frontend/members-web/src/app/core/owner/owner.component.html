@@ -6,6 +6,17 @@
     </a>
 
     <ul class="navbar-nav ms-auto">
+      <li class="nav-item dropdown me-2">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Dashboard
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" [routerLink]="['/public']">To Public</a></li>
+          <li *ngIf="activeUser.role == 'Admin'"><a class="dropdown-item" [routerLink]="['/member']">To Member</a></li>
+          <li><a class="dropdown-item" [routerLink]="['/employee']">To Employee</a></li>
+        </ul>
+      </li>
+
       <li class="nav-item">
         <button class="btn btn-danger text-white" (click)="logout()">
           <span class="d-none d-md-inline">Logout </span> <i class="bi bi-box-arrow-right"></i>

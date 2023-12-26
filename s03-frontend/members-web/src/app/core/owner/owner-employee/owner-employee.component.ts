@@ -42,10 +42,16 @@ export class OwnerEmployeeComponent implements OnInit {
   }
 
   save(employee: any) {
-    this.ownerEmployeeService.save(employee).subscribe(resp => {
-      if(resp) {
+    this.ownerEmployeeService.save(employee).subscribe({
+      next: resp => {
+        if(resp) {
+          this.employeeForm.closeEmployeeForm()
+          this.search()
+        }
+      },
+      error: err => {
         this.employeeForm.closeEmployeeForm()
-        this.search()
+        throw err
       }
     })
   }
