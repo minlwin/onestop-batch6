@@ -70,6 +70,7 @@ public class GoldPriceService {
 		}
 		
 		var entity = goldPriceRepo.save(form.entity());
+		
 		priceChangeService.createSchedule(entity.getBusinessTime());
 		
 		var idValue = entity.getBusinessTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();

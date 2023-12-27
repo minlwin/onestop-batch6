@@ -11,7 +11,8 @@ public class JpaAuditorAwareBean implements AuditorAware<String>{
 
 	@Override
 	public Optional<String> getCurrentAuditor() {
-		return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication().getName());
+		return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication())
+				.map(a -> a.getName());
 	}
 
 }
