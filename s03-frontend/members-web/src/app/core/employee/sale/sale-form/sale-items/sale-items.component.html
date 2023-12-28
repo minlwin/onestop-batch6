@@ -1,3 +1,46 @@
-<div class="row justify-content-center mt-5">
-  <div class="col-md-6 col-12 p-0"></div>
+<div class="row justify-content-center mt-5 h-100">
+  <div class="col-md-8 col-12 p-0 h-100">
+    <div class="row justify-content-end g-2 mb-3">
+      <div class="col-md-auto col-12">
+        <input #nameVal (keyup)="name = nameVal.value; searchCatalog()" type="text" class="form-control"
+          placeholder="Catalog name">
+      </div>
+      <div class="col-md-auto col-12">
+        <button class="btn btn-danger">
+          <i class="bi bi-search"></i> Find
+        </button>
+      </div>
+    </div>
+
+    <div class="alert alert-primary text-center" role="alert" *ngIf="!catalogs.length">
+      No catalog found! Please search with correct keyword.
+    </div>
+
+    <div class="card mb-3" *ngIf="catalogs.length">
+      <div class="card-body pb-1">
+        <div class="border p-2 mb-2" *ngFor="let catalog of catalogs">
+          <div class="row g-2">
+            <div class="col">{{ catalog.categoryName }}</div>
+            <div class="col">{{ catalog.name }}</div>
+            <div class="col">{{ catalog.weight | goldWeight }}</div>
+            <div class="col text-end">{{ catalog.salePrice | number }} MMK</div>
+            <div class="col-auto px-3">
+              <button class="btn btn-sm btn-outline-danger rounded-circle" (click)="addToCart(catalog)"><i class="bi"
+                  [class.bi-check]="isExist(catalog)" [class.bi-cart-plus]="!isExist(catalog)"></i></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-danger me-2" [routerLink]="['./../discount']">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+      <button class="btn btn-outline-danger" [class.disabled]="!cartItems.length" [routerLink]="['./../checkout']">
+        Next <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  </div>
 </div>

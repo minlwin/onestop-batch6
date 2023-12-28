@@ -43,7 +43,7 @@ export class CatalogFormComponent implements OnInit {
       if(id) {
         this.employeeCatalogService.findById(id).subscribe(resp => {
           if(resp) {
-            this.form.patchValue(resp.payload)
+            this.form.patchValue(resp.payload.baseInfo)
           }
         })
       }

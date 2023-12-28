@@ -1,6 +1,7 @@
 package com.jdc.shop.api.employee.input;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -45,6 +46,7 @@ public class MemberForm {
 		entity.setEmail(email);
 		entity.setDob(dob);
 		entity.setGender(gender);
+		entity.setRegistAt(LocalDateTime.now());
 		return entity;
 	}
 

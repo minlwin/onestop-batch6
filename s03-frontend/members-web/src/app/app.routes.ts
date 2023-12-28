@@ -28,6 +28,7 @@ import { ownerGuard } from './utils/guards/owner.guard';
 import { SaleCustomerComponent } from './core/employee/sale/sale-form/sale-customer/sale-customer.component';
 import { SaleDiscountComponent } from './core/employee/sale/sale-form/sale-discount/sale-discount.component';
 import { SaleItemsComponent } from './core/employee/sale/sale-form/sale-items/sale-items.component';
+import { SaleCheckoutComponent } from './core/employee/sale/sale-form/sale-checkout/sale-checkout.component';
 
 const publicRoute: Route = { path: 'public', component: PublicComponent, children: [
   { path: 'home', component: PublicHomeComponent, title: 'Public | Home' },
@@ -52,6 +53,7 @@ const employeeRoute: Route = { path: 'employee', component: EmployeeComponent, c
       { path: 'customer', component: SaleCustomerComponent },
       { path: 'discount', component: SaleDiscountComponent },
       { path: 'items', component: SaleItemsComponent },
+      { path: 'checkout', component: SaleCheckoutComponent },
       { path: '', redirectTo: '/employee/sale/form/customer', pathMatch: 'full' }
     ]},
     { path: 'detail', component: SaleDetailComponent, title: 'Employee | Sale Detail' },

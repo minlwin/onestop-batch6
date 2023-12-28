@@ -1,10 +1,10 @@
 <div class="row justify-content-center mt-5">
-  <div class="col-md-6 col-12 p-0">
+  <div class="col-md-8 col-12 p-0">
 
     <div class="row g-2 justify-content-md-end justify-content-center mb-3">
       <div class="col-md-auto col-9 p-0">
-        <input #idVal (keyup)="id = idVal.value; searchCustomer()" type="text" class="form-control"
-          placeholder="Enter customer id">
+        <input #idVal (keyup)="id = +idVal.value; searchCustomer()" [value]="id > 0 ? id : ''" type="text"
+          class="form-control" placeholder="Enter member id">
       </div>
       <div class="col-md-auto col">
         <button class="btn btn-danger">
@@ -14,12 +14,12 @@
       </div>
     </div>
 
-    <div class="alert alert-primary" role="alert" *ngIf="!member">
-      Member not found! <a [routerLink]="['/employee', 'member', 'form']" [queryParams]="{checkout: true}"
+    <div class="alert alert-primary text-center" role="alert" *ngIf="!member">
+      Search Member with Id. or <a [routerLink]="['/employee', 'member', 'form']" [queryParams]="{checkout: true}"
         class="link-dark">Create New One</a>
     </div>
 
-    <div class="card" *ngIf="member">
+    <div class="card mb-3" *ngIf="member">
       <div class="card-body">
 
         <div class="row mb-2 g-3 justify-content-between">
@@ -58,15 +58,14 @@
           </div>
         </div>
 
-        <div class="row justify-content-md-end">
-          <div class="col-md-auto col-12">
-            <button class="btn btn-danger" [routerLink]="['./../discount']">
-              Next <i class="bi bi-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
       </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-outline-danger" [class.disabled]="!member" (click)="saveCustomer()"
+        [routerLink]="['./../discount']">
+        Next <i class="bi bi-arrow-right"></i>
+      </button>
     </div>
 
   </div>

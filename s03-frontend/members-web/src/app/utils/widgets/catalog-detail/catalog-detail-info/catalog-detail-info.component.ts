@@ -26,8 +26,8 @@ export class CatalogDetailInfoComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addItems(this.catalog)
-    this.isExist = !this.isExist
+    this.cartService.addItemOrRemove(this.catalog)
+    this.isExist = this.cartService.isExist(this.catalog)
   }
 
 }

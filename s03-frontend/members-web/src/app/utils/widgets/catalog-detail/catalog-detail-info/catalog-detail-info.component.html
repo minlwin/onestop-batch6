@@ -12,8 +12,7 @@
     </div>
   </div>
 
-  <button class="btn {{ isExist ? 'btn-dark' : 'btn-danger' }} text-white w-100 mt-3" [class.disabled]="isExist"
-    (click)="addToCart()">
+  <button class="btn {{ isExist ? 'btn-secondary' : 'btn-danger' }} text-white w-100 mt-3" (click)="addToCart()">
     <i class="bi bi-{{ isExist ? 'check' : 'cart-plus'}}"></i> {{ isExist ? 'Already Added' : 'Add To Cart' }}
   </button>
 

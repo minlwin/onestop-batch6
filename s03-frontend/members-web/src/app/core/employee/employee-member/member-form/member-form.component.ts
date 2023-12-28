@@ -109,7 +109,8 @@ export class MemberFormComponent implements OnInit {
   saveMember() {
     this.employeeMemberService.save(this.form.value).subscribe(resp => {
       if(resp) {
-        this.router.navigate(this.checkout ? ['/employee', 'sale', 'form'] : ['/employee', 'member', 'detail'], {queryParams: {id: resp.payload.id}})
+        const url = this.checkout ? ['/employee', 'sale', 'form', 'customer'] : ['/employee', 'member', 'detail']
+        this.router.navigate(url, {queryParams: {id: resp.payload.id}})
       }
     })
   }

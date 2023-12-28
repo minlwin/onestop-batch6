@@ -38,6 +38,14 @@
         value="0" class="form-control">
     </div>
     <div class="col-xl-auto col-md-4 col-12 align-self-end">
+      <label for="soldOut" class="form-label mb-1">Sold Out</label>
+      <select #soldOutVal (change)="params.soldOut = parseBool(soldOutVal.value); search()" class="form-select"
+        id="soldOut">
+        <option value="false">False</option>
+        <option value="true">True</option>
+      </select>
+    </div>
+    <div class="col-xl-auto col-md-4 col-12 align-self-end">
       <button class="btn btn-danger text-white w-100" (click)="search()">
         <i class="bi bi-search"></i>
         Search

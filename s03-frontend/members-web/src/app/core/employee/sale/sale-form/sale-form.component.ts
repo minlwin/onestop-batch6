@@ -11,7 +11,7 @@ import { NavigationEnd, Router, RouterEvent, RouterModule } from '@angular/route
 export class SaleFormComponent implements OnInit {
 
   url = 'customer'
-  width = 0
+  style = {'width': '0%'}
 
   constructor(private router: Router) {}
 
@@ -20,13 +20,16 @@ export class SaleFormComponent implements OnInit {
       if(e instanceof NavigationEnd) {
         if(e.urlAfterRedirects == '/employee/sale/form/customer') {
           this.url = 'customer'
-          this.width = 0
+          this.style = {'width': '0%'}
         } else if(e.urlAfterRedirects == '/employee/sale/form/discount') {
           this.url = 'discount'
-          this.width = 50
-        } else {
+          this.style = {'width': '33.333%'}
+        } else if(e.urlAfterRedirects == '/employee/sale/form/items') {
           this.url = 'items'
-          this.width = 100
+          this.style = {'width': '66.666%'}
+        } else {
+          this.url = 'checkout'
+          this.style = {'width': '100%'}
         }
       }
     })

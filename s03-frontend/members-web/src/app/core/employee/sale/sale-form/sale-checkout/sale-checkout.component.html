@@ -1,0 +1,57 @@
+<div class="row justify-content-center mt-5 h-100">
+  <div class="col-md-6 col-12 p-0 h-100">
+
+    <div class="text-end mb-2">
+      <button class="btn btn-sm btn-outline-danger" [class.disabled]="!catalogs.length"><i class="bi bi-x"></i> Clear
+        Cart</button>
+    </div>
+    <div class="card mb-3">
+      <div class="card-body pb-1">
+
+        <div class="alert alert-primary text-center" role="alert" *ngIf="!catalogs.length">
+          No item in cart. Please <a [routerLink]="['./../items']" class="link-dark">add items</a>.
+        </div>
+
+        <div *ngIf="catalogs.length">
+          <div class="border p-2 mb-2" *ngFor="let catalog of catalogs">
+            <div class="row g-2 align-items-center">
+              <div class="col-7">
+                <div class="fw-bold h5">{{ catalog.name }}</div>
+                <div class="text-secondary">{{ catalog.salePrice | number }} MMK</div>
+              </div>
+              <div class="col-1">x1</div>
+              <div class="col-4 text-end">{{ catalog.salePrice | number }} MMK</div>
+            </div>
+          </div>
+
+          <div class="text-end pe-2" *ngIf="catalogs.length > 0">
+            <div class="row justify-content-end align-items-center fw-bold mb-2">
+              <div class="col-3">Subtotal:</div>
+              <div class="col-4 text-end">{{ subtotal | number }} MMK</div>
+            </div>
+
+            <div class="row justify-content-end align-items-center fw-bold mb-2">
+              <div class="col-3">Discount:</div>
+              <div class="col-4">{{ discount | number }} MMK</div>
+            </div>
+            <div class="row justify-content-end align-items-center fw-bold mb-2">
+              <div class="col-3">Total:</div>
+              <div class="col-4">{{ total | number }} MMK</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-danger me-2" [routerLink]="['./../items']">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+      <button class="btn btn-outline-danger" [class.disabled]="!catalogs.length" (click)="createSale()">
+        Checkout <i class="bi bi-cart2"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

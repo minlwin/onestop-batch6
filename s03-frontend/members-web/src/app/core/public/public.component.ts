@@ -6,8 +6,6 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { PublicLoginService } from '../../utils/apis/services/public-login.service';
 import { CommonModule } from '@angular/common';
 import { SecurityService } from '../../utils/apis/services/security.service';
-import { Catalog } from '../../utils/apis/model/sample-data';
-import { CartService } from '../../utils/apis/services/cart.service';
 import { Observer } from 'rxjs';
 
 @Component({
@@ -21,14 +19,11 @@ export class PublicComponent implements OnInit {
   @ViewChild(ModalDialogComponent)
   dialog!: ModalDialogComponent
 
-  cartItems: Catalog[] = []
-
   form: FormGroup
   user: any
 
   constructor(fb: FormBuilder,
     private publicLoginService: PublicLoginService,
-    private cartService: CartService,
     private securityService: SecurityService,
     private router: Router) {
     this.form = fb.group({
@@ -38,7 +33,6 @@ export class PublicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.items
     this.setActiveUser()
   }
 

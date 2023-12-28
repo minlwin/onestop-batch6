@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NoDataComponent } from '../../../utils/widgets/no-data/no-data.component';
 import { EmployeeSaleService } from '../../../utils/apis/services/employee-sale.service';
+import { SecurityService } from '../../../utils/apis/services/security.service';
 
 @Component({
   selector: 'app-sale',
@@ -19,18 +20,24 @@ export class SaleComponent implements OnInit {
     to: ''
   }
 
+  activeUser: any
   sales: any[] = []
 
-  constructor(private employeeSaleService: EmployeeSaleService) {}
+  constructor(private securityService: SecurityService, private employeeSaleService: EmployeeSaleService) {}
 
   ngOnInit(): void {
     this.search()
+    this.activeUser = this.securityService.activeUser
   }
 
   search() {
-    this.employeeSaleService.search(this.params).subscribe((resp: any) => {
+    this.employeeSaleService.search(this.params).subscribe(resp => {
       this.sales = resp.payload.content
     })
+  }
+
+  edit(id: string) {
+    
   }
 
 }

@@ -48,13 +48,13 @@ public class MemberManagementApi {
 	}
 
 	@PutMapping("{id}")
-	public ApiResponse<DataModificationResult<Integer>> update(int id, 
+	public ApiResponse<DataModificationResult<Integer>> update(@PathVariable int id, 
 			@Validated @RequestBody MemberForm form, BindingResult result) {
 		return ApiResponse.success(service.update(id, form));
 	}
 
 	@PutMapping("{id}/photo")
-	public ApiResponse<DataModificationResult<Integer>> uploadPhoto(int id, 
+	public ApiResponse<DataModificationResult<Integer>> uploadPhoto(@PathVariable int id, 
 			@RequestParam MultipartFile file) {
 		return ApiResponse.success(service.uploadPhoto(id, file));
 	}

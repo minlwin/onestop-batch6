@@ -42,4 +42,8 @@ export class EmployeeCatalogComponent implements OnInit {
     this.employeeCatalogService.search(this.params).subscribe(resp => this.catalogs = resp.payload.content)
   }
 
+  parseBool(value: string) {
+    return value === 'true'
+  }
+
 }

@@ -41,11 +41,11 @@ public class CatalogSearch {
 			list.add(cb.greaterThanOrEqualTo(root.get(Catalog_.createAt), createFrom.atStartOfDay()));
 		}
 		
-		if(null != priceFrom) {
+		if(null != priceFrom && priceFrom.intValue() > 0) {
 			list.add(cb.ge(root.get(Catalog_.salePrice), priceFrom));
 		}
 		
-		if(null != priceTo) {
+		if(null != priceTo && priceTo.intValue() > 0) {
 			list.add(cb.le(root.get(Catalog_.salePrice), priceTo));
 		}
 		

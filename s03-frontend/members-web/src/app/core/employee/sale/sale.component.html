@@ -39,7 +39,37 @@
   <app-no-data label="Sale" [marginTop]="true" *ngIf="!sales.length"></app-no-data>
 
   <!-- Sale List -->
-  <div class="row g-2">
-
-  </div>
+  <table class="table table-striped table-hover" *ngIf="sales.length">
+    <thead>
+      <tr>
+        <th>Member Name</th>
+        <th>Member Phone</th>
+        <th>Member Address</th>
+        <th>Jeweler</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales">
+        <td>{{ sale.memberName }}</td>
+        <td>{{ sale.memberPhone }}</td>
+        <td>{{ sale.memberAddress }}</td>
+        <td>{{ sale.saleBy }}</td>
+        <td>{{ sale.salePrice | number }}</td>
+        <td>
+          <div class="dropdown">
+            <i class="bi bi-three-dots-vertical dropdown-toggle" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu">
+              <li *ngIf="activeUser.role == 'Owner' || activeUser.role == 'Admin'" (click)="edit(sale.id.invoiceNumber)"
+                class="dropdown-item"><i class="bi bi-pencil me-3"></i> Edit
+              </li>
+              <li><a class="dropdown-item" [routerLink]="['/employee', 'sale', 'detail']"
+                  [queryParams]="{id: sale.id.invoiceNumber}"><i class="bi bi-send me-3"></i>Detail</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

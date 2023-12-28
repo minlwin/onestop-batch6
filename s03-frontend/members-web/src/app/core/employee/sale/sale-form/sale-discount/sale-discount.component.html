@@ -1,14 +1,15 @@
 <div class="row justify-content-center mt-5">
-  <div class="col-md-6 col-12 p-0">
+  <div class="col-md-5 col-12 p-0">
 
     <label for="discount" class="form-label">Discount</label>
-    <input type="number" id="discount" class="form-control mb-3">
+    <input #discountVal (keyup)="discount = +discountVal.value" [value]="discount" type="number" id="discount"
+      class="form-control mb-3">
 
-    <div class="text-end">
-      <button class="btn btn-danger me-2">
+    <div class="text-center">
+      <button class="btn btn-danger me-2" [routerLink]="['./../customer']">
         <i class="bi bi-arrow-left"></i> Back
       </button>
-      <button class="btn btn-outline-danger" [routerLink]="['./../items']">
+      <button class="btn btn-outline-danger" (click)="saveDiscount()" [routerLink]="['./../items']">
         Next <i class="bi bi-arrow-right"></i>
       </button>
     </div>
